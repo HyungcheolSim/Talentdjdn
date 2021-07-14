@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/*class . id #  */
+html,body {
+	width:100%;
+	height:100%;
+	margin:0;
+	font-size:16px;
+	font-family: sans-serif;
+}
+.talent_detail_body_container{
+	width:100%;
+	height:100%;
+}
+.talent_detail_header_container{
+	width:100%;
+	height:15%;
+}
+.talent_detail_content_container{
+	width:85%;
+	margin-right:15%;
+	height:auto;
+	display: flex;
+}
+.talent_detail_content_sidebar_container{
+	width:15%;
+	height:auto;
+	margin-right:0;
+}
+.price_h2{
+	font-size: 2em;
+	font-weight: bolder;
+	width:100%;
+	height:100%;
+}
+.purchasebtn{
+	width:100%;
+	height:100%;
+	background-color: RED;
+	font-size: 2em;
+	font-weight: bolder;
+}
+.review_td{
+	text-align: center;
+}
+.talent_detail_content{
+	width:80%;
+	/* height:auto; */
+	height:1500px;
+}
+
+.talent_detail_title_container{
+	width:100%;
+	height:auto;
+}
+.talent_detail_title_container h2{
+	font-size:2em;
+	vertical-align: middle;
+	margin-top:30px;
+	margin-bottom:30px;
+	
+}
+.talent_detail_price_purchasebtn_container{
+	width:100%;
+	height:65px;
+}
+.talent_detail_price_container{
+	float:left;
+	width:70%;
+	height:65px;
+} 
+.talent_detail_purchasebtn_container{
+	float:right;
+	width:30%;
+	height:65px;
+}
+
+.talent_detail_infomation{
+	width:100%;
+	height:500px;
+}
+.talent_detail_review_list_container{
+	width:100%;
+	height:auto;
+}
+.talent_detail_review_register_container{
+	width:100%;
+	height:400px;
+}
+.detail_review_header{
+	border:1px solid black;
+	width:60%;
+	height:25px;
+}
+.detail_review_header_w{
+	border:1px solid black;
+	width:10%;
+	height:25px;
+}
+.detail_review_header_s{
+	border:1px solid black;
+	width:10%;
+	height:25px;
+}
+.detail_review_header_r{
+	border:1px solid black;
+	width:20%;
+	height:25px;
+}
+
+
+
+.talent_detail_footer_container{
+	width:100%;
+	height:15%;
+}

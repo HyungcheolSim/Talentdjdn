@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#bottom_button{
+	width:80%;
+	list-style: none;
+}
+
+#bottom_button> li {
+	display: inline-block;
+	
+}
+
+#bottom_button > li > a {
+	display: block;
+	text-decoration: none;
+	text-align:left;
+	/* width: 120px; */
+	font-family: 'Gothic A1';
+	
+	font-size: 10pt;
+	/* font-weight: bold; */
+	color: #000000;
+	margin-right: 15px;
+}
+
+#bottom_content{
+	font-size: 8pt;
+	color: #808080;
+	font-family: 'Gothic A1';
+}
+
+#bottom_line{
+	
+	color: yellow;
+}	

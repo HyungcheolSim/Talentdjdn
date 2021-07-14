@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+
+.main_logo{
+	width:20%;
+	display: block;
+	float:left;
+}
+
+.main_top_button{
+	width:80%;
+	list-style: none;
+	line-height : 70px;
+	text-align:right;
+	float: left;
+}
+
+.main_top_button > li {
+	display: inline-block;
+	
+}
+
+.main_top_button > li > a {
+	display: block;
+	text-decoration: none;
+	text-align:left;
+	/* width: 120px; */
+	font-family: 'Gothic A1';
+	font-size: 13pt;
+	/*font-weight: bold;*/
+	color: #000000;
+	margin-left: 15px; 
+}	
+
+.main_top_button > li > a:hover {
+	
+	font-weight: bold;
+}	
