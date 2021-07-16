@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import util.ConnectionMaker;
-import util.ProductionDBConnectionMaker;
+//import util.ProductionDBConnectionMaker;
 import util.TalentConnectionMaker;
 
 @Configuration	//애플리케이션 컨텍스트 또는 빈 팩토리가 사용할 설정정보

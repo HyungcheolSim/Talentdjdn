@@ -12,7 +12,7 @@ import util.CountingConnetionMaker;
 public class UserDaoConnectionCountingTest {
 
 	public static void main(String[] args) throws ClassNotFoundException,SQLException{
-		// TODO Auto-generated method stub
+		
 		AnnotationConfigApplicationContext context= 
 				new AnnotationConfigApplicationContext(CountingDaoFactory.class);
 		UserDao dao = context.getBean("userDao",UserDao.class);

@@ -3,7 +3,7 @@ package springbook.user.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+//import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
