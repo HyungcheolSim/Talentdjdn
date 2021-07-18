@@ -1,6 +1,6 @@
 package vo;
 
-public class review {
+public class ReviewVo {
 
 	int    r_id;
 	String r_title;

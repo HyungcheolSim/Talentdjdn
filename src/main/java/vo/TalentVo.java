@@ -1,6 +1,6 @@
 package vo;
 
-public class talent {
+public class TalentVo {
 
 	int    t_id;
 	int    t_title;

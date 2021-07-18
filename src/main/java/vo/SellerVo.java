@@ -1,6 +1,6 @@
 package vo;
 
-public class seller {
+public class SellerVo {
 
 	String s_id;
 	String s_account;

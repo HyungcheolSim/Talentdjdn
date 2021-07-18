@@ -18,11 +18,11 @@
 <script src="../resource/Semantic-UI-CSS-master/semantic.js"></script>
 
 <!-- common -->
-<link rel="stylesheet" href="../_css/common.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 <script src='../js/common.js'></script>
 
 <!-- this page -->
-<link rel="stylesheet" href="../_css/top_main.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/top_main.css">
 <script src='../js/top_main.js'></script>
 
 
@@ -44,38 +44,38 @@
 		</div>
 		<div id = "icon_selecter">
 			<div class="icon_box">
-				<a href=""><img class="main_icon" alt="" src="../_img/designs.png"></a>
+				<a href=""><img class="main_icon" alt="" src="${ pageContext.request.contextPath }/resources/img/designs.png"></a>
 				<p id="font">디자인</p>
 			</div>
 
 			<div class="icon_box">
-				<a href=""><img class="main_icon" alt="" src="../_img/programming.png"></a>
+				<a href=""><img class="main_icon" alt="" src="${ pageContext.request.contextPath }/resources/img/programming.png"></a>
 				<p id="font">ITㆍ프로그래밍</p>
 			</div>
 
 			<div class="icon_box">
 				<a href=""><img class="main_icon" alt=""
-					src="../_img/picture.png"></a>
+					src="${ pageContext.request.contextPath }/resources/img/picture.png"></a>
 				<p id="font">영상ㆍ사진ㆍ음향</p>
 			</div>
 
 			<div class="icon_box">
-				<a href=""><img class="main_icon" alt="" src="../_img/marketing.png"></a>
+				<a href=""><img class="main_icon" alt="" src="${ pageContext.request.contextPath }/resources/img/marketing.png"></a>
 				<p id="font">마케팅</p>
 			</div>
 
 			<div class="icon_box">
-				<a href=""><img class="main_icon" alt="" src="../_img/transfer.png"></a>
+				<a href=""><img class="main_icon" alt="" src="${ pageContext.request.contextPath }/resources/img/transfer.png"></a>
 				<p id="font">번역ㆍ통역</p>
 			</div>
 
 			<div class="icon_box">
-				<a href=""><img class="main_icon" alt="" src="../_img/lesson.png"></a>
+				<a href=""><img class="main_icon" alt="" src="${ pageContext.request.contextPath }/resources/img/lesson.png"></a>
 				<p id="font">레슨ㆍ실무교육</p>
 			</div>
 
 			<div class="icon_box">
-				<a href=""><img class="main_icon" alt=""src="../_img/object.png"></a>
+				<a href=""><img class="main_icon" alt=""src="${ pageContext.request.contextPath }/resources/img/object.png"></a>
 				<p id="font">상품</p>
 			</div>
 		</div>

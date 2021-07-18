@@ -18,11 +18,11 @@
 <script src="../resource/Semantic-UI-CSS-master/semantic.js"></script>
 
 <!-- common -->
-<link rel="stylesheet" href="../_css/common.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 <script src='../js/common.js'></script>
 
 <!-- this page -->
-<link rel="stylesheet" href="../_css/bottom.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/bottom.css">
 <script src='../js/bottom.js'></script>
 
 </head>

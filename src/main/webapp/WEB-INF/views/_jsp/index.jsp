@@ -13,17 +13,13 @@
 <link href="../resource/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="../resource/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
 
-<!-- semantic ui -->
-<link rel="stylesheet" href="../resource/Semantic-UI-CSS-master/semantic.css">
-<script src="../resource/Semantic-UI-CSS-master/semantic.js"></script>
-
 <!-- common -->
-<link rel="stylesheet" href="../_css/common.css">
-<script src='../js/common.js'></script>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
+<script src='js/common.js'></script>
 
 <!-- this page -->
-<link rel="stylesheet" href="../_css/index.css">
-<script src='../js/index.js'></script>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/index.css">
+<script src='js/index.js'></script>
 
 </head>
 <body>

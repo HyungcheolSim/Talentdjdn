@@ -1,6 +1,6 @@
 package vo;
 
-public class interest {
+public class InterestVo {
 
 	int i_id;
 

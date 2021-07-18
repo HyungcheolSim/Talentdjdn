@@ -14,22 +14,27 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
    	 	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-   		<property name="url" value="jdbc:mysql://localhost:3306/talentdjdn"></property>
+   		<property name="url" value="jdbc:mysql://localhost:3306/talentmarket?useSSL=false"></property>
     	<property name="username" value="root"></property>
-    	<property name="password" value="newroot"></property>
+    	<property name="password" value="930126"></property>
 	</bean>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     	<property name="dataSource" ref="dataSource"></property>
     	<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
 	</bean>
 
-	 
 		  <!--  SqlSession sqlSession 생성   SqlSessionTemplate  template;-->
 		
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean> 
 	
+	<bean id="memberDao" class="dao.MemberDaoImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	
+	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+
 	
 </beans>
 
