@@ -1,21 +1,18 @@
 package vo;
 
+public class talent {
 
-public class TalentVo {
-	private int t_id;
-	private String t_title;
-	private String t_content;
-	private String t_big_field;
-	private String t_small_field;
-	private int t_price;
-	private String t_local;
-	private String t_cat;
-	private String t_big_image;
-	private String t_small_image;
-	private String s_id;
-	
-	//TODO 생성자 추가
-	
+	int    t_id;
+	int    t_title;
+	String t_content;
+	String t_big_field;
+	String t_small_filed;
+	int    t_price;
+	String t_local;
+	String t_cat;
+	String t_big_image;
+	String t_small_image;
+	String s_id;
 	
 	public int getT_id() {
 		return t_id;
@@ -23,10 +20,10 @@ public class TalentVo {
 	public void setT_id(int t_id) {
 		this.t_id = t_id;
 	}
-	public String getT_title() {
+	public int getT_title() {
 		return t_title;
 	}
-	public void setT_title(String t_title) {
+	public void setT_title(int t_title) {
 		this.t_title = t_title;
 	}
 	public String getT_content() {
@@ -41,11 +38,11 @@ public class TalentVo {
 	public void setT_big_field(String t_big_field) {
 		this.t_big_field = t_big_field;
 	}
-	public String getT_small_field() {
-		return t_small_field;
+	public String getT_small_filed() {
+		return t_small_filed;
 	}
-	public void setT_small_field(String t_small_field) {
-		this.t_small_field = t_small_field;
+	public void setT_small_filed(String t_small_filed) {
+		this.t_small_filed = t_small_filed;
 	}
 	public int getT_price() {
 		return t_price;
@@ -83,16 +80,6 @@ public class TalentVo {
 	public void setS_id(String s_id) {
 		this.s_id = s_id;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "Talent [t_id=" + t_id + ", t_title=" + t_title + ", t_content=" + t_content + ", t_big_field="
-				+ t_big_field + ", t_small_field=" + t_small_field + ", t_price=" + t_price + ", t_local=" + t_local
-				+ ", t_cat=" + t_cat + ", t_big_image=" + t_big_image + ", t_small_image=" + t_small_image + ", s_id="
-				+ s_id + "]";
-	}
-	
 	
 	
 }

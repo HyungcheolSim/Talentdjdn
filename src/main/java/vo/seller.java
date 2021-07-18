@@ -1,18 +1,17 @@
 package vo;
 
-public class SellerVo {
-	private String s_id;
-	private String s_account;
-	private String s_field;
-	private int s_rank;
-	private String s_career;
-	private String s_education;
-	private String s_license;
-	private String s_potfolio;
-	private String s_skill;
-	private String s_local;
-	
-	//TODO 생성자 추가
+public class seller {
+
+	String s_id;
+	String s_account;
+	String s_field;
+	int    s_rank;
+	String s_career;
+	String s_education;
+	String s_license;
+	String s_potfolio;
+	String s_skill;
+	String s_local;
 	
 	public String getS_id() {
 		return s_id;
@@ -75,13 +74,5 @@ public class SellerVo {
 		this.s_local = s_local;
 	}
 	
-	
-	@Override
-	public String toString() {
-		return "Seller [s_id=" + s_id + ", s_account=" + s_account + ", s_field=" + s_field + ", s_rank=" + s_rank
-				+ ", s_career=" + s_career + ", s_education=" + s_education + ", s_license=" + s_license
-				+ ", s_potfolio=" + s_potfolio + ", s_skill=" + s_skill + ", s_local=" + s_local + "]";
-	}
-
 	
 }
