@@ -14,7 +14,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
    	 	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-   		<property name="url" value="jdbc:mysql://localhost:3306/talentdjdn?useSSL=false"></property>
+   		<property name="url" value="jdbc:mysql://localhost:3306/talentdjdn"></property>
     	<property name="username" value="root"></property>
     	<property name="password" value="newroot"></property>
 	</bean>
@@ -23,6 +23,13 @@
     	<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
 	</bean>
 
+	 
+		  <!--  SqlSession sqlSession 생성   SqlSessionTemplate  template;-->
+		
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean> 
+	
 	
 </beans>
 
