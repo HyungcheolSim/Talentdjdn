@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="talent">
+	<!--수정해야함   -->
+	<!-- 목록조회 -->
+	<select id="seller_list" resultType="seller">
+		select * from seller order by s_id
+	</select>
+	
+	<!-- s_idx에 해당되는 회원정보 1건 얻어오기 -->
+	<select id="seller_one_idx" parameterType="map" resultType="seller">
+		select * from seller where s_id=#{ s_id }
+	</select>
+	
+	<!-- s_id에 해당되는 회원정보 1건 얻어오기 -->
+	<select id="seller_one_id" parameterType="int" resultType="seller">
+		select * from seller where s_id=#{ s_id }
+	</select>
+	
+	<!-- 추가 -->
+	<insert id="seller_insert" parameterType="seller">
+		insert into seller values(seq_seller_s_id.nextVal, #{ s_name },
+									 						#{ s_id}, 
+									 						#{ s_pwd }, 
+									 						#{ s_zipcode }, 
+									 						#{ s_addr }, 
+									 						#{ s_ip }, 
+									 						sysdate, 
+									 						sysdate, 
+									 						default)
+	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="seller_delete" parameterType="int">
+		delete from seller where s_idx=#{ s_idx }
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="seller_update" parameterType="seller">
+		update seller set s_name=#{ s_name },
+						  s_id=#{ s_id },
+						  s_pwd=#{ s_pwd },
+						  s_zipcode=#{ s_zipcode },
+						  ,s_addr=#{ s_addr },
+						  s_ip=#{ s_ip },
+						  s_grade=#{ s_grade }
+						  ,s_modifydate=sysdate 
+		where s_idx=#{ s_idx }
+	</update>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
