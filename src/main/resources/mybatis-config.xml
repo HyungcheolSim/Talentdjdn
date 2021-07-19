@@ -13,11 +13,12 @@
 		<typeAlias type="vo.TalentVo" alias="talent"/>
 		<typeAlias type="vo.SellerVo" alias="seller"/>
 		<typeAlias type="vo.MemberVo" alias="member"/>
+		
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="xml/seller.xml" />
+		<mapper resource="xml/talent.xml"/>
 		<mapper resource="xml/member.xml" />
-		<!-- <mapper resource="config/mybatis/mapper/photo.xml" /> -->
 	</mappers>
 </configuration>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="talent">
+
+	<!-- 목록조회 -->
+	<select id="talent_list" resultType="talent">
+		select * from talent 
+	</select>
+	
+	<!-- t_idx에 해당되는 회원정보 1건 얻어오기 -->
+	<select id="talent_one" parameterType="int" resultType="talent">
+		select * from talent where t_id=#{ t_id }
+	</select>
+
+	<!-- 추가 -->
+	<insert id="talent_insert" parameterType="talent">
+		insert into talent values(#{t_id},#{t_title},#{t_content},#{t_big_field},
+			#{t_small_field},#{t_price},#{t_local},#{t_cat},#{t_big_image},
+			#{t_small_image},#{s_id})
+	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="talent_delete" parameterType="int">
+		delete from talent where t_id=#{ t_id }
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="talent_update" parameterType="talent">
+		update talent set t_title=#{t_title},
+		t_content=#{t_content},
+		t_big_field=#{t_big_field},
+		t_small_field=#{t_small_field},
+		t_price=#{t_price},
+		t_local=#{t_local},
+		t_cat=#{t_cat},
+		t_big_image=#{t_big_image},
+			t_small_image=#{t_small_image},s_id=#{s_id}
+		where t_id=#{ t_id }
+	</update>
+
+</mapper>

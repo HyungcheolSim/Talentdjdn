@@ -9,9 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- common -->
-<link rel="stylesheet" href="../../css/common.css">
-<link rel="stylesheet" href="../../css/talent/talent_sidebar.css">
-<link rel="stylesheet" href="../../css/talent/talent_detail.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/talent/talent_sidebar.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/talent/talent_detail.css">
 </head>
 <body>
 	<div class="talent_detail_body_container">
