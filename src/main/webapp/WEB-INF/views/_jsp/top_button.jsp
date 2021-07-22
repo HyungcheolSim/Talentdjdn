@@ -34,6 +34,7 @@
 		<a href="index.jsp"><img class="main_logo" alt="" src="${ pageContext.request.contextPath }/resources/img/logo.png"></a>
 		</div>
 		<ul class="main_top_button">
+			<li><a href="../board/list.do">게시판</a></li>
 			<li><a href="../member/insert_form.do">회원가입</a></li>
 		    <li><a href="talent/talent_detail.jsp">재능찾기</a></li>
 		    <c:if test="${ empty user }">
