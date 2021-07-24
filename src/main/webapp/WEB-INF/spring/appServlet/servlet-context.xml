@@ -28,5 +28,9 @@
 		<beans:property name="memberDao" ref="memberDao"/>
 	</beans:bean>
 	
+	<beans:bean class="controller.BoardController">
+		<beans:property name="boardDao" ref="boardDao"/>
+	</beans:bean>
+	
 	
 </beans:beans>

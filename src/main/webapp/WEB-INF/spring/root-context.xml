@@ -33,6 +33,11 @@
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 	
+	<bean id="boardDao" class="dao.BoardDaoImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	
+	
 	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 
 	
