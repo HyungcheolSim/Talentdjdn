@@ -50,10 +50,56 @@
 
 <script type="text/javascript">
 
+	//jQuery 초기화
+	$(document).ready(function(){
+		
+		if('${ not empty param.search }'=='true'){
+			$("#search").val('${param.search}');
+			
+			//전체보기면 검색어 지워라...
+			if("${param.search eq 'all'}"=="true"){
+				$("#search_text").val("");	
+			}
+		}
+		
+	});
+
 	function insert_form() {
 
 		location.href = 'insert_form.do';
 	}
+	
+	function find() {
+		
+		var search      = $("#search").val();
+		var search_text = $("#search_text").val().trim();
+		
+		//전체검색이면 검색창 내용 지워라..
+		if(search=='all'){
+			$("#search_text").val("");
+			 location.href = "list.do"; 
+			return;
+		}
+		
+		if(search!='all' && search_text==''){
+			
+			alert('검색어를 입력하세요');
+			$("#search_text").val("");//값 지우기
+			$("#search_text").focus(); //
+			return;
+		}
+		
+		//자바스크립트 이용 요청
+		//encodeURIComponent(search_text,"utf-8")
+		// : search_text기 한글 또는 특수문자인 경우 인코딩해서 넘겨야 서버가 제대로 인식한다                                     
+		location.href = "list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text,"utf-8") ; 
+		
+		
+	
+	}//end-find
+
+
+	
 
 </script>
 
@@ -113,6 +159,33 @@
 				</div>
 				
 			</div>
+
+			
+		<!-- 검색메뉴 -->
+		<div style="text-align: center;">
+		
+			<select id="search">
+				<option value="all">전체보기</option>
+				<option value="name">이름</option>
+				<option value="subject">제목</option>
+				<option value="content">내용</option>
+				<option value="subject_content">제목+내용</option>
+			</select>
+			<input id="search_text" value="${ param.search_text }">
+			<input class="btn btn-warning" style="width:60px;" type="button" value="검색" onclick="find();"> 
+		
+		</div>
+
+		<!-- Page메뉴 넣기 -->
+		<div style="text-align: center; font-size: 12pt;">
+		
+			${ pageMenu }
+
+		</div>
+		
+		
+
+
 
 		</div>
 	</div>
