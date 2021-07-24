@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import vo.TalentVo;
 
+
 public class TalentDaoImpl implements TalentDao {
 
 	SqlSession sqlSession;
@@ -15,7 +16,7 @@ public class TalentDaoImpl implements TalentDao {
 	}
 
 	@Override
-	public List<TalentVo> selectList() {
+	public List<TalentVo> getTalentList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("talent.talent_list");
 	}
@@ -27,7 +28,7 @@ public class TalentDaoImpl implements TalentDao {
 	}
 
 	@Override
-	public int insert(TalentVo vo) {
+	public int insert(TalentVo vo){
 		// TODO Auto-generated method stub
 		return sqlSession.insert("talent.talent_insert",vo);
 	}

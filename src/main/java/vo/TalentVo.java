@@ -3,10 +3,10 @@ package vo;
 public class TalentVo {
 
 	int    t_id;
-	int    t_title;
+	String    t_title;
 	String t_content;
 	String t_big_field;
-	String t_small_filed;
+	String t_small_field;
 	int    t_price;
 	String t_local;
 	String t_cat;
@@ -20,10 +20,10 @@ public class TalentVo {
 	public void setT_id(int t_id) {
 		this.t_id = t_id;
 	}
-	public int getT_title() {
+	public String getT_title() {
 		return t_title;
 	}
-	public void setT_title(int t_title) {
+	public void setT_title(String t_title) {
 		this.t_title = t_title;
 	}
 	public String getT_content() {
@@ -38,11 +38,11 @@ public class TalentVo {
 	public void setT_big_field(String t_big_field) {
 		this.t_big_field = t_big_field;
 	}
-	public String getT_small_filed() {
-		return t_small_filed;
+	public String getT_small_field() {
+		return t_small_field;
 	}
-	public void setT_small_filed(String t_small_filed) {
-		this.t_small_filed = t_small_filed;
+	public void setT_small_filed(String t_small_field) {
+		this.t_small_field = t_small_field;
 	}
 	public int getT_price() {
 		return t_price;

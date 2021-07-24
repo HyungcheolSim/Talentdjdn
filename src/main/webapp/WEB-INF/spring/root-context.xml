@@ -38,6 +38,18 @@
 	<bean id="memberDao" class="dao.MemberDaoImpl">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
+	<bean id="talentDao" class="dao.TalentDaoImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	<bean id="reviewDao" class="dao.ReviewDaoImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	<bean id="talentService" class="service.TalentService">
+		<property name="talentDao" ref="talentDao"></property>
+	</bean>
+<!-- 	<bean id="reviewService" class="service.ReviewService">
+		<property name="reviewDao" ref="reviewDao"></property>
+	</bean> -->
 	
 	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 
