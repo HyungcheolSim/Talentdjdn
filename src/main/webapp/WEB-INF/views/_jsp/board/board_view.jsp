@@ -74,50 +74,51 @@
 	<div class="tp_layer">
 		<div class="tp_main_layout">
 
-	<div id="box">
-		<div class="panel panel-warning">
-			<div class="panel-heading"><h5>${ vo.m_id }님이 작성한 글:</h5></div>
-			<div class="panel-body">
-				<table class="table">
-					<tr>
-						<th>제목</th>
-						<td><div id="title">${ vo.b_title }</div></td>
-					</tr>
-					
-					<tr>
-						<th>내용</th>
-						<td><div id="content">${ vo.b_content }</div></td>
-					</tr>
-					
-					<tr>
-						<th>작성일자</th>
-						<td><div id="regdate">${ vo.b_regdate }</div></td>
-					</tr>
-					
-					<tr>
-						<td colspan="2" align="center">
-							<input class="btn btn-warning" type="button" value="목록보기"
-							       onclick="location.href='list.do'">  
-							
-							<!-- 본인 또는 관리자 -->
-							<c:if test="${ user.m_grade eq '관리자' }">
-								<input class="btn btn-warning" type="button" value="수정" onclick="modify_form('${ vo.b_idx }');">
-								<input class="btn btn-warning" type="button" value="삭제" onclick="del('${ vo.b_idx }');">
-							</c:if>	
-						</td>
-					</tr>
-				</table>
+			<div id="box">
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+						<h5>${ vo.m_id }님이작성한 글:</h5>
+					</div>
+					<div class="panel-body">
+						<table class="table">
+							<tr>
+								<th>제목</th>
+								<td><div id="title">${ vo.b_title }</div></td>
+							</tr>
+
+							<tr>
+								<th>내용</th>
+								<td><div id="content">${ vo.b_content }</div></td>
+							</tr>
+
+							<tr>
+								<th>작성일자</th>
+								<td><div id="regdate">${ vo.b_regdate }</div></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" align="center"><input
+									class="btn btn-warning" type="button" value="목록보기"
+									onclick="location.href='list.do'"> <!-- 본인 또는 관리자 --> <c:if
+										test="${ user.m_grade eq '관리자' }">
+										<input class="btn btn-warning" type="button" value="수정"
+											onclick="modify_form('${ vo.b_idx }');">
+										<input class="btn btn-warning" type="button" value="삭제"
+											onclick="del('${ vo.b_idx }');">
+									</c:if></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
+		<div class="tp_layers">
+			<div class="tp_bottom_layout">
+				<%@ include file="../bottom.jsp"%>
+			</div>
 		</div>
-	</div>
-
-	<div class="tp_layers">
-		<div class="tp_bottom_layout">
-			<%@ include file="../bottom.jsp"%>
-		</div>
-	</div>
 
 	</div>
 </body>

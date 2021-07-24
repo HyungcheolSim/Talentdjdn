@@ -19,8 +19,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  insert into board(b_title,b_content,b_regdate,m_id,b_readhit) values(#{b_title},#{b_content},curdate(),#{m_id},#{b_readhit})
 	</insert>
 	
+	<!-- 삭제 -->
 	<delete id="board_delete" parameterType="int">
-		delete * from board where b_idx = #{ b_idx }
+		delete from board where b_idx = #{ b_idx }
 	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="board_update_readhit" parameterType="int">
+		update board set b_readhit = b_readhit + 1
+		where b_idx = #{ b_idx }
+	</update>
+	
+	<!-- 수정 -->
+	<update id="board_update" parameterType="board">
+		update board set b_title = #{ b_title },
+						 b_content = #{ b_content },
+						 b_regdate = curdate()
+		where b_idx = #{ b_idx }				 
+						 
+	</update>
+	
 
 </mapper>

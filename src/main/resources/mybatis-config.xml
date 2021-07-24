@@ -10,7 +10,6 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="vo.TalentVo" alias="talent"/>
 		<typeAlias type="vo.SellerVo" alias="seller"/>
 		<typeAlias type="vo.MemberVo" alias="member"/>
 		<typeAlias type="vo.BoardVo"  alias="board"/>

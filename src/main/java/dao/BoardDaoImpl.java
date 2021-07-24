@@ -54,13 +54,13 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int update(BoardVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("board.board_update", vo);
 	}
 
 	@Override
 	public int update_readhit(int b_idx) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("board.board_update_readhit", b_idx);
 	}
 
 	@Override

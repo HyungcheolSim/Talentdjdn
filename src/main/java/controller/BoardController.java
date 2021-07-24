@@ -38,6 +38,8 @@ public class BoardController {
 		
 		List<BoardVo> list = boardDao.selectList();
 		
+		session.removeAttribute("show");
+		
 		model.addAttribute("list",list);
 		
 		return "_jsp/board/board_list"; 

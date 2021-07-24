@@ -29,13 +29,13 @@
 <script type="text/javascript">
 
 	function send(f) {
-		var b_subject = f.b_subject.value.trim();
+		var b_title = f.b_title.value.trim();
 		var b_content = f.b_content.value.trim();
 		
-		if(b_subject==''){
+		if(b_title==''){
 			alert('제목을 입력하세요');
-			f.b_subject.value='';
-			f.b_subject.focus();
+			f.b_title.value='';
+			f.b_title.focus();
 			return;
 		}
 		
@@ -55,6 +55,16 @@
 
 </head>
 <body>
+
+	<div class="tp_layers">
+		<div class="tp_button_layout">
+			<%@ include file="../top_button.jsp"%>
+		</div>
+	</div>
+
+	<div class="tp_layer">
+		<div class="tp_main_layout">
+	
 
 	<form>
 		<input type="hidden" name="b_idx" value="${ vo.b_idx }">
@@ -85,6 +95,16 @@
 			</div>
 		</div>
 	</form>	
+	
+	</div>
+
+		<div class="tp_layers">
+			<div class="tp_bottom_layout">
+				<%@ include file="../bottom.jsp"%>
+			</div>
+		</div>
+
+	</div>
 
 </body>
 </html>
