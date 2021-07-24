@@ -39,6 +39,12 @@ function show_message(){
 		alert('비밀번호가 틀립니다');
 	}
 	
+	if("${ param.reason eq 'end_session' }"=="true"){
+		alert('시간이 만료되어서\n로그아웃되었습니다');
+	}
+	
+	
+	
 }
 function send(f) {
     
