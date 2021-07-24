@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 추가 -->
 	<insert id="member_insert" parameterType="member">
 		insert into member values(#{ m_id}, #{ m_pwd },	#{ m_name },#{ m_addr }, #{ m_detail_addr },
-								 #{ m_zipcode }, #{m_email},#{m_phone},#{m_local}, default, curdate() )
+								 #{ m_zipcode }, #{m_email},#{m_phone},#{m_local}, default, now() )
 	</insert>
 	
 	<!-- 삭제 -->

@@ -7,3 +7,47 @@ html,body {
 	font-size:16px;
 	font-family: sans-serif;
 }
+.talent_detail_body_container{
+	width:100%;
+	height:100%;
+}
+.talent_list_content_container{
+	width:85%;
+	margin-right:15%;
+	height:auto;
+	display: flex;
+}
+
+.table_container{
+	width:100%;
+	height:auto;
+	min-height:1600px;
+}
+
+.table_container table{
+	width:100%;
+	height:auto;
+	margin:0;
+	border: black solid 1px;
+
+}
+thead{
+	border-bottom: black solid 1px;
+	margin:0;
+}
+
+.td_else{
+	width:14%;
+	border-bottom: black solid 1px;
+	height:5%;
+} 
+#td_title{
+	width:33%;
+	border-bottom: black solid 1px;
+	height:5%;
+}
+.talent_list_content_sidebar_container{
+	width:15%;
+	height:auto;
+	margin-right:0;
+}

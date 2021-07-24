@@ -17,6 +17,7 @@
 	
 	<mappers>
 		<mapper resource="xml/seller.xml" />
+		<mapper resource="xml/talent.xml"/>
 		<mapper resource="xml/member.xml" />
 		<mapper resource="xml/board.xml" />
 		<!-- <mapper resource="config/mybatis/mapper/photo.xml" /> -->

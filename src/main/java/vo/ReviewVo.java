@@ -1,11 +1,13 @@
 package vo;
 
+import java.sql.Date;
+
 public class ReviewVo {
 
 	int    r_id;
 	String r_title;
 	String r_content;
-	String r_regdate;
+	Date r_regdate;
 	int    r_star;
 	String r_image;
 	int    r_recommend;
@@ -30,10 +32,10 @@ public class ReviewVo {
 	public void setR_content(String r_content) {
 		this.r_content = r_content;
 	}
-	public String getR_regdate() {
+	public Date getR_regdate() {
 		return r_regdate;
 	}
-	public void setR_regdate(String r_regdate) {
+	public void setR_regdate(Date r_regdate) {
 		this.r_regdate = r_regdate;
 	}
 	public int getR_star() {

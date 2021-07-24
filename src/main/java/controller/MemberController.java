@@ -31,14 +31,13 @@ public class MemberController {
 		this.memberDao = memberDao;
 	}
 	
-	//����������
+
 	@RequestMapping("list.do")
 	public String index() {
 		
 		return "_jsp/index";
 	}
 	
-	//�α����� ����
 	@RequestMapping("login_form.do")
 	public String login_form() {
 		
@@ -46,21 +45,16 @@ public class MemberController {
 	}
 	
 	
-	//�α���
 	@RequestMapping("login.do")
 	public String login(String m_id,String m_pwd,Model model) {
 	
-		//�޼ҵ��� ����? �ǹ�? : DispatcherServlet�� ���� ��û����
-		//Model �뵵?
-		//�� 1. forward�ÿ��� request binding��Ų��
-		//   2. redirect�ÿ��� parameter����(query)�� �̿�ȴ�
+
 		
-		//3.m_id�� �ش�Ǵ� MemberVo 1�� ������
+
 		MemberVo user = memberDao.selectOne(m_id);
 		  
-		if(user==null) { //ID�� ���°��
+		if(user==null) { 
 		 
-			//return "redirect:login_form.do?reason=fail_id";
 			
 			model.addAttribute("reason", "fail_id");
 			
@@ -70,7 +64,6 @@ public class MemberController {
 		//��й�ȣ ��
 		if(user.getM_pwd().equals(m_pwd)==false) {
 		     
-			//return "redirect:login_form.do?reason=fail_pwd";
 			
 			model.addAttribute("reason", "fail_pwd");
 			

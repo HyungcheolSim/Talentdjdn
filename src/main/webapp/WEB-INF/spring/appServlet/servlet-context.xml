@@ -27,10 +27,15 @@
 	<beans:bean class="controller.MemberController">
 		<beans:property name="memberDao" ref="memberDao"/>
 	</beans:bean>
-	
+
+	<beans:bean class="controller.TalentController">
+		<beans:property name="talentService" ref="talentService"/>
+	</beans:bean>
+	<beans:bean class="controller.ReviewController">
+		<beans:property name="reviewDao" ref="reviewDao"></beans:property>
+	</beans:bean>
 	<beans:bean class="controller.BoardController">
 		<beans:property name="boardDao" ref="boardDao"/>
 	</beans:bean>
-	
-	
+
 </beans:beans>
