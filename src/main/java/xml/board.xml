@@ -9,6 +9,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board order by b_idx
 	</select>
 	
+	<!-- 조건별 조회 -->
+	<select id="board_list_condition" parameterType="Map" resultType="board">
+		 select * from 
+		 (
+			select
+				*,
+			    rank() over(order by b_idx desc) as no
+		    from 
+		    
+		    (
+		    	select * from board
+			    <trim prefix="where" prefixOverrides="or"> 			
+					<if test="name!=null">
+						m_name like CONCAT('%',#{name},'%')
+					</if>
+					<if test="subject!=null">
+						b_title like CONCAT('%',#{subject},'%')
+					</if>
+					<if test="content!=null">
+						or b_content like CONCAT('%',#{content},'%')
+					</if>
+				</trim>
+
+		    ) a 
+		 ) b
+		 where no between #{ start } and #{ end }
+	</select>
+	
+	<!-- 검색조건별 게시물수 구하기-->
+	<select id="board_condition_row_total" parameterType="Map" resultType="int">
+		select ifnull(count(*),0) from board 
+		
+		<trim prefix="where" prefixOverrides="or"> 
+			
+			<if test="name!=null">
+						m_name like CONCAT('%',#{name},'%')
+					</if>
+					<if test="subject!=null">
+						b_title like CONCAT('%',#{subject},'%')
+					</if>
+					<if test="content!=null">
+						or b_content like CONCAT('%',#{content},'%')
+			</if>
+		</trim>
+		
+	</select>
+	
+	<!-- 전체게시물수 구하기-->
+	<select id="board_row_total" resultType="int">
+		select 
+			ifnull(count(*),0)
+		from board 
+	</select>
+	
+	
 	<!-- 데이터 한건 조회 -->
 	<select id="board_one" parameterType="int" resultType="board">
 		select * from board where b_idx = #{ b_idx }

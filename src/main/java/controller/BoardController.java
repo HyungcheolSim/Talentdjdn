@@ -1,6 +1,8 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.BoardDao;
+import mycommon.MyConstant;
+import util.Paging;
 import vo.BoardVo;
 import vo.MemberVo;
 
@@ -34,13 +38,61 @@ public class BoardController {
 	
 	//게시판 목록보기
 	@RequestMapping("list.do")
-	public String board_list(Model model) {
+	public String board_list(@RequestParam(value="page",required=false,defaultValue="1") int nowPage, 
+ 			  @RequestParam(value = "search",required = false,defaultValue = "all") String search, 
+ 			  @RequestParam(value = "search_text",required = false,defaultValue = "") String search_text,
+ 				Model model) {
 		
-		List<BoardVo> list = boardDao.selectList();
-		
-		session.removeAttribute("show");
-		
-		model.addAttribute("list",list);
+	      
+		  //���� ������ ������ : nowPage
+		   
+		  //������ ���� ���
+		  int start = (nowPage-1) * MyConstant.Board.BLOCK_LIST + 1; 
+		  int end   = start + MyConstant.Board.BLOCK_LIST - 1; 
+		   
+		  Map map = new HashMap();
+		  map.put("start", start);
+		  map.put("end", end);
+		  
+		  //�˻������� Map�� �߰�
+		  
+		  if(search.equals("name")) {
+			  map.put("name", search_text);
+		  }else if(search.equals("subject")) {
+			  map.put("subject", search_text);
+		  }else if(search.equals("content")) {
+			  map.put("content", search_text);
+		  }else if(search.equals("subject_content")) {
+			  map.put("subject", search_text);
+			  map.put("content", search_text);
+		  }  
+		  
+	      List<BoardVo> list = boardDao.selectList(map);
+		   
+		  //�˻� ���ǿ� ���� �Խù��� ���ϱ�
+		  int rowTotal = boardDao.selectRowTotal(map);
+	      
+		  //System.out.println(rowTotal);
+		  
+		  //PagingMenu �����...
+		  
+		  //list.do?page=1&search=all&search_text=
+		  
+		  String search_filter = String.format("&search=%s&search_text=%s", search,search_text);
+		  
+		  String pageMenu = Paging.getPaging("list.do", 
+				                              nowPage, 
+				                              rowTotal, 
+				                              search_filter,
+				                              MyConstant.Board.BLOCK_LIST, 
+				                              MyConstant.Board.BLOCK_PAGE);
+	      
+	      //view.do���� �ó�?�� ���� ���� ����� ���� �� => ����
+	      session.removeAttribute("show");
+	      
+	      //model���ؼ� DispatcherServlet���� ���� => ��������� request binding
+	      model.addAttribute("list",list);
+	      model.addAttribute("pageMenu",pageMenu);
 		
 		return "_jsp/board/board_list"; 
 	}
