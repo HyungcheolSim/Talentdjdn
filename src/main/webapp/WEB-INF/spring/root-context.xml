@@ -20,7 +20,7 @@
 	</bean> -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
    	 	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-   		<property name="url" value="jdbc:mysql://localhost:3306/talentdjdn?useSSL=false"></property>
+   		<property name="url" value="jdbc:mysql://localhost:3307/talentmarket?useSSL=false"></property>
     	<property name="username" value="root"></property>
     	<property name="password" value="newroot"></property>
 	</bean>
@@ -44,12 +44,6 @@
 	<bean id="reviewDao" class="dao.ReviewDaoImpl">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
-	<bean id="talentService" class="service.TalentService">
-		<property name="talentDao" ref="talentDao"></property>
-	</bean>
-<!-- 	<bean id="reviewService" class="service.ReviewService">
-		<property name="reviewDao" ref="reviewDao"></property>
-	</bean> -->
 	
 	<bean id="boardDao" class="dao.BoardDaoImpl">
 		<property name="sqlSession" ref="sqlSession"/>

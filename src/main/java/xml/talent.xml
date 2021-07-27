@@ -9,6 +9,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from talent 
 	</select>
 	
+	<!-- 조건별 조회 -->
+	<select id="talent_list_condition" parameterType="Map" resultType="talent">
+		 select * from 
+		 (
+			select
+				*,
+			    rank() over(order by t_id desc) as no
+		    from 
+		    
+		    (
+		    	select * from talent
+			    <trim prefix="where" prefixOverrides="or"> 			
+					<if test="name!=null">
+						s_id like CONCAT('%',#{name},'%')
+					</if>
+					<if test="subject!=null">
+						t_title like CONCAT('%',#{subject},'%')
+					</if>
+					<if test="content!=null">
+						or t_content like CONCAT('%',#{content},'%')
+					</if>
+				</trim>
+
+		    ) a 
+		 ) b
+		 where no between #{ start } and #{ end }
+	</select>
+	
+	
+		<!-- 검색조건별 게시물수 구하기-->
+	<select id="talent_condition_row_total" parameterType="Map" resultType="int">
+		select ifnull(count(*),0) from talent 
+		
+		<trim prefix="where" prefixOverrides="or"> 
+			
+			<if test="name!=null">
+						s_id like CONCAT('%',#{name},'%')
+					</if>
+					<if test="subject!=null">
+						t_title like CONCAT('%',#{subject},'%')
+					</if>
+					<if test="content!=null">
+						or t_content like CONCAT('%',#{content},'%')
+			</if>
+		</trim>
+		
+	</select>
+	
+	
+	<!-- 전체게시물수 구하기-->
+	<select id="talent_row_total" resultType="int">
+		select 
+			ifnull(count(*),0)
+		from talent 
+	</select>
+	
 	<!-- t_id에 해당되는 회원정보 1건 얻어오기 -->
 	<select id="talent_one" parameterType="int" resultType="talent">
 		select * from talent where t_id=#{ t_id }

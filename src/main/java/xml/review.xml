@@ -16,15 +16,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- t_id(하나의 재능)에 해당되는 리뷰 모두 얻어오기 -->
 	<select id="review_list_for_one" parameterType="int" resultType="review">
-		select * from review where t_id=1;
-		<!-- select * from review where t_id=#{t_id}; -->
+		select * from review where t_id=#{t_id};
 	</select>
 	<!-- 추가 -->
 	<insert id="review_insert" parameterType="review">
 		insert into review(r_title,r_content,r_regdate,r_star,r_image,r_recommend,m_id,t_id)
-		 values
-		 <!--  (#{ r_title },	#{ r_content },now(),#{r_star},'imagesrc123123',0, #{m_id},#{t_id} )-->
-		 (#{ r_title },	#{ r_content },now(),#{r_star},'imagesrc123123',0, 'sim3412',1 )
+		 values (#{ r_title },	#{ r_content },now(),#{r_star},'imagesrc123123',0,'sim3412',1 )
+		 <!--  (#{ r_title },	#{ r_content },now(),#{r_star},'imagesrc123123',0,#{m_id},#{t_id} )-->
 	</insert>
 	
 	<!-- 삭제 -->

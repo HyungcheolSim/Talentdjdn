@@ -32,19 +32,19 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 	
 	@Override
-	public int insert(ReviewVo vo) {
+	public int insert(ReviewVo vo)  throws Exception{
 		// TODO Auto-generated method stub
 		return sqlSession.insert("review.review_insert",vo);
 	}
 
 	@Override
-	public int delete(int r_id) {
+	public int delete(int r_id) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(ReviewVo vo) {
+	public int update(ReviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}

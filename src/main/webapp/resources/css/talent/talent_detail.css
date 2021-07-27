@@ -81,33 +81,35 @@ html,body {
 .talent_detail_review_list_container{
 	width:100%;
 	height:auto;
+	margin-bottom: 5%;
 }
 .talent_detail_review_register_container{
 	width:100%;
 	height:400px;
 }
 .detail_review_header{
-	border:1px solid black;
 	width:40%;
 	height:25px;
 }
 .detail_review_header_w{
-	border:1px solid black;
 	width:10%;
 	height:25px;
 }
 .detail_review_header_s{
-	border:1px solid black;
 	width:10%;
 	height:25px;
 }
 .detail_review_header_r{
-	border:1px solid black;
 	width:20%;
 	height:25px;
 }
 
-
+input {
+	width:50%;
+}
+th{
+	width:20%;
+}
 
 .talent_detail_footer_container{
 	width:100%;

@@ -5,6 +5,12 @@
 <head>
 	<title>Home</title>
 <link rel="stylesheet" href="resources/css/home.css">
+<script type="text/javascript">
+
+	location.href="member/list.do";
+	
+</script>
+
 </head>
 <body>
 <h1>

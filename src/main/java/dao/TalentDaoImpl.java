@@ -1,9 +1,11 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import vo.BoardVo;
 import vo.TalentVo;
 
 
@@ -22,25 +24,44 @@ public class TalentDaoImpl implements TalentDao {
 	}
 
 	@Override
+	public List<TalentVo> selectList(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("talent.talent_list_condition", map);
+	}
+
+	@Override
+	public int selectRowTotal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("talent.talent_row_total");
+	}
+
+	@Override
+	public int selectRowTotal(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("talent.talent_condition_row_total",map);
+	}
+
+	
+	@Override
 	public TalentVo selectOne(int t_id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("talent.talent_one", t_id);
 	}
 
 	@Override
-	public int insert(TalentVo vo){
+	public int insert(TalentVo vo) throws Exception{
 		// TODO Auto-generated method stub
 		return sqlSession.insert("talent.talent_insert",vo);
 	}
 
 	@Override
-	public int delete(int t_id) {
+	public int delete(int t_id)  throws Exception{
 		// TODO Auto-generated method stub
 		return sqlSession.delete("talent.talent_delete",t_id);
 	}
 
 	@Override
-	public int update(TalentVo vo) {
+	public int update(TalentVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update("talent.talent_update",vo);
 	}
