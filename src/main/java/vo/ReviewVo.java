@@ -12,7 +12,7 @@ public class ReviewVo {
 	String r_image;
 	int    r_recommend;
 	String m_id;
-	int    t_id;
+	int    t_idx;
 	
 	public int getR_id() {
 		return r_id;
@@ -62,11 +62,11 @@ public class ReviewVo {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
-	public int getT_id() {
-		return t_id;
+	public int getT_idx() {
+		return t_idx;
 	}
-	public void setT_id(int t_id) {
-		this.t_id = t_id;
+	public void setT_idx(int t_idx) {
+		this.t_idx = t_idx;
 	}
 	
 	

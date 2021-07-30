@@ -27,8 +27,8 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<ReviewVo> getReviewsForOne(int t_id){
-		return sqlSession.selectList("review.review_list_for_one",t_id);
+	public List<ReviewVo> getReviewsForOne(int t_idx){
+		return sqlSession.selectList("review.review_list_for_one",t_idx);
 	}
 	
 	@Override

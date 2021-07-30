@@ -12,7 +12,7 @@ public interface ReviewDao {
 	
 	public ReviewVo selectOne(int r_id);
 	
-	public List<ReviewVo> getReviewsForOne(int t_id);
+	public List<ReviewVo> getReviewsForOne(int t_idx);
 	
 	
 	

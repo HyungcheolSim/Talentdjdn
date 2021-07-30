@@ -5,7 +5,7 @@ html,body {
 	height:100%;
 	margin:0;
 	font-size:16px;
-	font-family: sans-serif;
+	font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
 }
 .talent_detail_body_container{
 	width:100%;
@@ -44,8 +44,9 @@ html,body {
 }
 .talent_detail_content{
 	width:80%;
-	/* height:auto; */
-	height:1500px;
+	height:auto; 
+	min-height:1500px; 
+	margin-left:3%;
 }
 
 .talent_detail_title_container{
@@ -85,7 +86,8 @@ html,body {
 }
 .talent_detail_review_register_container{
 	width:100%;
-	height:400px;
+	height:auto;
+	min-height:200px;
 }
 .detail_review_header{
 	width:40%;
@@ -109,9 +111,75 @@ input {
 }
 th{
 	width:20%;
+	
+}
+ .talent_detail_review_list_container h1{
+ 	font-size:2.5em;
+ 	margin-bottom:15px;
+ 	padding-bottom:10px;
+ 	border-bottom: 0.5px solid rgb(213,230,213);
+ }
+ .talent_detail_review_list_container .table1 tr{
+	display:inline-block;
+	margin-bottom:15px;
+	width:100%;
+	height:auto;
+	border-bottom: 0.5px solid rgb(213,230,213);
+
+}
+.talent_detail_review_list_container .table1 td{
+	display:block;
+	width:100%;
+	text-align: left;
+} 
+
+td span{
+	font-weight: bolder;
+	font-size:1.2em;
+	color: RED;
 }
 
 .talent_detail_footer_container{
 	width:100%;
-	height:15%;
+	height:auto;
+	min-height:250px;
+}
+
+	
+
+.star-rating {
+  border:solid 1px #ccc;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
+}
+
+.talent_detail_infomation h2{
+	font-size:2em;
+	margin-bottom:15px;
+}
+table td input{
+	min-width: 96px;
 }

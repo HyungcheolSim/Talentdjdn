@@ -87,7 +87,7 @@ public class TalentController {
 		  
 		  String search_filter = String.format("&search=%s&search_text=%s", search,search_text);
 		  
-		  String pageMenu = Paging.getPaging("list.do", 
+		  String pageMenu = Paging.getPaging("talentlist.do", 
 				                              nowPage, 
 				                              rowTotal, 
 				                              search_filter,

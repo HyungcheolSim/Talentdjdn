@@ -1,20 +1,22 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.fabric.xmlrpc.base.Param;
+
 import dao.ReviewDao;
-import dao.TalentDao;
 import vo.MemberVo;
 import vo.ReviewVo;
 import vo.TalentVo;
@@ -31,15 +33,38 @@ public class ReviewController {
 	HttpServletRequest request;
 
 	ReviewDao reviewDao;
-	TalentDao talentDao;
 
 	public void setReviewDao(ReviewDao reviewDao) {
 		this.reviewDao = reviewDao;
 	}
-	public void setTalentDao(TalentDao talentDao) {
-		this.talentDao=talentDao;
-	}
-
+//
+//	@RequestMapping("insert.do")
+//	@ResponseBody
+//	public Map insert(ReviewVo vo) {
+//		String r_content = vo.getR_content().replaceAll("\r\n", "<br>");
+//		vo.setR_content(r_content);
+//		int res = 0;
+//		try {
+//			res = reviewDao.insert(vo);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Map map = new HashMap();
+//
+//		map.put("result", (res == 1) ? "success" : "fail"); // { "result" : "success" }
+//		return map;
+//	}
+//
+//	@RequestMapping("list.do")
+//	public String list(int t_id, Model model) {
+//
+//		List<ReviewVo> list = reviewDao.getReviewsForOne(t_id);
+//
+//		model.addAttribute("reviewlist", list);
+//
+//		return "redirect:../talent/talentdetail.do?t_id=" + t_id;
+//	}
 	@RequestMapping("reviewinsert")
 	public String insert(ReviewVo vo, Model model) {
 		MemberVo user = (MemberVo) session.getAttribute("user");
@@ -53,7 +78,7 @@ public class ReviewController {
 		vo.setM_id(user.getM_id());
 		TalentVo tvo=(TalentVo)session.getAttribute("tvo");
 		Integer TID=tvo.getT_id();
-		vo.setT_id(TID);
+		vo.setT_idx(TID);
 		// DB Insert
 		try {
 			int insert = reviewDao.insert(vo);
@@ -64,16 +89,13 @@ public class ReviewController {
 	}
 
 	@RequestMapping("reviewselectone")
-	@ResponseBody
-	public String getReviewsforonetalent(int t_id,Model model) {
-		TalentVo vo=talentDao.selectOne(t_id);
-		int talentID=vo.getT_id();
-		List<ReviewVo> reviewlist = reviewDao.getReviewsForOne(talentID);
+	public String getReviewsforonetalent(int t_idx,Model model) {
+		List<ReviewVo> reviewlist = reviewDao.getReviewsForOne(t_idx);
 		
 		model.addAttribute("reviewlist", reviewlist);
 		
-		return "redirect:_jsp/talent/talentdetail.do?t_id="+talentID;
+		return "forward:../talent/talentdetail.do?t_id="+t_idx;
 	}
-	
-	
+
+
 }
