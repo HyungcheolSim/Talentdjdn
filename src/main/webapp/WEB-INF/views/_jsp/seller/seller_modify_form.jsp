@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- jquery -->
-<script src="../resource/js/jquery-3.6.0.min.js"></script>
-
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,11 +13,11 @@
 
 <!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
-<script src='../js/common.js'></script>
+
 
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/join_page.css">
-<script src='../js/join_page.js'></script>
+
 
 <script type="text/javascript">
 
@@ -107,7 +104,10 @@ function send(f) {
                         </tr>
                         <tr>
                            <th>포트폴리오</th>
-                           <td><input type="file" name="potfolio" id="potfolio" value="${ vo.s_potfolio }"></td>
+                           <td>
+                           	<input type="file" name="potfolio" id="potfolio" >
+                           	<p>${ vo.s_potfolio }</p>
+                           </td>
                         </tr>
                         <tr>
                            <th>지역</th>

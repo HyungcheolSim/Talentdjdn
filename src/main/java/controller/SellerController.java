@@ -42,7 +42,7 @@ public class SellerController {
 	public void setSellerDao(SellerDao sellerDao) {
 		this.sellerDao = sellerDao;
 	}	
-	
+/*	
    @RequestMapping("list.do")
    public String list(@RequestParam(value="page",required=false,defaultValue="1") int nowPage, 
 		   			  @RequestParam(value = "search",required = false,defaultValue = "all") String search, 
@@ -63,6 +63,8 @@ public class SellerController {
 	  }
       List<SellerVo> list = sellerDao.selectList(map);
 	   
+      int s_count = list.size();
+      
 	  int rowTotal = sellerDao.selectRowTotal(map);
 	  
 	  String search_filter = String.format("&search=%s&search_text=%s", search,search_text);
@@ -74,12 +76,55 @@ public class SellerController {
 			                              MyConstant.Seller.BLOCK_LIST, 
 			                              MyConstant.Seller.BLOCK_PAGE);
       
+	  model.addAttribute("s_count", s_count);
       model.addAttribute("list",list);
       model.addAttribute("pageMenu",pageMenu);
       
       return "_jsp/seller/seller_list";
    }
-   
+*/
+	   @RequestMapping("list.do")
+	   public String list(@RequestParam(value="page",required=false,defaultValue="1") int nowPage, 
+			   			  @RequestParam(value = "search_text1",required = false,defaultValue = "") String search_text1,
+			   			  @RequestParam(value = "search_text2",required = false,defaultValue = "") String search_text2,
+			   				Model model) { 
+
+		  int start = (nowPage-1) * MyConstant.Seller.BLOCK_LIST + 1; 
+		  int end   = start + MyConstant.Seller.BLOCK_LIST - 1; 
+		   
+		  Map map = new HashMap();
+		  map.put("start", start);
+		  map.put("end", end);
+		  
+		  if(!search_text1.isEmpty()) {
+			  map.put("s_local", search_text1);
+		  }
+		  if(!search_text2.isEmpty()) {
+			  map.put("s_field", search_text2);
+		  }
+	      List<SellerVo> list = sellerDao.selectList(map);
+		   
+	      int s_count = list.size();
+	      
+		  int rowTotal = sellerDao.selectRowTotal(map);
+		  
+		  String search_filter = String.format("&search_text1=%s&search_text2=%s", search_text1,search_text2);
+		  
+		  String pageMenu = Paging.getPaging("list.do", 
+				                              nowPage, 
+				                              rowTotal, 
+				                              search_filter,
+				                              MyConstant.Seller.BLOCK_LIST, 
+				                              MyConstant.Seller.BLOCK_PAGE);
+	      
+		  model.addAttribute("s_count", s_count);
+	      model.addAttribute("list",list);
+	      model.addAttribute("pageMenu",pageMenu);
+	      
+	      return "_jsp/seller/seller_list";
+	   }
+	
+	
    @RequestMapping("insert_form.do")
    public String insert_form() {
       

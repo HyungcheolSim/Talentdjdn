@@ -19,11 +19,10 @@
 
 <!-- common -->
 <link rel="stylesheet" href="../_css/common.css">
-<script src='../_js/common.js'></script>
 
 <!-- this page -->
 <link rel="stylesheet" href="../_css/index.css">
-<script src='../_js/index.js'></script>
+
 
 <!-- this page-->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/seller_list.css"> 
@@ -33,20 +32,9 @@
 
 <script type="text/javascript">
 
-	//jQuery 초기화
-	$(document).ready(function(){
-		
-		if('${ not empty param.search }'=='true'){
-			$("#search").val('${param.search}');
-			
-			//전체보기면 검색어 지워라...
-			if("${param.search eq 'all'}"=="true"){
-				$("#search_text").val("");	
-			}
-		}
-		
-	});
-	
+var search_text1;
+var search_text2;
+
 	//고수등록 폼띄우기
 	function insert_form() {
 		
@@ -81,32 +69,42 @@
 	}//end-insert_form
 	
 	function find() {
-		
-		var search      = $("#search").val();
-		var search_text = $("#search_text").val().trim();
-		
-		//전체검색이면 검색창 내용 지워라..
-		if(search=='all'){
-			$("#search_text").val("");
+		 search_text1 = $("#search_text1").val();
+		 search_text2 = $("#search_text2").val();
+
+		if(search_text1=='' && search_text2==''){
 			 location.href = "list.do"; 
+			 return;
+		}
+		//전체검색이면 검색창 내용 지워라..
+ 		if(search_text1=='' &&search_text2!=''){
+			location.href = "list.do?search_text2=" + encodeURIComponent(search_text2,"utf-8");
+			return;
+ 		}
+		if(search_text1!='' &&search_text2==''){
+			location.href = "list.do?search_text1=" + encodeURIComponent(search_text1,"utf-8");
 			return;
 		}
-		
-		if(search!='all' && search_text==''){
-			
-			alert('검색어를 입력하세요');
-			$("#search_text").val("");//값 지우기
-			$("#search_text").focus(); //
-			return;
-		}
-		
+		 
 		//자바스크립트 이용 요청
 		//encodeURIComponent(search_text,"utf-8")
-		// : search_text기 한글 또는 특수문자인 경우 인코딩해서 넘겨야 서버가 제대로 인식한다                                     
-		location.href = "list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text,"utf-8") ; 
-
+		// : search_text기 한글 또는 특수문자인 경우 인코딩해서 넘겨야 서버가 제대로 인식한다
+		if(search_text1!=''&&search_text2!='')
+			location.href = "list.do?search_text1=" + encodeURIComponent(search_text1,"utf-8") + "&search_text2=" + encodeURIComponent(search_text2,"utf-8"); 
+		
 	}//end-find
 
+	
+	//jQuery초기화
+	$(function(){
+
+		if('${ not empty param.search_text1 }'=='true'){		
+		  $("#search_text1").val('${ param.search_text1 }');
+		}
+		if('${ not empty param.search_text2 }'=='true'){		
+			  $("#search_text2").val('${ param.search_text2 }');
+			}
+	});
 	
 	function del_seller(s_idx) {
 					
@@ -127,6 +125,7 @@
 				});
 		
 	}
+	
 	
 
 
@@ -150,34 +149,43 @@
 				<div class="select_main2"><span class="s_main2">홈>고수찾기><b>지역,카테고리</b></span></div>
 			</div>
 			<div id="click_box">
-				<select class="loc_cate">
-					<option value="none">위치</option>
-					<option>서울</option>
-					<option>경기도</option>
-					<option>인천</option>
-					<option>대전</option>
-					<option>대구</option>
-					<option>부산</option>
+				<select class="loc_cate" id="search_text1" onchange="find();">                          
+	           		<option value="">선택</option>
+	           		<option value="서울">서울</option>
+	           		<option value="경기">경기</option>
+	           		<option value="인천">인천</option>
+	           		<option value="강원">강원</option>
+	           		<option value="충남">충남</option>
+	           		<option value="충북">충북</option>
+	           		<option value="경남">경남</option>
+	           		<option value="경북">경북</option>
+	           		<option value="전남">전남</option>
+	           		<option value="전북">전북</option>
+	           		<option value="대구">대구</option>
+	           		<option value="대전">대전</option>
+	           		<option value="광주">광주</option>
+	           		<option value="울산">울산</option>
+	           		<option value="부산">부산</option>
+	           		<option value="세종">세종</option>
+	           		<option value="제주도">제주도</option>
 				</select>
-				<select class="loc_cate">
-					<option value="none">카테고리</option>
-					<option>웹</option>
-					<option>디자인</option>
-					<option>JAVA</option>
-					<option>HTML</option>
+				<select class="loc_cate" id="search_text2" onchange="find();">
+					<option value="">카테고리</option>
+					<option value="디자인">디자인</option>
+					<option value="IT·프로그래밍">IT·프로그래밍</option>
+					<option value="영상·사진·음향">영상·사진·음향</option>
+					<option value="마케팅">마케팅</option>
+					<option value="번역·통역">번역·통역</option>
+					<option value="레슨·실무교육">레슨·실무교육</option>
+					<option value="상품">상품</option>
 				</select>
 			</div>
+			
 			<div id="click_box">
-				<div class="loc_cate1"><b>${ vo.s_count }명의 고수</b></div>
+				<div class="loc_cate1"><b>${ s_count }명의 고수</b></div>
 				<div class="loc_cate_null"></div>
-				<select class="loc_cate2">
-					<option>리뷰순</option>
-					<option>별점순</option>
-					<option>최신순</option>
-					<option>가격순</option>
-				</select>
 			</div>
-			<c:forEach var="vo" items="${ list }">	
+				<c:forEach var="vo" items="${ list }">
 				<div id="select_box">
 				<a href="view.do?s_idx=${ vo.s_idx }&page=${ (empty param.page) ? 1 :  param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">
 					<table id = "select_sub_box">
@@ -202,18 +210,6 @@
 					onclick="insert_form();">
 			</div>
 			
-		<!-- 검색메뉴 -->
-		<div style="text-align: center;">
-		
-			<select id="search">
-				<option value="all">전체보기</option>
-				<option value="s_id">아이디</option>
-				<option value="s_field">분야</option>
-			</select>
-			<input id="search_text" value="${ param.search_text }">
-			<input class="btn btn-warning" style="width:60px;" type="button" value="검색" onclick="find();"> 
-		
-		</div>
 
 		<!-- Page메뉴 넣기 -->
 		<div style="text-align: center; font-size: 12pt;">
