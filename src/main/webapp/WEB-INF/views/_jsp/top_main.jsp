@@ -6,15 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
 <!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 
+
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/top_main.css">
-
-
-
 
 </head>
 
