@@ -12,7 +12,36 @@ public class SellerVo {
 	String s_potfolio;
 	String s_skill;
 	String s_local;
+	String s_msg;
+	int    s_idx;
+	int    m_idx;
+	int    s_count;
 	
+	
+	public int getS_count() {
+		return s_count;
+	}
+	public void setS_count(int s_count) {
+		this.s_count = s_count;
+	}
+	public int getM_idx() {
+		return m_idx;
+	}
+	public void setM_idx(int m_idx) {
+		this.m_idx = m_idx;
+	}
+	public int getS_idx() {
+		return s_idx;
+	}
+	public void setS_idx(int s_idx) {
+		this.s_idx = s_idx;
+	}
+	public String getS_msg() {
+		return s_msg;
+	}
+	public void setS_msg(String s_msg) {
+		this.s_msg = s_msg;
+	}
 	public String getS_id() {
 		return s_id;
 	}

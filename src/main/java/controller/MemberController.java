@@ -46,10 +46,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("login.do")
-	public String login(String m_id,String m_pwd,Model model) {
-	
-
-		
+	public String login(String m_id,String url,String m_pwd,Model model) {
 
 		MemberVo user = memberDao.selectOne(m_id);
 		  
@@ -74,8 +71,13 @@ public class MemberController {
 		//���� user�� ����Ҽ� �ִ� session���� ���ϱ�
 		session.setAttribute("user", user);
 		
-		//�������� �̵�
-		return "redirect:list.do";
+		if(url==null) url="";
+		
+		if(url.isEmpty())
+			return "redirect:../board/list.do";
+		else
+			return "redirect:" + url;
+		
 	}
 	
 	
