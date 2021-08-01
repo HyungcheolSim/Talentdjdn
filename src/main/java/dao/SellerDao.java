@@ -19,5 +19,4 @@ public interface SellerDao {
 
 	int delete(int s_idx);
 
-	
 }

@@ -9,9 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- jquery -->
-<script src="../resource/js/jquery-3.6.0.min.js"></script>
-
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -19,7 +16,6 @@
 
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/login.css">
-<script src='../js/login.js'></script>
 
 <script type="text/javascript">
 

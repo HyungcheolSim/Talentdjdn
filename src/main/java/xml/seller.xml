@@ -10,20 +10,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (
 			select
 				*,
-			    rank() over(order by s_idx desc) as no,
-			    (select count(*) from seller where s_idx = a.s_idx) as s_count
+			    rank() over(order by s_idx desc) as no
 		    from 
 		    
 		    (
 		    	select * from seller
-			    <trim prefix="where" prefixOverrides="or"> 			
-					<if test="s_id!=null">
-						s_id like CONCAT('%',#{s_id},'%')
+		     	<trim prefix="where" prefixOverrides="and"> 		
+					<if test="s_local!=null">
+						 s_local = #{s_local}
 					</if>
 					<if test="s_field!=null">
-						s_field like CONCAT('%',#{s_field},'%')
+						 and s_field = #{s_field}
 					</if>
 				</trim>
+				<!-- select * from seller
+			    <trim prefix="where" prefixOverrides="and"> 			
+					<if test="s_local!=''">
+						s_local = #{s_local}
+					</if>
+					<if test="s_field!=''">
+						and s_field = #{s_field}
+					</if>
+				</trim> -->
 
 		    ) a 
 		 ) b

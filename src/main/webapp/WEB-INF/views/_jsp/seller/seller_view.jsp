@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- jquery -->
-<script src="../resource/js/jquery-3.6.0.min.js"></script>
+
 
 <!-- bootstrap을 사용하기 위한 설정 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -17,11 +16,11 @@
 
 <!-- common -->
 <link rel="stylesheet" href="../_css/common.css">
-<script src='../_js/common.js'></script>
+
 
 <!-- this page -->
 <link rel="stylesheet" href="../_css/index.css">
-<script src='../_js/index.js'></script>
+
 
 <!-- this page (경로 수정필요)-->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/seller_view.css"> 

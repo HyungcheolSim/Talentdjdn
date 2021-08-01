@@ -16,11 +16,11 @@
 
 <!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
-<script src='../js/common.js'></script>
+
 
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/join_page.css">
-<script src='../js/join_page.js'></script>
+
 
 <script type="text/javascript">
 
@@ -29,7 +29,7 @@ function send(f) {
     
     //입력값 체크...
     var s_account      = f.s_account.value.trim();
-    var s_field        = f.s_field.value.trim();
+    var s_field        = f.s_field.value;
     var s_education    = f.s_education.value.trim();
     var s_skill        = f.s_skill.value.trim();
     var s_local        = f.s_local.value;
@@ -109,7 +109,18 @@ function send(f) {
                         </tr>
                         <tr>
                            <th>분야</th>
-                           <td><input name="s_field" id="s_field"></td>
+	                           <td>
+								<select name="s_field" id="s_field">
+									<option value="">카테고리</option>
+									<option value="디자인">디자인</option>
+									<option value="IT·프로그래밍">IT·프로그래밍</option>
+									<option value="영상·사진·음향">영상·사진·음향</option>
+									<option value="마케팅">마케팅</option>
+									<option value="번역·통역">번역·통역</option>
+									<option value="레슨·실무교육">레슨·실무교육</option>
+									<option value="상품">상품</option>
+								</select>
+							   </td>
                         </tr>
                         <tr>
                            <th>학력</th>

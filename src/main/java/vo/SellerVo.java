@@ -15,15 +15,7 @@ public class SellerVo {
 	String s_msg;
 	int    s_idx;
 	int    m_idx;
-	int    s_count;
-	
-	
-	public int getS_count() {
-		return s_count;
-	}
-	public void setS_count(int s_count) {
-		this.s_count = s_count;
-	}
+
 	public int getM_idx() {
 		return m_idx;
 	}
