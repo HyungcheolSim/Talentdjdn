@@ -12,7 +12,7 @@
 	<typeAliases>
 		<typeAlias type="vo.MemberVo" alias="member"/>
 		<typeAlias type="vo.BoardVo"  alias="board"/>
-
+		<typeAlias type="vo.SellerVo" alias="seller"/>
 		<typeAlias type="vo.TalentVo" alias="talent"/>
 		<typeAlias type="vo.ReviewVo" alias="review"/>
 	</typeAliases>
@@ -22,6 +22,7 @@
 		<mapper resource="xml/member.xml" />
 		<mapper resource="xml/board.xml" />
 		<mapper resource="xml/review.xml"/>
+		<mapper resource="xml/seller.xml"/>
 		<!-- <mapper resource="config/mybatis/mapper/photo.xml" /> -->
 	</mappers>
 </configuration>
