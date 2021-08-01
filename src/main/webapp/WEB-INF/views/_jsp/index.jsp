@@ -7,19 +7,19 @@
 <title>Insert title here</title>
 
 <!-- jquery -->
-<script src="../resource/js/jquery-3.6.0.min.js"></script>
+<!-- <script src="../resource/js/jquery-3.6.0.min.js"></script> -->
 
 <!-- bootstrap -->
-<link href="../resource/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="../resource/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="../resource/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
-
+ -->
 <!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
-<script src='js/common.js'></script>
+
 
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/index.css">
-<script src='js/index.js'></script>
+
 
 </head>
 <body>

@@ -24,15 +24,12 @@ html,body {
 	min-height:1600px;
 }
 
-.table_container table{
-	width:100%;
-	height:auto;
-	min-height:800px;
-	margin:0;
-	border: black solid 1px;
-
+input {
+	width:60%;
 }
-
+th{
+	width:20%;
+}
 .talent_register_content_sidebar_container{
 	width:15%;
 	height:auto;
@@ -42,27 +39,7 @@ html,body {
 	width:100%;
 	height: auto;
 }
-.inner h2{
-	font-size:2.5em;
-}
-#tbody th{
-	width:5%;
-	height:auto;
-	min-height:80px;
-	border-right: solid black 1px;
-}
-#tbody td{
-	margin:0;
-}
-textarea{
-	width:250px;
-	height:100%;
-	margin:0;
-}
-input {
-	width: 250px;
-}
-#textarea_td{
-	height: 150px;
-	width:250px;
-}
+
+
+
+

@@ -13,7 +13,7 @@ public interface MemberDao {
 	public int insert(MemberVo vo);
 	
 	
-	public int delete(String m_id);
+	public int delete(int m_idx);
 
 	
 	public int update(MemberVo vo);

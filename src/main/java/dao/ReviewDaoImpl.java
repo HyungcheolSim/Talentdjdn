@@ -21,30 +21,30 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public ReviewVo selectOne(int r_id) {
+	public ReviewVo selectOne(int r_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("review.review_one", r_id);
+		return sqlSession.selectOne("review.review_one", r_idx);
 	}
 
 	@Override
-	public List<ReviewVo> getReviewsForOne(int t_id){
-		return sqlSession.selectList("review.review_list_for_one",t_id);
+	public List<ReviewVo> getReviewsForOne(int t_idx){
+		return sqlSession.selectList("review.review_list_for_one",t_idx);
 	}
 	
 	@Override
-	public int insert(ReviewVo vo) {
+	public int insert(ReviewVo vo)  throws Exception{
 		// TODO Auto-generated method stub
 		return sqlSession.insert("review.review_insert",vo);
 	}
 
 	@Override
-	public int delete(int r_id) {
+	public int delete(int r_idx) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(ReviewVo vo) {
+	public int update(ReviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}

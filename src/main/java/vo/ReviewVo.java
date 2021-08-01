@@ -4,28 +4,21 @@ import java.sql.Date;
 
 public class ReviewVo {
 
-	int    r_id;
-	String r_title;
+	int    r_idx;
 	String r_content;
 	Date r_regdate;
 	int    r_star;
 	String r_image;
-	int    r_recommend;
-	String m_id;
-	int    t_id;
+	int m_idx;
+	int    t_idx;
 	
 	public int getR_id() {
-		return r_id;
+		return r_idx;
 	}
-	public void setR_id(int r_id) {
-		this.r_id = r_id;
+	public void setR_id(int r_idx) {
+		this.r_idx = r_idx;
 	}
-	public String getR_title() {
-		return r_title;
-	}
-	public void setR_title(String r_title) {
-		this.r_title = r_title;
-	}
+
 	public String getR_content() {
 		return r_content;
 	}
@@ -50,23 +43,17 @@ public class ReviewVo {
 	public void setR_image(String r_image) {
 		this.r_image = r_image;
 	}
-	public int getR_recommend() {
-		return r_recommend;
+	public int getM_idx() {
+		return m_idx;
 	}
-	public void setR_recommend(int r_recommend) {
-		this.r_recommend = r_recommend;
+	public void setM_idx(int m_idx) {
+		this.m_idx = m_idx;
 	}
-	public String getM_id() {
-		return m_id;
+	public int getT_idx() {
+		return t_idx;
 	}
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
-	}
-	public int getT_id() {
-		return t_id;
-	}
-	public void setT_id(int t_id) {
-		this.t_id = t_id;
+	public void setT_idx(int t_idx) {
+		this.t_idx = t_idx;
 	}
 	
 	

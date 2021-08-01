@@ -28,24 +28,17 @@ html,body {
 	width:100%;
 	height:auto;
 	margin:0;
-	border: black solid 1px;
 
 }
-thead{
-	border-bottom: black solid 1px;
-	margin:0;
+
+td{
+	text-align: center;
+}
+th{
+	text-align: center;
 }
 
-.td_else{
-	width:14%;
-	border-bottom: black solid 1px;
-	height:5%;
-} 
-#td_title{
-	width:33%;
-	border-bottom: black solid 1px;
-	height:5%;
-}
+
 .talent_list_content_sidebar_container{
 	width:15%;
 	height:auto;
