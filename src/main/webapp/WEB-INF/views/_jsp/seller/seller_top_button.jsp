@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,18 +20,18 @@
 <script src="../resource/Semantic-UI-CSS-master/semantic.js"></script>
 
 <!-- common -->
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
-<script src='../js/common.js'></script>
+<link rel="stylesheet" href="../_css/common.css">
+<script src='../_js/common.js'></script>
 
 <!-- this page -->
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/top_button.css">
-<script src='../js/top_button.js'></script>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/seller_top_button.css"> 
+
 
 </head>
 <body>
-	<div>
+	<div class="logo_menu">
 		<div>
-		<a href="${ pageContext.request.contextPath }/member/list.do"><img class="main_logo" alt="" src="${ pageContext.request.contextPath }/resources/img/logo.png"></a>
+		<a href=""><img class="main_logo" alt="" src="${ pageContext.request.contextPath }/resources/img/logo.png"></a>
 		</div>
 		<ul class="main_top_button">
 			<li><a href="../board/list.do">게시판</a></li>
@@ -47,7 +47,6 @@
 				</div>
 		    </c:if> 
 		</ul>
-		
 	</div>
 
 </body>

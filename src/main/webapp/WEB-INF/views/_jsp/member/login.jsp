@@ -82,6 +82,7 @@ function send(f) {
 
 	<div id="login_box">
 		<form>
+			<input type="hidden" name="url" value="${ param.url }">
 			<div class="panel panel-warning">
 				<div class="panel-heading">로그인</div>
 				<div class="panel-body">

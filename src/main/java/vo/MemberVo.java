@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class MemberVo {
 
+	int    m_idx;
 	String m_id;
 	String m_pwd;
 	String m_name;
@@ -16,6 +17,14 @@ public class MemberVo {
 	String m_grade;
 	Date   m_date;
 	
+	
+	
+	public int getM_idx() {
+		return m_idx;
+	}
+	public void setM_idx(int m_idx) {
+		this.m_idx = m_idx;
+	}
 	public String getM_id() {
 		return m_id;
 	}
