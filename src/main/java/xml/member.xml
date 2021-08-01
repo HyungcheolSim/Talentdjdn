@@ -10,14 +10,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- m_idx에 해당되는 회원정보 1건 얻어오기 -->
-	<select id="member_one" parameterType="String" resultType="member">
-		select * from member where m_id=#{ m_id }
+	<select id="member_one_m_idx" parameterType="int" resultType="member">
+		select * from member where m_idx=#{ m_idx }
+	</select>
+	
+	<select id="member_one_m_id" resultType="member" parameterType="String">
+		select * from member where m_id=#{m_id}
 	</select>
 
 	<!-- 추가 -->
 	<insert id="member_insert" parameterType="member">
-		insert into member values(#{ m_id}, #{ m_pwd },	#{ m_name },#{ m_addr }, #{ m_detail_addr },
-								 #{ m_zipcode }, #{m_email},#{m_phone},#{m_local}, default, now() )
+		insert into member(m_id,m_pwd,m_name,m_addr,m_detail_addr,m_zipcode,m_email,m_phone,m_local,m_grade,m_regdate) 
+		
+		values(#{ m_id}, #{ m_pwd },#{ m_name },#{ m_addr }, #{ m_detail_addr },
+				 #{ m_zipcode }, #{ m_email },#{ m_phone },#{ m_local }, default, now() )
 	</insert>
 	
 	<!-- 삭제 -->

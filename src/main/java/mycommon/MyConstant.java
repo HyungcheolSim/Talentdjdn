@@ -1,22 +1,29 @@
 package mycommon;
 
-//            pascalÇ¥±â¹ý   : MyConstant    <= class¸í
-//            camelÇ¥±â¹ý    : int myMoney   <= º¯¼ö/¸Þ¼Òµå¸í
-//            snakeÇ¥±â¹ý    : int my_money  <= º¯¼ö/¸Þ¼Òµå¸í
-//            Çë°¡¸®¾ðÇ¥±â¹ý : boolean b0k int nNumber
+//            pascalÇ¥ï¿½ï¿½ï¿½   : MyConstant    <= classï¿½ï¿½
+//            camelÇ¥ï¿½ï¿½ï¿½    : int myMoney   <= ï¿½ï¿½ï¿½ï¿½/ï¿½Þ¼Òµï¿½ï¿½
+//            snakeÇ¥ï¿½ï¿½ï¿½    : int my_money  <= ï¿½ï¿½ï¿½ï¿½/ï¿½Þ¼Òµï¿½ï¿½
+//            ï¿½ë°¡ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ : boolean b0k int nNumber
 public class MyConstant {
 
-	//°Ô½ÃÆÇ »ó¼ö
+	//ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public static class Board{
 		
-		public static final int BLOCK_LIST = 5; //1È­¸é´ç º¸¿©Áú ¸ñ·Ï¼ö 
-		public static final int BLOCK_PAGE = 3; //1È­¸é´ç º¸¿©Áú ÆäÀÌÁö¼ö 
+		public static final int BLOCK_LIST = 5;  
+		public static final int BLOCK_PAGE = 3; 
 	}
 	
-	//°øÁö»çÇ× »ó¼ö
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public static class Notice{
 		
-		public static final int BLOCK_LIST = 5; //1È­¸é´ç º¸¿©Áú ¸ñ·Ï¼ö 
-		public static final int BLOCK_PAGE = 3; //1È­¸é´ç º¸¿©Áú ÆäÀÌÁö¼ö 
+		public static final int BLOCK_LIST = 5; 
+		public static final int BLOCK_PAGE = 3; 
 	}
+	
+	public static class Seller{
+		
+		public static final int BLOCK_LIST = 5; 
+		public static final int BLOCK_PAGE = 3; 
+	}	
+	
 }

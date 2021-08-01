@@ -21,9 +21,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberVo selectOne(String m_id) {
+	public MemberVo selectOne(int m_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.member_one", m_id);
+		return sqlSession.selectOne("member.member_one_m_idx", m_idx);
 	}
 
 	@Override
@@ -42,6 +42,12 @@ public class MemberDaoImpl implements MemberDao {
 	public int update(MemberVo vo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public MemberVo selectOne(String m_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.member_one_m_id", m_id);
 	}
 
 }

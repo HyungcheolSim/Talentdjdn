@@ -24,7 +24,7 @@
 		<ul class="main_top_button">
 			<li><a href="../board/list.do">게시판</a></li>
 			<li><a href="../member/insert_form.do">회원가입</a></li>
-		    <li><a href="talent/talent_detail.jsp">재능찾기</a></li>
+		    <li><a href="../seller/list.do">고수찾기</a></li>
 		    <c:if test="${ empty user }">
 		    	<li><a href="../member/login_form.do">로그인</a></li>
 		    </c:if>

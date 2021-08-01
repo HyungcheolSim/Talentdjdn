@@ -2,55 +2,88 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="talent">
-	<!--수정해야함   -->
-	<!-- 목록조회 -->
-	<select id="seller_list" resultType="seller">
-		select * from seller order by s_id
+<mapper namespace="seller">
+
+	<!-- 조건별 조회 -->
+	<select id="seller_list" parameterType="Map" resultType="seller">
+		 select * from 
+		 (
+			select
+				*,
+			    rank() over(order by s_idx desc) as no,
+			    (select count(*) from seller where s_idx = a.s_idx) as s_count
+		    from 
+		    
+		    (
+		    	select * from seller
+			    <trim prefix="where" prefixOverrides="or"> 			
+					<if test="s_id!=null">
+						s_id like CONCAT('%',#{s_id},'%')
+					</if>
+					<if test="s_field!=null">
+						s_field like CONCAT('%',#{s_field},'%')
+					</if>
+				</trim>
+
+		    ) a 
+		 ) b
+		 where no between #{ start } and #{ end }
+	</select>
+
+	<!-- 전체게시물수 구하기-->
+	<select id="seller_row_total" resultType="int">
+		select 
+			ifnull(count(*),0)
+		from seller
 	</select>
 	
-	<!-- s_idx에 해당되는 회원정보 1건 얻어오기 -->
-	<select id="seller_one_idx" parameterType="map" resultType="seller">
-		select * from seller where s_id=#{ s_id }
+	<!-- 검색조건별 게시물수 구하기-->
+	<select id="seller_condition_row_total" parameterType="Map" resultType="int">
+		select ifnull(count(*),0) from seller 
+		
+		<trim prefix="where" prefixOverrides="or"> 
+			
+			<if test="s_id!=null">
+				s_id like CONCAT('%',#{s_id},'%')
+			</if>
+			<if test="s_field!=null">
+				s_field like CONCAT('%',#{s_field},'%')
+			</if>
+		</trim>
+		
 	</select>
 	
-	<!-- s_id에 해당되는 회원정보 1건 얻어오기 -->
-	<select id="seller_one_id" parameterType="int" resultType="seller">
-		select * from seller where s_id=#{ s_id }
-	</select>
 	
-	<!-- 추가 -->
+	<!-- 데이터 한건 조회 -->
+	<select id="seller_one" parameterType="int" resultType="seller">
+		select * from seller where s_idx = #{ s_idx }
+	</select>
+
+	<!-- 글쓰기 -->
 	<insert id="seller_insert" parameterType="seller">
-		insert into seller values(seq_seller_s_id.nextVal, #{ s_name },
-									 						#{ s_id}, 
-									 						#{ s_pwd }, 
-									 						#{ s_zipcode }, 
-									 						#{ s_addr }, 
-									 						#{ s_ip }, 
-									 						sysdate, 
-									 						sysdate, 
-									 						default)
+		  insert into seller(s_id,s_msg,s_account,s_field,s_career,s_education,s_license,s_potfolio,s_skill,s_local,m_idx) 
+		  	values(#{s_id},#{s_msg},#{s_account},#{s_field},#{s_career},#{s_education},#{s_license},#{s_potfolio},#{s_skill},#{s_local},#{m_idx})
 	</insert>
-	
-	<!-- 삭제 -->
-	<delete id="seller_delete" parameterType="int">
-		delete from seller where s_idx=#{ s_idx }
-	</delete>
 	
 	<!-- 수정 -->
 	<update id="seller_update" parameterType="seller">
-		update seller set s_name=#{ s_name },
-						  s_id=#{ s_id },
-						  s_pwd=#{ s_pwd },
-						  s_zipcode=#{ s_zipcode },
-						  ,s_addr=#{ s_addr },
-						  s_ip=#{ s_ip },
-						  s_grade=#{ s_grade }
-						  ,s_modifydate=sysdate 
-		where s_idx=#{ s_idx }
+		update seller set s_account = #{ s_account },
+						 s_career = #{ s_career },
+						 s_education = #{ s_education },
+						 s_license = #{ s_license },
+						 s_potfolio = #{ s_potfolio },
+						 s_local = #{ s_local },
+						 s_msg = #{ s_msg }
+		where s_idx = #{ s_idx }				 
+						 
 	</update>
-
-
+	
+	<!-- 삭제 -->
+	<delete id="seller_delete" parameterType="int">
+		delete from seller where s_idx = #{ s_idx }
+	</delete>
+	
+	
 </mapper>
 
 

@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.back_color{
+	width:100%;
+	border-bottom:solid 1px #e6e6e6;
+}
+
+
+.main_logo{
+	width:10%;
+	display: block;
+	float:left;
+	margin-top:20px;
+	margin-left:8%;
+}
+
+.main_top_button{
+	width:73%;
+	list-style: none;
+	line-height : 70px;
+	text-align:right;
+	float: left;
+	margin-top:20px;
+}
+
+.main_top_button > li {
+	display: inline-block;
+	
+}
+
+.main_top_button > li > a {
+	display: block;
+	text-decoration: none;
+	text-align:left;
+	/* width: 120px; */
+	font-family: 'Gothic A1';
+	font-size: 13pt;
+	/*font-weight: bold;*/
+	color: #000000;
+	margin-left: 15px; 
+}	
+
+.main_top_button > li > a:hover {
+	
+	font-weight: bold;
+}	
+

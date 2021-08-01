@@ -4,7 +4,9 @@ import java.sql.Date;
 
 public class MemberVo {
 
+
 	int m_idx;
+
 	String m_id;
 	String m_pwd;
 	String m_name;
