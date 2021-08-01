@@ -48,9 +48,6 @@ public class MemberController {
 	@RequestMapping("login.do")
 	public String login(String m_id,String m_pwd,Model model) {
 	
-
-		
-
 		MemberVo user = memberDao.selectOne(m_id);
 		  
 		if(user==null) { 

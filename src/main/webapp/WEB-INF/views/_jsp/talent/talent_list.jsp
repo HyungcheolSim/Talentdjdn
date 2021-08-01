@@ -102,7 +102,7 @@ th, td {
 							<th width="50%">제목</th>
 							<th>가격</th>
 							<th>작성자</th>
-							<th>카테고리</th>
+							<th>평점</th>
 						</tr>
 					</thead>
 					<tbody id="tbody">
@@ -119,11 +119,11 @@ th, td {
 						<c:forEach var="vo" items="${ list }">
 							<tr>
 								<td>${ vo.t_small_image }</td>
-								<td>${ vo.t_id }</td>
-								<td><a href="talentdetail.do?t_id=${ vo.t_id }">${ vo.t_title }</a></td>
+								<td>${ vo.t_idx }</td>
+								<td><a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a></td>
 								<td>${ vo.t_price }</td>
-								<td>${ vo.s_id }</td>
-								<td>${ vo.t_cat }</td>
+								<td>${ vo.s_idx }</td>
+								<td>${ vo.t_starscore }점</td>
 							</tr>
 						</c:forEach>
 

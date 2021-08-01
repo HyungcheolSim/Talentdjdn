@@ -21,9 +21,9 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public ReviewVo selectOne(int r_id) {
+	public ReviewVo selectOne(int r_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("review.review_one", r_id);
+		return sqlSession.selectOne("review.review_one", r_idx);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int delete(int r_id) throws Exception {
+	public int delete(int r_idx) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}

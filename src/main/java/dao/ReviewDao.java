@@ -10,7 +10,7 @@ public interface ReviewDao {
 	public List<ReviewVo> getReviewList();
 	
 	
-	public ReviewVo selectOne(int r_id);
+	public ReviewVo selectOne(int r_idx);
 	
 	public List<ReviewVo> getReviewsForOne(int t_idx);
 	
@@ -19,7 +19,7 @@ public interface ReviewDao {
 	public int insert(ReviewVo vo) throws Exception;
 	
 	
-	public int delete(int r_id) throws Exception;
+	public int delete(int r_idx) throws Exception;
 
 	
 	public int update(ReviewVo vo) throws Exception;

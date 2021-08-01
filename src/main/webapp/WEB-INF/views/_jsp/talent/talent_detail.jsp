@@ -23,128 +23,19 @@
 	href="${ pageContext.request.contextPath }/resources/css/talent/talent_detail.css">
 <!-- SweetAlert사용설정 : 알림박스 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- <script type="text/javascript">
-
-function add_review() {
-	
-	//로그인여부 체크
-	if('${ empty user }'=='true'){
-		
-		Swal.fire({
-			  title: '리뷰쓰기',
-			  html: "<h5>리뷰쓰기는 로그인후 이용가능합니다<br>로그인 하시겠습니까?</h5>",
-			  icon: 'warning',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: '예',
-			  cancelButtonText : "아니오"
-			}).then((result) => {
-			  if (result.isConfirmed) {
-				//현재경로 : /talent/talentdetail.do
-					location.href='${ pageContext.request.contextPath }/member/login_form.do?url=' + location.href ; //돌아올 경로
-			  }
-			});
-
-	}else{
-		
-		//로그인된 상태면...
-		
-		//입력값 읽어오기
-		var r_title = $("#r_title").val().trim();
-		var r_content = $("#r_content").val().trim();
-		var r_star = $("#r_star").val();
-		
-		if(r_content==''){
-			alert('댓글내용을 입력하세요!!!')
-			$("#r_content").val('');
-			$("#r_content").focus();
-			return;
-		}
-		
-		//Ajax로 전송
-		$.ajax({
-			url   : '../review/insert.do',
-			data  : {
-					 'r_title' : r_title,
-					 'r_content' : r_content,
-					 'r_star' : r_star,
-				     't_id' : '${ talentvo.t_id }',
-				     'm_id' : '${ user.m_id }',
-				     
-				     },
-			dataType : 'json',
-			success  : function(result_data){
-				//result_data = { "result" : "success" }
-				//result_data = { "result" : "fail" }
-				
-				//이전 댓글 내용 지우기
-				$("#r_content").val('');
-				
-				if(result_data.result == "success"){
-					
-					//댓글목록 읽어오기 
-					review_list(1);
-					
-				}else{
-					alert("댓글쓰기 실패!!");
-				}
-			},
-			error    : function(err){
-				alert(err.responseText);
-			}
-		}); //end-ajax
-
-	}
-	
-}// end add_review
-
-function review_list(page) {
-	
-	//Ajax로 요청
-	$.ajax({
-		url  : "../review/list.do",
-		data : { 't_id' : '${ talentvo.t_id }' },
-		success  : function(result_data){
-			//수신된 결과 데이터(댓글목록) disp에 출력
-			$("#disp").html(result_data);
-			
-		},
-		error    : function(err){
-			alert(err.responseText);
-		}
-	});
-}
-
-//jQuery초기화
-$(document).ready(function(){
-	//댓글목록 출력 
-	review_list(1);
-});
-</script> -->
 <script type="text/javascript">
-
 $(document).ready(function() {
 	if('${ empty reviewlist }'=='true'){
 		showReviews();	
 	}
-	
 });
 function showReviews(){
-	location.href="../review/reviewselectone?t_idx=${param.t_id}";
+	location.href="../review/reviewselectone?t_idx=${param.t_idx}";
 }
 function send(f) {
-    
-    var r_title  = f.r_title.value.trim();
+
     var r_content= f.r_content.value.trim();
     var r_star= f.r_star.value.trim();
-    
-    if(r_title==''){
-       alert('제목를 입력하세요!!');
-       f.r_title.value='';
-       f.r_title.focus();
-       return;
-    }
     
     if(r_content==''){
        alert('비밀번호를 입력하세요!!');
@@ -195,7 +86,10 @@ function send(f) {
 					<p>${talentvo.t_cat }</p>
 					<br>
 					<h2>판매자명</h2>
-					<p>${talentvo.s_id }</p>
+					<p>${talentvo.s_idx }</p>
+					<br>
+					<h2>별점 평균</h2>
+					<p>${talentvo.t_starscore}</p>
 					<br>
 				</div>
 				<div class="talent_detail_review_list_container">
@@ -210,12 +104,11 @@ function send(f) {
 						</c:if>
 						<c:forEach var="vo" items="${reviewlist}">
 							<tr>
-								<td class="review_td"><strong>리뷰 작성자:</strong>   ${vo.m_id}</td>
+								<td class="review_td"><strong>리뷰 작성자:</strong>   ${vo.m_idx}</td>
 								<td class="review_td"><strong>별점:</strong>  	
 									<c:forEach var="i" begin="1" end="${vo.r_star}">★</c:forEach><c:forEach var="j" begin="${vo.r_star}" end="4">☆</c:forEach>   <span>${vo.r_star}</span>점</td>
 								<td class="review_td"><strong>리뷰 등록일:</strong>   ${vo.r_regdate}</td>
-								<td class="review_td"><strong>리뷰명:</strong>   ${vo.r_title}</td>
-								<td class="review_td"><strong>내용:</strong>   ${vo.r_content}</td>								
+								<td class="review_td"><strong>리뷰:</strong>   ${vo.r_content}</td>								
 							</tr>
 						</c:forEach>
 					</table>
@@ -224,12 +117,12 @@ function send(f) {
 					<div class="form_container">
 						<form>
 							<table class="table">
-								<tr>
+								<!-- <tr>
 									<th>제목</th>
 									<td><input name="r_title" id="r_title"></td>
-								</tr>
+								</tr> -->
 								<tr>
-									<th>내용</th>
+									<th>리뷰</th>
 									<td><input name="r_content" id="r_content"></td>
 								</tr>
 								<tr>

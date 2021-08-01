@@ -109,8 +109,8 @@ public class TalentController {
 	
 	//view 매칭
 	@RequestMapping("talentdetail.do")
-	public String talentDetail(int t_id,Model model) {
-		TalentVo vo=talentDao.selectOne(t_id);
+	public String talentDetail(int t_idx,Model model) {
+		TalentVo vo=talentDao.selectOne(t_idx);
 		model.addAttribute("talentvo",vo);
 		session.setAttribute("tvo", vo);
 		return "_jsp/talent/talent_detail";
@@ -141,6 +141,16 @@ public class TalentController {
 			e.printStackTrace();
 		}
 		return "redirect:talentlist.do";
+	}
+	@RequestMapping("updatestar")
+	public String modify(int t_idx) {
+		try {
+			talentDao.updateStar(t_idx);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:talentdetail.do?t_idx="+t_idx;
 	}
 
 

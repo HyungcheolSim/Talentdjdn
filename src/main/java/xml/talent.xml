@@ -15,14 +15,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (
 			select
 				*,
-			    rank() over(order by t_id desc) as no
+			    rank() over(order by t_idx desc) as no
 		    from 
 		    
 		    (
 		    	select * from talent
 			    <trim prefix="where" prefixOverrides="or"> 			
 					<if test="name!=null">
-						s_id like CONCAT('%',#{name},'%')
+						s_idx like CONCAT('%',#{name},'%')
 					</if>
 					<if test="subject!=null">
 						t_title like CONCAT('%',#{subject},'%')
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<trim prefix="where" prefixOverrides="or"> 
 			
 			<if test="name!=null">
-						s_id like CONCAT('%',#{name},'%')
+						s_idx like CONCAT('%',#{name},'%')
 					</if>
 					<if test="subject!=null">
 						t_title like CONCAT('%',#{subject},'%')
@@ -65,23 +65,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from talent 
 	</select>
 	
-	<!-- t_id에 해당되는 회원정보 1건 얻어오기 -->
+	<!-- t_idxx에 해당되는 회원정보 1건 얻어오기 -->
 	<select id="talent_one" parameterType="int" resultType="talent">
-		select * from talent where t_id=#{ t_id }
+		select * from talent where t_idx=#{ t_idx }
 	</select>
 
 	<!-- 추가 -->
 	<insert id="talent_insert" parameterType="talent">
 		insert into talent(
-		t_title,t_content,t_big_field,t_small_field,t_price,t_local,t_cat,t_big_image,t_small_image,s_id)
+		t_title,t_content,t_big_field,t_small_field,t_price,t_local,t_cat,t_starscore,t_big_image,t_small_image,s_idx)
 		values
 		
-		 (#{t_title},#{t_content},#{t_big_field},#{t_small_field},#{t_price},#{t_local},#{t_cat},'imagsrc12','imagsrc12',#{s_id})
+		 (#{t_title},#{t_content},#{t_big_field},#{t_small_field},#{t_price},#{t_local},#{t_cat},#{t_starscore},'imagsrc12','imagsrc12',#{s_idx})
 	</insert>
 	
 	<!-- 삭제 -->
 	<delete id="talent_delete" parameterType="int">
-		delete from talent where t_id=#{ t_id }
+		delete from talent where t_idx=#{ t_idx }
 	</delete>
 	
 	<!-- 수정 -->
@@ -94,8 +94,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		t_local=#{t_local},
 		t_cat=#{t_cat},
 		t_big_image=#{t_big_image},
-			t_small_image=#{t_small_image},s_id=#{s_id}
-		where t_id=#{ t_id }
+			t_small_image=#{t_small_image},s_idx=#{s_idx}
+		where t_idx=#{ t_idx }
 	</update>
 
+	<!-- 평점수정 -->
+	<update id="starscore_update" parameterType="int">
+	update talent
+		SET t_starscore=(
+		select round(avg(r_star),1)STAR_AVG from review R join talent T on(T.t_idx=R.t_idx) where T.t_idx=#{t_idx}
+	</update>
 </mapper>

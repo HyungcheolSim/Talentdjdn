@@ -44,7 +44,7 @@ textarea[name='t_content'] {
 		var t_price = f.t_price.value.trim();
 		var t_local = f.t_local.value.trim();
 		var t_cat = f.t_cat.value.trim();
-		var s_id = f.s_id.value.trim();
+		var s_idx = f.s_idx.value.trim();
 
 		if (t_title == "") {
 			alert("제목을 입력해주세요.");
@@ -142,7 +142,7 @@ textarea[name='t_content'] {
 									</tr>
 									<tr>
 										<th>작성자<span class="t_red">*</span></th>
-										<td><input id="s_id" name="s_id" /></td>
+										<td><input id="s_idx" name="s_idx" /></td>
 									</tr>
 								</tbody>
 							</table>

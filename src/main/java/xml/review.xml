@@ -9,38 +9,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from review 
 	</select>
 	
-	<!-- r_idx에 해당되는 회원정보 1건 얻어오기 -->
+	<!-- r_idxx에 해당되는 회원정보 1건 얻어오기 -->
 	<select id="review_one" parameterType="int" resultType="review">
-		select * from review where r_id=#{ r_id } order by r_id desc
+		select * from review where r_idx=#{ r_idx } order by r_idx desc
 	</select>
 
-	<!-- t_id(하나의 재능)에 해당되는 리뷰 모두 얻어오기 -->
+	<!-- t_idx(하나의 재능)에 해당되는 리뷰 모두 얻어오기 -->
 	<select id="review_list_for_one" parameterType="int" resultType="review">
 		select * from review where t_idx=#{t_idx};
 	</select>
+	
 	<!-- 추가 -->
 	<insert id="review_insert" parameterType="review">
-		insert into review(r_title,r_content,r_regdate,r_star,r_image,r_recommend,m_id,t_idx)
+		insert into review(r_content,r_regdate,r_star,r_image,m_idx,t_idx)
 		 values 
-		 (#{ r_title },	#{ r_content },now(),#{r_star},'imagesrc123123',0,#{m_id},#{t_idx} )
+		 (	#{ r_content },now(),#{r_star},'imagesrc123123',#{m_idx},#{t_idx} )
 	</insert>
 	
 	<!-- 삭제 -->
 	<delete id="review_delete" parameterType="int">
-		delete from review where r_id=#{ r_id }
+		delete from review where r_idx=#{ r_idx }
 	</delete>
 	
 	<!-- 수정 -->
 	<update id="review_update" parameterType="review">
 		update review set r_name=#{ r_name },
-						  r_id=#{ r_id },
+						  r_idx=#{ r_idx },
 						  r_pwd=#{ r_pwd },
 						  r_zipcode=#{ r_zipcode },
 						  ,r_addr=#{ r_addr },
 						  r_ip=#{ r_ip },
 						  r_grade=#{ r_grade }
 						  ,r_modifydate=sysdate 
-		where r_id=#{ r_id}
+		where r_idx=#{ r_idx}
 	</update>
 
 </mapper>

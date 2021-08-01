@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class MemberVo {
 
+	int m_idx;
 	String m_id;
 	String m_pwd;
 	String m_name;
@@ -14,8 +15,16 @@ public class MemberVo {
 	String m_phone;
 	String m_local;
 	String m_grade;
-	Date   m_date;
+	Date   m_regdate;
 	
+	
+	
+	public int getM_idx() {
+		return m_idx;
+	}
+	public void setM_idx(int m_idx) {
+		this.m_idx = m_idx;
+	}
 	public String getM_id() {
 		return m_id;
 	}
@@ -76,11 +85,11 @@ public class MemberVo {
 	public void setM_grade(String m_grade) {
 		this.m_grade = m_grade;
 	}
-	public Date getM_date() {
-		return m_date;
+	public Date getM_regdate() {
+		return m_regdate;
 	}
-	public void setM_date(Date m_date) {
-		this.m_date = m_date;
+	public void setM_regdate(Date m_regdate) {
+		this.m_regdate = m_regdate;
 	}
 	
 	

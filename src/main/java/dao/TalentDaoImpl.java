@@ -43,9 +43,9 @@ public class TalentDaoImpl implements TalentDao {
 
 	
 	@Override
-	public TalentVo selectOne(int t_id) {
+	public TalentVo selectOne(int t_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("talent.talent_one", t_id);
+		return sqlSession.selectOne("talent.talent_one", t_idx);
 	}
 
 	@Override
@@ -55,15 +55,19 @@ public class TalentDaoImpl implements TalentDao {
 	}
 
 	@Override
-	public int delete(int t_id)  throws Exception{
+	public int delete(int t_idx)  throws Exception{
 		// TODO Auto-generated method stub
-		return sqlSession.delete("talent.talent_delete",t_id);
+		return sqlSession.delete("talent.talent_delete",t_idx);
 	}
 
 	@Override
 	public int update(TalentVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update("talent.talent_update",vo);
+	}
+	@Override
+	public int updateStar(int t_idx) throws Exception{
+		return sqlSession.update("starscore_update",t_idx);
 	}
 
 }
