@@ -24,29 +24,111 @@
 <!-- SweetAlert사용설정 : 알림박스 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	if('${ empty reviewlist }'=='true'){
-		showReviews();	
-	}
-});
-function showReviews(){
-	location.href="../review/reviewselectone?t_idx=${param.t_idx}";
-}
-function send(f) {
+	
+function add_review() {
+	console.log($("#r_star").val());
+	//로그인여부 체크
+	if('${ empty user }'=='true'){
+		
+		Swal.fire({
+			  title: '리뷰작성',
+			  html: "<h5>리뷰작성은 로그인후 이용가능합니다<br>로그인 하시겠습니까?</h5>",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '예',
+			  cancelButtonText : "아니오"
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				//현재경로 : /review/list.do
+					location.href='${ pageContext.request.contextPath }/member/login.do?url=' + location.href ; //돌아올 경로
+			  }
+			});
 
-    var r_content= f.r_content.value.trim();
-    var r_star= f.r_star.value.trim();
-    
-    if(r_content==''){
-       alert('비밀번호를 입력하세요!!');
-       f.r_content.value='';
-       f.r_content.focus();
-       return;
-    }
-    
-    f.action="../review/reviewinsert"; //review insert
-    f.submit(); //전송
- }
+	}else{
+		
+		//로그인된 상태면...
+		
+		//입력값 읽어오기
+		var r_content = $("#r_content").val().trim();
+		//var r_star    = $("#r_star").val();
+		var obj_length = document.getElementsByName("r_star").length;
+  
+        for (var i=0; i<obj_length; i++) {
+            if (document.getElementsByName("r_star")[i].checked == true) {
+                var r_star =document.getElementsByName("r_star")[i].value;
+            }
+        }
+        if($("input:radio[name='r_star']").is(":checked")==false){
+            
+            alert('별점을 입력하세요!!!')
+            return;
+         }
+		if(r_content==''){
+			alert('리뷰내용을 입력하세요!!!')
+			$("#r_content").val('');
+			$("#r_content").focus();
+			return;
+		}
+		
+		//Ajax로 전송
+		$.ajax({
+			url   : '../review/insert.do',
+			data  : {'r_content' : r_content, 
+					 'r_star' : r_star,
+					 't_idx'  : '${ param.t_idx }',
+				     'm_idx'   : '${ user.m_idx }'
+				     },
+			dataType : 'json',
+			success  : function(result_data){
+				//result_data = { "result" : "success" }
+				//result_data = { "result" : "fail" }
+				
+				//이전 댓글 내용 지우기
+				$("#r_content").val('');
+				if(result_data.result == "success"){
+					//리뷰목록 읽어오기 
+					location.href='${ pageContext.request.contextPath }/talent/updatestar?t_idx='+${param.t_idx};
+					review_list();
+					
+				}else{
+					alert("리뷰작성 실패!!");
+				}
+			},
+			error    : function(err){
+				alert("댓글은 300자 이내로 작성해주세요!");
+			}
+		}); //end-ajax
+
+	}
+	
+}// end add_review
+
+
+function review_list() {
+	
+	//Ajax로 요청
+	$.ajax({
+		url  : "../review/list.do",
+		data : { 't_idx' : '${ param.t_idx }'},
+		success  : function(result_data){
+			//수신된 결과 데이터(댓글목록) disp에 출력
+			$("#disp").html(result_data);
+			
+		},
+		error    : function(err){
+			alert(err.responseText);
+		}
+	});
+}
+
+//jQuery초기화
+$(document).ready(function(){
+	//리뷰목록 출력 
+	review_list();
+});
+
 </script>
 
 </head>
@@ -86,32 +168,11 @@ function send(f) {
 					<p>${talentvo.t_cat }</p>
 					<br>
 					<h2>판매자명</h2>
-					<p>${talentvo.s_idx }</p>
+					<p>${talentvo.s_id }</p>
 					<br>
 					<h2>별점 평균</h2>
 					<p>${talentvo.t_starscore}</p>
 					<br>
-				</div>
-				<div class="talent_detail_review_list_container">
-					<h1>리뷰 목록</h1>
-					<table class="table1">
-						<c:if test="${empty reviewlist}">
-							<tr>
-								<td colspan="4">
-									<div>리뷰가 존재하지 않습니다.</div>
-								</td>
-							</tr>
-						</c:if>
-						<c:forEach var="vo" items="${reviewlist}">
-							<tr>
-								<td class="review_td"><strong>리뷰 작성자:</strong>   ${vo.m_idx}</td>
-								<td class="review_td"><strong>별점:</strong>  	
-									<c:forEach var="i" begin="1" end="${vo.r_star}">★</c:forEach><c:forEach var="j" begin="${vo.r_star}" end="4">☆</c:forEach>   <span>${vo.r_star}</span>점</td>
-								<td class="review_td"><strong>리뷰 등록일:</strong>   ${vo.r_regdate}</td>
-								<td class="review_td"><strong>리뷰:</strong>   ${vo.r_content}</td>								
-							</tr>
-						</c:forEach>
-					</table>
 				</div>
 				<div class="talent_detail_review_register_container">
 					<div class="form_container">
@@ -127,8 +188,17 @@ function send(f) {
 								</tr>
 								<tr>
 									<th>별점</th>
+									<!-- <td>
+									<select name="r_star">
+										<option value="star">별점주기</option>
+										<option value="1">★</option>
+										<option value="2">★★</option>
+										<option value="3">★★★</option>
+										<option value="4">★★★★</option>
+										<option value="5">★★★★★</option>
+									</select></td> -->
 									<td class="star-rating">
-										<input type="radio" name="r_star"id="5r_star" value="5" />
+										<input type="radio" name="r_star" id="5r_star" value="5" />
 										<label for="5r_star" class="star">&#9733;</label>
 										<input type="radio" name="r_star" id="4r_star" value="4" /> 
 										<label for="4r_star" class="star">&#9733;</label> 
@@ -141,12 +211,17 @@ function send(f) {
 								</tr>
 								<tr>
 									<td><input type="button" value="리뷰작성"
-										class="btn btn-warning" onclick="send(this.form);"></td>
+										class="btn btn-warning" onclick="add_review();"></td>
 								</tr>
 							</table>
 						</form>
 					</div>
 				</div>
+				<div class="talent_detail_review_list_container">
+					<div id="disp"></div>
+
+				</div>
+				
 			</div>
 		</div>
 		<div class="talent_detail_footer_container">

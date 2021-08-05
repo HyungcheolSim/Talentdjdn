@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import dao.ReviewDao;
 import vo.MemberVo;
 import vo.ReviewVo;
@@ -33,38 +35,55 @@ public class ReviewController {
 		this.reviewDao = reviewDao;
 	}
 
-	@RequestMapping("reviewinsert")
-	public String insert(ReviewVo vo, Model model) {
-		MemberVo user = (MemberVo) session.getAttribute("user");
+	/*
+	 * @RequestMapping("reviewinsert") public String insert(ReviewVo vo, Model
+	 * model) { MemberVo user = (MemberVo) session.getAttribute("user");
+	 * 
+	 * if (user == null) {
+	 * 
+	 * model.addAttribute("reason", "end_session");
+	 * 
+	 * return "redirect:../member/login_form.do"; } vo.setM_idx(user.getM_idx());
+	 * TalentVo tvo=(TalentVo)session.getAttribute("tvo"); Integer
+	 * TID=tvo.getT_idx(); vo.setT_idx(TID); // DB Insert try { int insert =
+	 * reviewDao.insert(vo);
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); } return
+	 * "redirect:../talent/talentdetail.do?t_idx="+TID;
+	 * 
+	 * }
+	 */
+	@RequestMapping("insert.do")
+	@ResponseBody
+	public Map insert(ReviewVo vo) {
+		
+		String c_content = vo.getR_content().replaceAll("\n", "<br>");
+		vo.setR_content(c_content);
 
-		if (user == null) {
-
-			model.addAttribute("reason", "end_session");
-
-			return "redirect:../member/login_form.do";
-		}
-		vo.setM_idx(user.getM_idx());
-		TalentVo tvo=(TalentVo)session.getAttribute("tvo");
-		Integer TID=tvo.getT_idx();
-		vo.setT_idx(TID);
-		// DB Insert
+		int res = 0;
 		try {
-			int insert = reviewDao.insert(vo);
+			res = reviewDao.insert(vo);
 			
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:../talent/talentdetail.do?t_idx="+TID;
 		
+		//Map -> JSON�ڵ�� ��ȯ => �������
+		Map map = new HashMap();
+		
+		map.put("result", (res==1) ? "success" : "fail"); // { "result" : "success" }
+		
+		return map;
 	}
 
-	@RequestMapping("reviewselectone")
+	@RequestMapping("list.do")
 	public String getReviewsforonetalent(int t_idx,Model model) {
 		List<ReviewVo> reviewlist = reviewDao.getReviewsForOne(t_idx);
 		
 		model.addAttribute("reviewlist", reviewlist);
 		
-		return "redirect:../talent/talentdetail.do?t_idx="+t_idx;
+		return "_jsp/review/review_list";
 	}
 
 

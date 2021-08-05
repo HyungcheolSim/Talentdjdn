@@ -140,17 +140,12 @@ textarea[name='t_content'] {
 												<option value="상품">상품</option>
 										</select></td>
 									</tr>
-									<tr>
-										<th>작성자<span class="t_red">*</span></th>
-										<td><input id="s_idx" name="s_idx" /></td>
-									</tr>
+									
 								</tbody>
 							</table>
 							<div class="btn_right mt15">
 								<button type="button" class="btn btn-warning"
 									onclick="javascript:goBoardList();">목록으로</button>
-								<!-- <button type="button" class="btn black"
-						onclick="javascript:insertBoard();">등록하기</button> -->
 								<button type="button" class="btn btn-warning"
 									onclick="send(this.form);">등록하기</button>
 							</div>
