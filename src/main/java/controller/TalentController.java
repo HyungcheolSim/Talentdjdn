@@ -133,7 +133,8 @@ public class TalentController {
 	     
 	    return "redirect:../member/login_form.do";
 		}
-		
+		vo.setS_id(user.getM_id());
+		vo.setS_idx(user.getM_idx());
 		try {
 			talentDao.insert(vo);
 		} catch (Exception e) {
@@ -142,6 +143,9 @@ public class TalentController {
 		}
 		return "redirect:talentlist.do";
 	}
+	
+	
+	
 	@RequestMapping("updatestar")
 	public String modify(int t_idx) {
 		try {

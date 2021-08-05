@@ -10,10 +10,12 @@ public class TalentVo {
 	int    t_price;
 	String t_local;
 	String t_cat;
-	int t_starscore;
+	double t_starscore;
 	String t_big_image;
 	String t_small_image;
-	String s_idx;
+	int s_idx;
+	String s_id;
+	
 	
 	
 	public int getT_idx() {
@@ -64,10 +66,10 @@ public class TalentVo {
 	public void setT_cat(String t_cat) {
 		this.t_cat = t_cat;
 	}
-	public int getT_starscore() {
+	public double getT_starscore() {
 		return t_starscore;
 	}
-	public void setT_starscore(int t_starscore) {
+	public void setT_starscore(double t_starscore) {
 		this.t_starscore = t_starscore;
 	}
 	public String getT_big_image() {
@@ -82,11 +84,17 @@ public class TalentVo {
 	public void setT_small_image(String t_small_image) {
 		this.t_small_image = t_small_image;
 	}
-	public String getS_idx() {
+	public int getS_idx() {
 		return s_idx;
 	}
-	public void setS_idx(String s_idx) {
+	public void setS_idx(int s_idx) {
 		this.s_idx = s_idx;
+	}
+	public String getS_id() {
+		return s_id;
+	}
+	public void setS_id(String s_id) {
+		this.s_id = s_id;
 	}
 	
 

@@ -23,16 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						 and s_field = #{s_field}
 					</if>
 				</trim>
-				<!-- select * from seller
-			    <trim prefix="where" prefixOverrides="and"> 			
-					<if test="s_local!=''">
-						s_local = #{s_local}
-					</if>
-					<if test="s_field!=''">
-						and s_field = #{s_field}
-					</if>
-				</trim> -->
-
 		    ) a 
 		 ) b
 		 where no between #{ start } and #{ end }

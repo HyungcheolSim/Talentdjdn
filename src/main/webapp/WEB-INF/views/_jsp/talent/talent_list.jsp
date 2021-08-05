@@ -122,7 +122,7 @@ th, td {
 								<td>${ vo.t_idx }</td>
 								<td><a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a></td>
 								<td>${ vo.t_price }</td>
-								<td>${ vo.s_idx }</td>
+								<td>${ vo.s_id }</td>
 								<td>${ vo.t_starscore }점</td>
 							</tr>
 						</c:forEach>
