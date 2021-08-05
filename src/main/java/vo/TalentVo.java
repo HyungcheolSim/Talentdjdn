@@ -3,7 +3,7 @@ package vo;
 public class TalentVo {
 
 	int    t_idx;
-	String    t_title;
+	String t_title;
 	String t_content;
 	String t_big_field;
 	String t_small_field;
@@ -11,13 +11,24 @@ public class TalentVo {
 	String t_local;
 	String t_cat;
 	double t_starscore;
-	String t_big_image;
-	String t_small_image;
-	int s_idx;
-	String s_id;
+	String t_image;
+	int    s_idx;
+	
+	SellerVo seller;
 	
 	
-	
+	public SellerVo getSeller() {
+		return seller;
+	}
+	public void setSeller(SellerVo seller) {
+		this.seller = seller;
+	}
+	public String getT_image() {
+		return t_image;
+	}
+	public void setT_image(String t_image) {
+		this.t_image = t_image;
+	}
 	public int getT_idx() {
 		return t_idx;
 	}
@@ -72,30 +83,13 @@ public class TalentVo {
 	public void setT_starscore(double t_starscore) {
 		this.t_starscore = t_starscore;
 	}
-	public String getT_big_image() {
-		return t_big_image;
-	}
-	public void setT_big_image(String t_big_image) {
-		this.t_big_image = t_big_image;
-	}
-	public String getT_small_image() {
-		return t_small_image;
-	}
-	public void setT_small_image(String t_small_image) {
-		this.t_small_image = t_small_image;
-	}
 	public int getS_idx() {
 		return s_idx;
 	}
 	public void setS_idx(int s_idx) {
 		this.s_idx = s_idx;
 	}
-	public String getS_id() {
-		return s_id;
-	}
-	public void setS_id(String s_id) {
-		this.s_id = s_id;
-	}
+
 	
 
 	

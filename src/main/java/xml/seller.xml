@@ -4,17 +4,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="seller">
 
+	<resultMap type="member" id="memberResult">
+		<id property="m_idx" column="m_idx"/>
+		<result column="m_name" property="m_name"/>
+		<result column="m_phone" property="m_phone"/>
+		<result column="m_email" property="m_email"/>
+	</resultMap> 
+
+	<resultMap type="seller" id="SellerResult">
+		<id column="s_id" property="s_id"/>
+		<result column="s_account" property="s_account"/>
+		<result column="s_field" property="s_field"/>
+		<result column="s_rank" property="s_rank"/>
+		<result column="s_career" property="s_career"/>
+		<result column="s_education" property="s_education"/>
+		<result column="s_license" property="s_license"/>
+		<result column="s_potfolio" property="s_potfolio"/>
+		<result column="s_skill" property="s_skill"/>
+		<result column="s_local" property="s_local"/>
+		<result column="s_msg" property="s_msg"/>
+		<result column="s_idx" property="s_idx"/>
+		
+		<association property="member" column="m_idx" resultMap="memberResult">
+			<id property="m_idx" column="m_idx"/>
+  			<result property="m_name" column="m_name"/>
+  			<result property="m_phone" column="m_phone"/>
+  			<result property="m_email" column="m_email"/>
+		</association>
+	</resultMap> 
+
 	<!-- 조건별 조회 -->
-	<select id="seller_list" parameterType="Map" resultType="seller">
-		 select * from 
+	<select id="seller_list" parameterType="Map" resultMap="SellerResult">
+		 select b.* from 
 		 (
 			select
-				*,
+				a.*,
 			    rank() over(order by s_idx desc) as no
 		    from 
 		    
 		    (
-		    	select * from seller
+		    	select seller.*,member.m_name,member.m_phone,member.m_email from seller left join member on seller.m_idx = member.m_idx
 		     	<trim prefix="where" prefixOverrides="and"> 		
 					<if test="s_local!=null">
 						 s_local = #{s_local}
@@ -53,8 +82,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 데이터 한건 조회 -->
-	<select id="seller_one" parameterType="int" resultType="seller">
-		select * from seller where s_idx = #{ s_idx }
+	<select id="seller_one" parameterType="int" resultMap="SellerResult">
+		select 
+			seller.*,member.m_name,member.m_phone,member.m_email 
+		from 
+			seller left join member on seller.m_idx = member.m_idx
+		where s_idx = #{ s_idx }
 	</select>
 
 	<!-- 글쓰기 -->

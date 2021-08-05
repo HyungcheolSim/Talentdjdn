@@ -133,7 +133,7 @@ public class TalentController {
 	     
 	    return "redirect:../member/login_form.do";
 		}
-		vo.setS_id(user.getM_id());
+		/* vo.setS_id(user.getM_id()); */
 		vo.setS_idx(user.getM_idx());
 		try {
 			talentDao.insert(vo);

@@ -4,22 +4,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="talent">
 
+
+	<resultMap type="seller" id="sellerResult">
+		<id property="s_idx" column="s_idx"/>
+		<result column="s_id" property="s_id"/>
+	</resultMap> 
+
+	<resultMap type="talent" id="TalentResult">
+		<id column="t_idx" property="t_idx"/>
+		<result column="t_title" property="t_title"/>
+		<result column="t_content" property="t_content"/>
+		<result column="t_big_field" property="t_big_field"/>
+		<result column="t_small_field" property="t_small_field"/>
+		<result column="t_price" property="t_price"/>
+		<result column="t_local" property="t_local"/>
+		<result column="t_cat" property="t_cat"/>
+		<result column="t_starscore" property="t_starscore"/>
+		<result column="t_image" property="t_image"/>
+		
+		<association property="seller" column="s_idx" resultMap="sellerResult">
+			<id property="s_idx" column="s_idx"/>
+  			<result property="s_id" column="s_id"/>
+		</association>
+	</resultMap> 
+
 	<!-- 목록조회 -->
 	<select id="talent_list" resultType="talent">
 		select * from talent 
 	</select>
 	
 	<!-- 조건별 조회 -->
-	<select id="talent_list_condition" parameterType="Map" resultType="talent">
-		 select * from 
+	<select id="talent_list_condition" parameterType="Map" resultMap="talentResult">
+		 select b.* from 
 		 (
 			select
-				*,
+				a.*,
 			    rank() over(order by t_idx desc) as no
 		    from 
 		    
 		    (
-		    	select * from talent
+		    	select talent.*,seller.s_id from talent left join seller on talent.s_idx = seller.s_idx
 			    <trim prefix="where" prefixOverrides="or"> 			
 					<if test="name!=null">
 						s_id like CONCAT('%',#{name},'%')

@@ -78,6 +78,7 @@
 						<td class="detail">자격증 : ${ vo.s_license }</td>
 						<td class="detail">기  술 : ${ vo.s_skill }</td>
 						<td class="detail">지  역 : ${ vo.s_local }</td>
+						<td class="detail">이 메 일 : ${ vo.member.m_email }</td>
 						<td class="detail">포트폴리오 :</br></br>
 							<img src="${ pageContext.request.contextPath }/resources/img/${ vo.s_potfolio }" width="500">
 						</td>
