@@ -11,7 +11,22 @@ public class BoardVo {
 	String m_id;
 	int    b_readhit;
 	String m_grade;
+	int    m_idx;
 
+	MemberVo member;
+
+	public MemberVo getMember() {
+		return member;
+	}
+	public void setMember(MemberVo member) {
+		this.member = member;
+	}
+	public int getM_idx() {
+		return m_idx;
+	}
+	public void setM_idx(int m_idx) {
+		this.m_idx = m_idx;
+	}
 	public String getM_grade() {
 		return m_grade;
 	}

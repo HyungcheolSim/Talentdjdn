@@ -36,7 +36,7 @@ public class BoardController {
 		this.boardDao = boardDao;
 	}
 	
-	//게시판 목록보기
+	//寃뚯떆�뙋 紐⑸줉蹂닿린
 	@RequestMapping("list.do")
 	public String board_list(@RequestParam(value="page",required=false,defaultValue="1") int nowPage, 
  			  @RequestParam(value = "search",required = false,defaultValue = "all") String search, 
@@ -44,9 +44,9 @@ public class BoardController {
  				Model model) {
 		
 	      
-		  //���� ������ ������ : nowPage
+		  //占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 : nowPage
 		   
-		  //������ ���� ���
+		  //占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占�
 		  int start = (nowPage-1) * MyConstant.Board.BLOCK_LIST + 1; 
 		  int end   = start + MyConstant.Board.BLOCK_LIST - 1; 
 		   
@@ -54,7 +54,7 @@ public class BoardController {
 		  map.put("start", start);
 		  map.put("end", end);
 		  
-		  //�˻������� Map�� �߰�
+		  //占싯삼옙占쏙옙占쏙옙占쏙옙 Map占쏙옙 占쌩곤옙
 		  
 		  if(search.equals("name")) {
 			  map.put("name", search_text);
@@ -69,12 +69,12 @@ public class BoardController {
 		  
 	      List<BoardVo> list = boardDao.selectList(map);
 		   
-		  //�˻� ���ǿ� ���� �Խù��� ���ϱ�
+		  //占싯삼옙 占쏙옙占실울옙 占쏙옙占쏙옙 占쌉시뱄옙占쏙옙 占쏙옙占싹깍옙
 		  int rowTotal = boardDao.selectRowTotal(map);
 	      
 		  //System.out.println(rowTotal);
 		  
-		  //PagingMenu �����...
+		  //PagingMenu 占쏙옙占쏙옙占�...
 		  
 		  //list.do?page=1&search=all&search_text=
 		  
@@ -87,24 +87,24 @@ public class BoardController {
 				                              MyConstant.Board.BLOCK_LIST, 
 				                              MyConstant.Board.BLOCK_PAGE);
 	      
-	      //view.do���� �ó�?�� ���� ���� ����� ���� �� => ����
+	      //view.do占쏙옙占쏙옙 占시놂옙?占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙 => 占쏙옙占쏙옙
 	      session.removeAttribute("show");
 	      
-	      //model���ؼ� DispatcherServlet���� ���� => ��������� request binding
+	      //model占쏙옙占쌔쇽옙 DispatcherServlet占쏙옙占쏙옙 占쏙옙占쏙옙 => 占쏙옙占쏙옙占쏙옙占쏙옙占� request binding
 	      model.addAttribute("list",list);
 	      model.addAttribute("pageMenu",pageMenu);
 		
 		return "_jsp/board/board_list"; 
 	}
 	
-	//글쓰기폼
+	//湲��벐湲고뤌
 	@RequestMapping("insert_form.do")
 	public String insert_form() {
 	      
 	   return "_jsp/board/board_insert_form";
 	}
 	
-	//글쓰기
+	//湲��벐湲�
 	@RequestMapping("insert.do")
 	public String insert(BoardVo vo, Model model) {
 	      
@@ -117,7 +117,7 @@ public class BoardController {
 	         return "redirect:../member/login_form.do";
 	      }
 	      
-	      vo.setM_id(user.getM_id());
+	      vo.setM_idx(user.getM_idx());
 	      vo.setM_grade(user.getM_grade());
 	      
 	      //\r\n ~> <br>
@@ -137,7 +137,7 @@ public class BoardController {
 	      return "redirect:list.do";
 	   }
 	
-	   //게시판 폼보기
+	   //寃뚯떆�뙋 �뤌蹂닿린
 	   // /board/view.do?b_idx=1
 	   @RequestMapping("view.do")
 	   public String view(int b_idx,Model model) {
@@ -163,7 +163,7 @@ public class BoardController {
 		   return "_jsp/board/board_view";
 	   }
 	   
-	   //게시물 삭제
+	   //寃뚯떆臾� �궘�젣
 	   @RequestMapping("delete.do")
 	   public String delete(int b_idx) {
 		   
@@ -180,7 +180,7 @@ public class BoardController {
 		   
 	   }
 	   
-	   //수정폼 띄우기
+	   //�닔�젙�뤌 �쓣�슦湲�
 	   @RequestMapping("modify_form.do")
 	   public String modify_form(int b_idx,Model model) {
 		   
@@ -194,7 +194,7 @@ public class BoardController {
 		   return "_jsp/board/board_modify_form";
 	   }
 	   
-	   //수정하기
+	   //�닔�젙�븯湲�
 	   @RequestMapping("modify.do")
 	   public String modify(BoardVo vo,Model model) {
 		   

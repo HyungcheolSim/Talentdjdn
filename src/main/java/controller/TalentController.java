@@ -110,7 +110,6 @@ public class TalentController {
 
 			return "redirect:../member/login_form.do";
 		}
-		// if(user.getM_id().equals(SellerVo svo.))
 		vo.setS_idx(user.getM_idx());
 		
 

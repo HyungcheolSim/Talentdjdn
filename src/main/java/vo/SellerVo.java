@@ -15,7 +15,16 @@ public class SellerVo {
 	String s_msg;
 	int    s_idx;
 	int    m_idx;
-
+	
+	MemberVo member;
+	
+	
+	public MemberVo getMember() {
+		return member;
+	}
+	public void setMember(MemberVo member) {
+		this.member = member;
+	}
 	public int getM_idx() {
 		return m_idx;
 	}

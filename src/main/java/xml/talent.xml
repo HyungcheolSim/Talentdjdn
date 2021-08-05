@@ -3,8 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="talent">
-
-	
+  
    <resultMap type="seller" id="SellerResult">
       <id property="s_idx" column="s_idx"/>
       <result column="s_id" property="s_id"/>
@@ -36,8 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 조건별 조회 -->
-
 	<select id="talent_list_condition" parameterType="Map" resultMap="TalentResult">
+
 		 select b.* from 
 		 (
 			select
@@ -46,7 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    from 
 		    
 		    (
-		    	select talent.*,seller.s_id from talent left join seller on talent.s_idx=seller.s_idx
+		    	select talent.*,seller.s_id from talent left join seller on talent.s_idx = seller.s_idx
+
 			    <trim prefix="where" prefixOverrides="or"> 			
 					<if test="name!=null">
 						s_id like CONCAT('%',#{name},'%')

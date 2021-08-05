@@ -142,7 +142,7 @@
 						<tr>
 							<td>${ vo.b_idx }</td>
 							<td><a href="view.do?b_idx=${ vo.b_idx }">${ vo.b_title }</a></td>
-							<td>${ vo.m_id }</td>
+							<td>${ vo.member.m_name }</td>
 							<td>${ vo.b_regdate }</td>
 							<td>${ vo.b_readhit }</td>
 						</tr>

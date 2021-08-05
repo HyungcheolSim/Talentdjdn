@@ -5,7 +5,7 @@ import java.sql.Date;
 public class TalentVo {
 
 	int    t_idx;
-	String    t_title;
+	String t_title;
 	String t_content;
 	String t_big_field;
 	String t_small_field;
@@ -14,6 +14,7 @@ public class TalentVo {
 	String t_cat;
 	double t_starscore;
 	String t_image;
+
 	Date t_regdate;
 	int s_idx;
 	
@@ -26,6 +27,13 @@ public class TalentVo {
 	public void setSeller(SellerVo seller) {
 		this.seller = seller;
 	}
+
+	public String getT_image() {
+		return t_image;
+	}
+	public void setT_image(String t_image) {
+		this.t_image = t_image;
+
 	public Date getT_regdate() {
 		return t_regdate;
 	}
@@ -85,20 +93,11 @@ public class TalentVo {
 	}
 	public void setT_starscore(double t_starscore) {
 		this.t_starscore = t_starscore;
-	}
-	public String getT_image() {
-		return t_image;
-	}
-	public void setT_image(String t_image) {
-		this.t_image = t_image;
-	}
+
 	public int getS_idx() {
 		return s_idx;
 	}
 	public void setS_idx(int s_idx) {
 		this.s_idx = s_idx;
 	}
-	
-
-	
 }
