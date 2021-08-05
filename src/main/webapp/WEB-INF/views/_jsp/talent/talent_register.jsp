@@ -41,10 +41,11 @@ textarea[name='t_content'] {
 		var t_content = f.t_content.value.trim();
 		var t_big_field = f.t_big_field.value.trim();
 		var t_small_field = f.t_small_field.value.trim();
+		
 		var t_price = f.t_price.value.trim();
 		var t_local = f.t_local.value.trim();
 		var t_cat = f.t_cat.value.trim();
-		var s_idx = f.s_idx.value.trim();
+		
 
 		if (t_title == "") {
 			alert("제목을 입력해주세요.");
@@ -79,7 +80,7 @@ textarea[name='t_content'] {
 			</div>
 			<div class="table_container">
 				<div class="inner">
-					<form>
+					<form method="post" enctype="multipart/form-data">
 
 						<div class="panel panel-warning">
 							<div class="panel-heading">
@@ -100,11 +101,24 @@ textarea[name='t_content'] {
 									</tr>
 									<tr>
 										<th>대분류<span class="t_red">*</span></th>
-										<td><input id="t_big_field" name="t_big_field" /></td>
+										<td><select name="t_big_field" id="t_big_field">
+												<option value="">대분류</option>
+												<option value="디자인">디자인</option>
+												<option value="IT·프로그래밍">IT·프로그래밍</option>
+												<option value="영상·사진·음향">영상·사진·음향</option>
+												<option value="마케팅">마케팅</option>
+												<option value="번역·통역">번역·통역</option>
+												<option value="레슨·실무교육">레슨·실무교육</option>
+												<option value="상품">상품</option>
+										</select></td>
 									</tr>
 									<tr>
 										<th>소분류<span class="t_red">*</span></th>
 										<td><input id="t_small_field" name="t_small_field" /></td>
+									</tr>
+									<tr>
+										<th>이미지<span class="t_red">*</span></th>
+										<td><input type="file" id="image" name="image" /></td>
 									</tr>
 									<tr>
 										<th>가격<span class="t_red">*</span></th>
@@ -140,7 +154,7 @@ textarea[name='t_content'] {
 												<option value="상품">상품</option>
 										</select></td>
 									</tr>
-									
+
 								</tbody>
 							</table>
 							<div class="btn_right mt15">

@@ -4,22 +4,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="talent">
 
-	<!-- 목록조회 -->
+	
+   <resultMap type="seller" id="SellerResult">
+      <id property="s_idx" column="s_idx"/>
+      <result column="s_id" property="s_id"/>
+   </resultMap>
+
+   <resultMap type="talent" id="TalentResult">
+      <id column="t_idx" property="t_idx"/>
+      <result column="t_title" property="t_title"/>
+      <result column="t_content" property="t_content"/>
+      <result column="t_big_field" property="t_big_field"/>
+      <result column="t_small_field" property="t_small_field"/>
+      <result column="t_price" property="t_price"/>
+      <result column="t_local" property="t_local"/>
+      <result column="t_cat" property="t_cat"/>
+      <result column="t_starscore" property="t_starscore"/>
+      <result column="t_image" property="t_image"/>
+      <result column="t_regdate" property="t_regdate"/>
+      
+	 <association property="seller" column="s_idx" resultMap="SellerResult">
+         <id property="s_idx" column="s_idx"/>
+         <result property="s_id" column="s_id"/>
+      </association>
+   </resultMap> 
+	
+
+	<!-- 목록조회 안씀 -->
 	<select id="talent_list" resultType="talent">
-		select * from talent 
+		select talent.* ,seller.s_id from talent left join seller on talent.s_idx=seller.s_idx
 	</select>
 	
 	<!-- 조건별 조회 -->
-	<select id="talent_list_condition" parameterType="Map" resultType="talent">
-		 select * from 
+
+	<select id="talent_list_condition" parameterType="Map" resultMap="TalentResult">
+		 select b.* from 
 		 (
 			select
-				*,
+				a.*,
 			    rank() over(order by t_idx desc) as no
 		    from 
 		    
 		    (
-		    	select * from talent
+		    	select talent.*,seller.s_id from talent left join seller on talent.s_idx=seller.s_idx
 			    <trim prefix="where" prefixOverrides="or"> 			
 					<if test="name!=null">
 						s_id like CONCAT('%',#{name},'%')
@@ -40,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<!-- 검색조건별 게시물수 구하기-->
 	<select id="talent_condition_row_total" parameterType="Map" resultType="int">
-		select ifnull(count(*),0) from talent 
+		select ifnull(count(*),0),seller.s_id from talent join seller on talent.s_idx=seller.s_idx
 		
 		<trim prefix="where" prefixOverrides="or"> 
 			
@@ -54,7 +81,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						or t_content like CONCAT('%',#{content},'%')
 			</if>
 		</trim>
-		
 	</select>
 	
 	
@@ -67,16 +93,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- t_idx에 해당되는 회원정보 1건 얻어오기 -->
 	<select id="talent_one" parameterType="int" resultType="talent">
-		select * from talent where t_idx=#{ t_idx }
+		select talent.*,seller.s_id from talent join seller on talent.s_idx=seller.s_idx where t_idx=#{ t_idx }
 	</select>
 
 	<!-- 추가 -->
 	<insert id="talent_insert" parameterType="talent">
 		insert into talent(
-		t_title,t_content,t_big_field,t_small_field,t_price,t_local,t_cat,t_starscore,t_big_image,t_small_image,s_idx,s_id)
+		t_title,t_content,t_big_field,t_small_field,t_price,t_local,t_cat,t_starscore,t_image,t_regdate,s_idx)
 		values
 		
-		 (#{t_title},#{t_content},#{t_big_field},#{t_small_field},#{t_price},#{t_local},#{t_cat},#{t_starscore},'imagsrc12','imagsrc12',#{s_idx},#{s_id})
+		 (#{t_title},#{t_content},#{t_big_field},#{t_small_field},#{t_price},#{t_local},#{t_cat},#{t_starscore},#{t_image},now(),#{s_idx})
 	</insert>
 	
 	<!-- 삭제 -->

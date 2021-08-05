@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Date;
+
 public class TalentVo {
 
 	int    t_idx;
@@ -11,13 +13,25 @@ public class TalentVo {
 	String t_local;
 	String t_cat;
 	double t_starscore;
-	String t_big_image;
-	String t_small_image;
+	String t_image;
+	Date t_regdate;
 	int s_idx;
-	String s_id;
+	
+	SellerVo seller;
 	
 	
-	
+	public SellerVo getSeller() {
+		return seller;
+	}
+	public void setSeller(SellerVo seller) {
+		this.seller = seller;
+	}
+	public Date getT_regdate() {
+		return t_regdate;
+	}
+	public void setT_regdate(Date t_regdate) {
+		this.t_regdate = t_regdate;
+	}
 	public int getT_idx() {
 		return t_idx;
 	}
@@ -72,29 +86,17 @@ public class TalentVo {
 	public void setT_starscore(double t_starscore) {
 		this.t_starscore = t_starscore;
 	}
-	public String getT_big_image() {
-		return t_big_image;
+	public String getT_image() {
+		return t_image;
 	}
-	public void setT_big_image(String t_big_image) {
-		this.t_big_image = t_big_image;
-	}
-	public String getT_small_image() {
-		return t_small_image;
-	}
-	public void setT_small_image(String t_small_image) {
-		this.t_small_image = t_small_image;
+	public void setT_image(String t_image) {
+		this.t_image = t_image;
 	}
 	public int getS_idx() {
 		return s_idx;
 	}
 	public void setS_idx(int s_idx) {
 		this.s_idx = s_idx;
-	}
-	public String getS_id() {
-		return s_id;
-	}
-	public void setS_id(String s_id) {
-		this.s_id = s_id;
 	}
 	
 
