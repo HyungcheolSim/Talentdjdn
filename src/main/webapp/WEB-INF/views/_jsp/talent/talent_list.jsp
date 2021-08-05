@@ -118,11 +118,11 @@ th, td {
 						<!-- for(TalentVo vo : list) -->
 						<c:forEach var="vo" items="${ list }">
 							<tr>
-								<td>${ vo.t_small_image }</td>
+								<td>${ vo.t_image }</td>
 								<td>${ vo.t_idx }</td>
 								<td><a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a></td>
 								<td>${ vo.t_price }</td>
-								<td>${ vo.s_id }</td>
+								<td>${ vo.seller.s_id }</td>
 								<td>${ vo.t_starscore }점</td>
 							</tr>
 						</c:forEach>
