@@ -92,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- t_idx에 해당되는 회원정보 1건 얻어오기 -->
-	<select id="talent_one" parameterType="int" resultType="talent">
+	<select id="talent_one" parameterType="int" resultMap="TalentResult">
 		select talent.*,seller.s_id from talent join seller on talent.s_idx=seller.s_idx where t_idx=#{ t_idx }
 	</select>
 

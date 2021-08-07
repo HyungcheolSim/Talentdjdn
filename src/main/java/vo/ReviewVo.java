@@ -12,11 +12,26 @@ public class ReviewVo {
 	int m_idx;
 	int    t_idx;
 	
-	public int getR_id() {
+	MemberVo member;
+	TalentVo talent;
+	
+	public int getR_idx() {
 		return r_idx;
 	}
-	public void setR_id(int r_idx) {
+	public void setR_idx(int r_idx) {
 		this.r_idx = r_idx;
+	}
+	public MemberVo getMember() {
+		return member;
+	}
+	public void setMember(MemberVo member) {
+		this.member = member;
+	}
+	public TalentVo getTalent() {
+		return talent;
+	}
+	public void setTalent(TalentVo talent) {
+		this.talent = talent;
 	}
 
 	public String getR_content() {

@@ -44,7 +44,7 @@
 						</c:if>
 						<c:forEach var="vo" items="${reviewlist}">
 							<tr>
-								<td class="review_td"><strong>리뷰 작성자:</strong>   ${vo.m_idx}</td>
+								<td class="review_td"><strong>리뷰 작성자:</strong>   ${vo.member.m_name}</td>
 								<td class="review_td"><strong>별점:</strong>  	
 									<c:forEach var="i" begin="1" end="${vo.r_star}">★</c:forEach><c:forEach var="j" begin="${vo.r_star}" end="4">☆</c:forEach>   <span>${vo.r_star}</span>점</td>
 								<td class="review_td"><strong>리뷰 등록일:</strong>   ${vo.r_regdate}</td>

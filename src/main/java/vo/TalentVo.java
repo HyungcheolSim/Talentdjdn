@@ -33,7 +33,7 @@ public class TalentVo {
 	}
 	public void setT_image(String t_image) {
 		this.t_image = t_image;
-
+	}
 	public Date getT_regdate() {
 		return t_regdate;
 	}
@@ -93,7 +93,7 @@ public class TalentVo {
 	}
 	public void setT_starscore(double t_starscore) {
 		this.t_starscore = t_starscore;
-
+	}
 	public int getS_idx() {
 		return s_idx;
 	}

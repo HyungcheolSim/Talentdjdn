@@ -168,7 +168,7 @@ $(document).ready(function(){
 					<p>${talentvo.t_cat }</p>
 					<br>
 					<h2>판매자명</h2>
-					<p>${talentvo.s_id }</p>
+					<p>${talentvo.seller.s_id }</p>
 					<br>
 					<h2>별점 평균</h2>
 					<p>${talentvo.t_starscore}</p>

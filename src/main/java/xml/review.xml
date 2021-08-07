@@ -4,43 +4,105 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
+	<resultMap type="member" id="MemberResult">
+		<id column="m_idx" property="m_idx" />
+		<result column="m_id" property="m_id" />
+		<result column="m_name" property="m_name" />
+	</resultMap>
+
+	<resultMap type="talent" id="TalentResult">
+		<id property="t_idx" column="t_idx" />
+		<result column="t_title" property="t_title" />
+		<result column="t_content" property="t_content" />
+		<result column="t_big_field" property="t_big_field" />
+		<result column="t_small_field" property="t_small_field" />
+		<result column="t_price" property="t_price" />
+		<result column="t_local" property="t_local" />
+		<result column="t_cat" property="t_cat" />
+		<result column="t_starscore" property="t_starscore" />
+		<result column="t_regdate" property="t_regdate" />
+	</resultMap>
+
+	<resultMap type="review" id="ReviewResult">
+		<id property="r_idx" column="r_idx" />
+		<result column="r_content" property="r_content" />
+		<result column="r_regdate" property="r_regdate" />
+		<result column="r_star" property="r_star" />
+		<result column="r_image" property="r_image" />
+		<association property="member" column="m_idx"
+			resultMap="MemberResult">
+			<id property="m_idx" column="m_idx" />
+			<result property="m_id" column="m_id" />
+			<result property="m_name" column="m_name" />
+		</association>
+		<association property="talent" column="t_idx"
+			resultMap="TalentResult">
+			<id property="t_idx" column="t_idx" />
+			<result column="t_title" property="t_title" />
+			<result column="t_content" property="t_content" />
+			<result column="t_big_field" property="t_big_field" />
+			<result column="t_small_field" property="t_small_field" />
+			<result column="t_price" property="t_price" />
+			<result column="t_local" property="t_local" />
+			<result column="t_cat" property="t_cat" />
+			<result column="t_starscore" property="t_starscore" />
+			<result column="t_image" property="t_image"/>
+			<result column="t_regdate" property="t_regdate" />
+		</association>
+	</resultMap>
+
+
 	<!-- 목록조회 -->
-	<select id="review_list" resultType="review">
-		select * from review 
+	<select id="review_list" resultMap="ReviewResult">
+		select review.*,talent.t_title,member.m_id,member.m_name from review 
+			left join member on review.m_idx=member.m_idx
+			left join talent on review.t_idx=talent.t_idx
 	</select>
-	
+
 	<!-- r_idxx에 해당되는 회원정보 1건 얻어오기 -->
-	<select id="review_one" parameterType="int" resultType="review">
-		select * from review where r_idx=#{ r_idx } order by r_idx desc
+	<select id="review_one" parameterType="int" resultMap="ReviewResult">
+		select review.*,talent.t_title,member.m_id,member.m_name from review 
+			left join member on review.m_idx=member.m_idx
+			left join talent on review.t_idx=talent.t_idx
+			 where review.r_idx=#{ r_idx } order by r_idx desc
 	</select>
 
 	<!-- t_idx(하나의 재능)에 해당되는 리뷰 모두 얻어오기 -->
-	<select id="review_list_for_one" parameterType="int" resultType="review">
-		select * from review where t_idx=#{t_idx};
+	<select id="review_list_for_one" parameterType="int"
+		resultMap="ReviewResult">
+		select review.*,talent.t_title,member.m_id,member.m_name from review 
+			left join member on review.m_idx=member.m_idx
+			left join talent on review.t_idx=talent.t_idx
+			 where review.t_idx=#{t_idx};
 	</select>
-	
+
 	<!-- 추가 -->
 	<insert id="review_insert" parameterType="review">
-		insert into review(r_content,r_regdate,r_star,r_image,m_idx,t_idx)
-		 values 
-		 (	#{ r_content },now(),#{r_star},'imagesrc123123',#{m_idx},#{t_idx} )
+		insert into
+		review(r_content,r_regdate,r_star,r_image,m_idx,t_idx)
+		values
+		( #{
+		r_content },now(),#{r_star},'imagesrc123123',#{m_idx},#{t_idx} )
 	</insert>
-	
+
 	<!-- 삭제 -->
 	<delete id="review_delete" parameterType="int">
-		delete from review where r_idx=#{ r_idx }
+		delete from review
+		where r_idx=#{ r_idx }
 	</delete>
-	
+
 	<!-- 수정 -->
 	<update id="review_update" parameterType="review">
-		update review set r_name=#{ r_name },
-						  r_idx=#{ r_idx },
-						  r_pwd=#{ r_pwd },
-						  r_zipcode=#{ r_zipcode },
-						  ,r_addr=#{ r_addr },
-						  r_ip=#{ r_ip },
-						  r_grade=#{ r_grade }
-						  ,r_modifydate=sysdate 
+		update review set
+		r_name=#{ r_name },
+		r_idx=#{ r_idx },
+		r_pwd=#{ r_pwd },
+		r_zipcode=#{
+		r_zipcode },
+		,r_addr=#{ r_addr },
+		r_ip=#{ r_ip },
+		r_grade=#{ r_grade }
+		,r_modifydate=sysdate
 		where r_idx=#{ r_idx}
 	</update>
 
