@@ -1,30 +1,24 @@
 @charset "UTF-8";
 
+#pic_big_box{
+	width: 75%;
+	height:42%;
+	display: flex;
+	margin: auto;
+}
+
 #pic_box{
-	width: 95%;
-	height:50%;
+	width: 75%;
+	height:42%;
 	display: flex;
 	margin: auto;
 }
 
-#pic_box2{
-	margin-top: 10px;
-	width: 95%;
-	height:50%;
-	display: flex;
-	margin: auto;
-}
-
-#pic1,#pic2,#pic3,#pic4{
+#pic1{
    border: 1px solid black;
    width: 24%;
-   height: 300px;
-   background: white;
-   margin-top: 10px;
-   margin-left:7px;
-   margin-right:7px;
+   height: 220px;
+   background-color:transparent;
    float:left;
 }
-
-
 

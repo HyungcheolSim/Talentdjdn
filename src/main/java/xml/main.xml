@@ -4,10 +4,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main">
 
-	<select id="main_list" resultType="talent">
+	<select id="main_tlist" resultType="talent">
 		select * from talent
+		where t_cat = "재능"
+		order by t_starscore desc
+	</select>
+
+	<select id="main_plist" resultType="talent">
+		select * from talent
+		where t_cat = "상품"
+		order by t_starscore desc
 	</select>
 	
+	<select id="main_slist" resultType="seller">
+		select * from seller
+		order by s_tcount desc
+	</select>
+
 </mapper>
 
 

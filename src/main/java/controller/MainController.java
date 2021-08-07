@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dao.MainDao;
+import vo.SellerVo;
 import vo.TalentVo;
 
 @RequestMapping("/main/")
@@ -22,9 +23,13 @@ public class MainController {
 	@RequestMapping("index.do")
 	public String index(Model model) {
 		
-		List<TalentVo> list = mainDao.selectList();
+		List<TalentVo> t_list = mainDao.selectTList();
+		List<TalentVo> p_list = mainDao.selectPList();
+		List<SellerVo> s_list = mainDao.selectSList();
 		
-		model.addAttribute("list", list);
+		model.addAttribute("t_list", t_list);
+		model.addAttribute("p_list", p_list);
+		model.addAttribute("s_list", s_list);
 		
 		return "_jsp/index";
 	}

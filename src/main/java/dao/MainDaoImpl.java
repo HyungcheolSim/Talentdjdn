@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import vo.SellerVo;
 import vo.TalentVo;
 
 public class MainDaoImpl implements MainDao {
@@ -19,10 +20,23 @@ public class MainDaoImpl implements MainDao {
 	}
 
 	@Override
-	public List<TalentVo> selectList() {
+	public List<TalentVo> selectTList() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("main.main_list");
+		return sqlSession.selectList("main.main_tlist");
 	}
-	
+
+	@Override
+	public List<TalentVo> selectPList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("main.main_plist");
+	}
+
+	@Override
+	public List<SellerVo> selectSList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("main.main_slist");
+	}
+
+
 	
 }
