@@ -21,7 +21,7 @@
 <body>
 	<div>
 		<div>
-		<a href="${ pageContext.request.contextPath }/member/list.do"><img class="main_logo" alt="" src="${ pageContext.request.contextPath }/resources/img/logo.png"></a>
+		<a href="${ pageContext.request.contextPath }/main/index.do"><img class="main_logo" alt="" src="${ pageContext.request.contextPath }/resources/img/logo.png"></a>
 		</div>
 		<ul class="main_top_button">
 			<li><a href="../board/list.do">게시판</a></li>

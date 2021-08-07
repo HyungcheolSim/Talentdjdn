@@ -50,6 +50,10 @@
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 	
+	<bean id="mainDao" class="dao.MainDaoImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	
 	
 	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 

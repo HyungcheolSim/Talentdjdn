@@ -30,6 +30,22 @@
 <!-- SweetAlert사용설정 : 알림박스 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<style type="text/css">
+
+.ghost-button {
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: transparent;
+    border: none;
+    color: #FFFFFF;
+}
+
+#td_thumb{
+	width: 30px;
+}
+
+</style>
+
 <script type="text/javascript">
 
 var search_text1;
@@ -123,11 +139,53 @@ var search_text2;
 					  location.href="delete.do?s_idx=" + s_idx;
 				  }
 				});
-		
 	}
+			
+			
+		$(document).ready(function(){
+		   
+		   setTimeout(show_message, 100); //0.1초후에 show_message함수 호출
+		   
+		});
+		
+		function show_message() {
+			
+	    	  if('${ param.is_insert }'== 'insert'){
+	    		  alert('좋아요를 누르셨습니다!');
+	    	  }if('${ param.is_insert }'== 'delete'){
+	    		  alert('좋아요를 취소하셨습니다!');
+	    	  }
+		}
 	
-	
+		   function thumb_insert(s_idx) {
+				      
+				      //로그인여부 체크
+				      if('${ empty user }'=='true'){
+				         
+				         Swal.fire({
+				              title: '좋아요',
+				              html: "<h5>좋아요는 로그인후 클릭이가능합니다<br>로그인 하시겠습니까?</h5>",
+				              icon: 'warning',
+				              showCancelButton: true,
+				              confirmButtonColor: '#3085d6',
+				              cancelButtonColor: '#d33',
+				              confirmButtonText: '예',
+				              cancelButtonText : "아니오"
+				            }).then((result) => {
+				              if (result.isConfirmed) {
+				               //현재경로 : /review/list.do
+				                  location.href='${ pageContext.request.contextPath }/member/login_form.do?url=' + location.href ; //돌아올 경로
+				              }
+				            });
 
+				      }else{
+						
+
+				    	  
+				    	  location.href='thumb_insert.do?s_idx=' + s_idx + '&m_idx=${ user.m_idx }#select_sub_box';
+				      }
+				      
+				   }// end thumb_insert
 
 </script>
 
@@ -198,7 +256,17 @@ var search_text2;
 						</tr>
 					</table>
 				</a>
-					<c:if test="${ (vo.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
+					
+					<button class='ghost-button' type="button">
+						<img id="td_thumb"
+							src="${pageContext.request.contextPath}/resources/img/thumb.png"
+							onclick="thumb_insert('${vo.s_idx}');">
+					</button>
+
+						
+					<span id="thumb_count">${ vo.s_tcount }</span>
+
+					<c:if test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
 					<input type="button" id="delete_btn" class="btn btn-warning" value="삭제" 
 					 	   onclick="del_seller('${ vo.s_idx }');">
 					</c:if> 

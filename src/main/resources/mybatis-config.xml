@@ -15,6 +15,7 @@
 		<typeAlias type="vo.SellerVo" alias="seller"/>
 		<typeAlias type="vo.TalentVo" alias="talent"/>
 		<typeAlias type="vo.ReviewVo" alias="review"/>
+		<typeAlias type="vo.ThumbVo"  alias="thumb"/>
 	</typeAliases>
 	
 	<mappers>
@@ -23,6 +24,7 @@
 		<mapper resource="xml/board.xml" />
 		<mapper resource="xml/review.xml"/>
 		<mapper resource="xml/seller.xml"/>
+		<mapper resource="xml/main.xml"/>
 		<!-- <mapper resource="config/mybatis/mapper/photo.xml" /> -->
 	</mappers>
 </configuration>

@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="s_local" property="s_local"/>
 		<result column="s_msg" property="s_msg"/>
 		<result column="s_idx" property="s_idx"/>
+		<result column="s_tcount" property="s_tcount"/>
 		
 		<association property="member" column="m_idx" resultMap="memberResult">
 			<id property="m_idx" column="m_idx"/>
@@ -39,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 (
 			select
 				a.*,
-			    rank() over(order by s_idx desc) as no
+			    rank() over(order by s_idx desc) as no    
 		    from 
 		    
 		    (
@@ -114,6 +115,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from seller where s_idx = #{ s_idx }
 	</delete>
 	
+	
+	<!-- 좋아요 조회 -->
+	<select id="thumb_list" resultType="thumb" parameterType="thumb">
+      	select * from thumb where m_idx = #{ m_idx } and s_idx = #{ s_idx }
+   	</select>
+   
+   	<!-- 좋아요 추가 -->
+   	<insert id="thumb_insert" parameterType="thumb">
+     	 insert into thumb(m_idx,s_idx) values(#{ m_idx },#{ s_idx })
+   	</insert>
+   
+   	<!-- s_idx에 해당되는 좋아요의 갯수 -->
+   	<select id="thumb_count" parameterType="int" resultType="int">
+     	 select ifnull(count(*),0) from thumb where s_idx = #{ s_idx }
+   	</select>
+   <update id="thumb_update" parameterType="int">
+   		update seller set s_tcount=(
+   		select ifnull(count(*),0) from thumb where thumb.s_idx = #{ s_idx }
+   		)where seller.s_idx=#{s_idx}
+   </update> 
+   	<!-- 좋아요 취소 -->
+   	<select id="thumb_delete" resultType="thumb" parameterType="thumb">
+    	  delete from thumb where m_idx = #{ m_idx } and s_idx = #{ s_idx }
+   	</select>
 	
 </mapper>
 

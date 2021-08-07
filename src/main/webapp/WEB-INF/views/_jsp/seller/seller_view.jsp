@@ -54,7 +54,7 @@
 					<tr class="select_sub_box_tr">
 						<td rowspan='4' class="sub_text"><img class="select_p_img" alt="" src="${ pageContext.request.contextPath }/resources/img/${ vo.s_potfolio }"></td>
 						<td class="sub_text1"><b>${ vo.s_id }</b>님 이력</b></td>
-						<c:if test="${ (vo.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
+						<c:if test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
 							<td class="sub_text2">
 								<input id= "select_btn" class="btn btn-warning" type="button" value="정보수정" onclick="modify_form('${ vo.s_idx }');">
 							</td>
