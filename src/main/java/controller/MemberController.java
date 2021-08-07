@@ -31,12 +31,6 @@ public class MemberController {
 		this.memberDao = memberDao;
 	}
 	
-
-	@RequestMapping("list.do")
-	public String index() {
-		
-		return "_jsp/index";
-	}
 	
 	@RequestMapping("login_form.do")
 	public String login_form() {
@@ -88,7 +82,7 @@ public class MemberController {
 		
 		session.removeAttribute("user");
 		
-		return "redirect:list.do";
+		return "redirect:../main/index.do";
 	}
 	
 	//ȸ������

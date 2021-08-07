@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.SellerDao;
@@ -23,6 +24,7 @@ import util.Paging;
 import vo.BoardVo;
 import vo.MemberVo;
 import vo.SellerVo;
+import vo.ThumbVo;
 
 @Controller
 @RequestMapping("/seller/")
@@ -87,7 +89,7 @@ public class SellerController {
 	   public String list(@RequestParam(value="page",required=false,defaultValue="1") int nowPage, 
 			   			  @RequestParam(value = "search_text1",required = false,defaultValue = "") String search_text1,
 			   			  @RequestParam(value = "search_text2",required = false,defaultValue = "") String search_text2,
-			   				Model model) { 
+			   				Model model,ThumbVo vo) { 
 
 		  int start = (nowPage-1) * MyConstant.Seller.BLOCK_LIST + 1; 
 		  int end   = start + MyConstant.Seller.BLOCK_LIST - 1; 
@@ -116,6 +118,7 @@ public class SellerController {
 				                              search_filter,
 				                              MyConstant.Seller.BLOCK_LIST, 
 				                              MyConstant.Seller.BLOCK_PAGE);
+		  
 	      
 		  model.addAttribute("s_count", s_count);
 	      model.addAttribute("list",list);
@@ -291,5 +294,24 @@ public class SellerController {
 	   return "redirect:list.do"; 
 	   
    }
+   
+	@RequestMapping("thumb_insert.do")
+	public String thumb_insert(ThumbVo vo,Model model) {
+			
+
+	ThumbVo thumb = sellerDao.selectOne(vo);	
+	
+	if(thumb!=null) {
+		int res = sellerDao.delete_thumb(vo);
+		model.addAttribute("is_insert", "delete");
+		
+	}else {
+		int res = sellerDao.insert_thumb(vo);
+		model.addAttribute("is_insert", "insert");
+	}
+	 sellerDao.update_tcount(vo.getS_idx());
+	 
+	return "redirect:list.do";
+	}
    
 }

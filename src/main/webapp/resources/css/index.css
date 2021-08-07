@@ -4,3 +4,31 @@
 	width:100%;
 	background-color: #FAEB78;
 }
+
+.c_name{
+	
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+	margin-right: 15px;
+	margin-left: 10px;
+	
+	
+}
+
+.cafe_list{
+	cursor: pointer;
+	
+}
+.c_title{
+	margin-top: 5px;
+}
+.c_star{
+	font-weight: bold;
+	font-size: 18px;
+	color: #fc8a17;
+}
+.c_layout{
+	margin: auto !important;
+	
+}

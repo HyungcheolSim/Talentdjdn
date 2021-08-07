@@ -15,10 +15,17 @@ public class SellerVo {
 	String s_msg;
 	int    s_idx;
 	int    m_idx;
+	int    s_tcount;
 	
 	MemberVo member;
 	
 	
+	public int getS_tcount() {
+		return s_tcount;
+	}
+	public void setS_tcount(int s_tcount) {
+		this.s_tcount = s_tcount;
+	}
 	public MemberVo getMember() {
 		return member;
 	}

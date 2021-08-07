@@ -40,5 +40,8 @@
 	<beans:bean class="controller.SellerController">
 		<beans:property name="sellerDao" ref="sellerDao"/>
 	</beans:bean>
+		<beans:bean class="controller.MainController">
+		<beans:property name="mainDao" ref="mainDao"/>
+	</beans:bean>
 
 </beans:beans>
