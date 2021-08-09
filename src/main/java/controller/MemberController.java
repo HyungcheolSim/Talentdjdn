@@ -69,7 +69,7 @@ public class MemberController {
 		if(url==null) url="";
 		
 		if(url.isEmpty())
-			return "redirect:../board/list.do";
+			return "redirect:../main/index.do";
 		else
 			return "redirect:" + url;
 		
@@ -119,10 +119,29 @@ public class MemberController {
 	}
 	
 	
-	//ȸ������ �Է��� ����
 	@RequestMapping("insert_form.do")
 	public String insert_form() {
 		
 		return "_jsp/member/join_page";
 	}
+	
+	   @RequestMapping("modify_form.do")
+	   public String modify_form(int m_idx,Model model) {
+		   	
+			  MemberVo vo = memberDao.selectOne(m_idx);
+			  
+			  model.addAttribute("vo", vo);
+				   
+		   return "_jsp/member/modify_form";
+	   }
+	   
+
+	   @RequestMapping("modify.do")
+		public String modify(MemberVo vo) {
+			
+			int res = memberDao.update(vo);
+
+			return "redirect:../main/index.do";
+		}
+	
 }

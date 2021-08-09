@@ -77,7 +77,7 @@
 			<div id="box">
 				<div class="panel panel-warning">
 					<div class="panel-heading">
-						<h5>${ vo.m_id }님이작성한 글:</h5>
+						<h5>${ vo.member.m_id }님이작성한 글:</h5>
 					</div>
 					<div class="panel-body">
 						<table class="table">

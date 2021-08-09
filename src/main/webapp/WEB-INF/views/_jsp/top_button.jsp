@@ -8,14 +8,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-
 <!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 
-
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/top_button.css">
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -34,6 +36,7 @@
 		    	<li><a href="../member/logout.do">로그아웃</a></li>
 		    	<div>
 					<b>[${ user.m_id }]</b>님 로그인 하셨습니다
+					<input type="button" class="btn btn-warning" value="정보수정" onclick="location.href='${ pageContext.request.contextPath }/member/modify_form.do?m_idx=${ user.m_idx }'">
 				</div>
 		    </c:if> 
 		</ul>

@@ -10,6 +10,7 @@ public class MemberVo {
 	String m_id;
 	String m_pwd;
 	String m_name;
+	String m_jumin;
 	String m_addr;
 	String m_detail_addr;
 	int    m_zipcode;
@@ -20,7 +21,12 @@ public class MemberVo {
 	Date   m_regdate;
 	
 	
-	
+	public String getM_jumin() {
+		return m_jumin;
+	}
+	public void setM_jumin(String m_jumin) {
+		this.m_jumin = m_jumin;
+	}
 	public int getM_idx() {
 		return m_idx;
 	}
