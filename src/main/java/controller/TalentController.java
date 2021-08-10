@@ -62,6 +62,8 @@ public class TalentController {
 			map.put("subject", search_text);
 		} else if (search.equals("content")) {
 			map.put("content", search_text);
+		} else if (search.equals("bfield")) {
+			map.put("bfield", search_text);
 		} else if (search.equals("subject_content")) {
 			map.put("subject", search_text);
 			map.put("content", search_text);

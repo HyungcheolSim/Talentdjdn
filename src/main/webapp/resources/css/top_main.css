@@ -32,7 +32,7 @@
 	text-align: center;
 }
 
-#select_bar>select{
+#search_text{
    width:40%;
    height: 60px;
    padding: .1em .5em;
