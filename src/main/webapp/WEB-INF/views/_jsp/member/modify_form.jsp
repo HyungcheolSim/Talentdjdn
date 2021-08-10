@@ -207,7 +207,7 @@ function send(f) {
      }
 
     //
-    f.action = "insert.do"; //MemberInsertAction
+    f.action = "modify.do"; //MemberInsertAction
     f.submit();//전송
 
  }
@@ -228,17 +228,18 @@ function send(f) {
       
          <div id="join_box">
             <form>
+            <input type="hidden" name="m_idx" value="${vo.m_idx }">
                <div class="panel panel-warning">
-                  <div class="panel-heading">회원가입</div>
+                  <div class="panel-heading">정보수정</div>
                   <div class="panel-body">
                      <table class="table table-scripted">
                         <tr>
                            <th>이름</th>
-                           <td><input name="m_name"></td>
+                           <td><input name="m_name" value="${ vo.m_name }"></td>
                         </tr>
                         <tr>
                            <th>아이디</th>
-                           <td><input name="m_id" id="m_id"><span id="id_msg"></span></td>
+                           <td><input name="m_id" id="m_id" value="${ vo.m_id }"><span id="id_msg"></span></td>
                         </tr>
                         <tr>
                            <th>비밀번호</th>
@@ -251,17 +252,17 @@ function send(f) {
                         <tr>
                            <th>우편번호</th>
                            <td>
-                              <input name="m_zipcode" id="m_zipcode">
+                              <input name="m_zipcode" id="m_zipcode" value="${ vo.m_zipcode }">
                               <input class="btn btn-warning" type="button" id="btn_find" value="주소찾기">
                            </td>
                         </tr>
                         <tr>
                            <th>주소</th>
-                           <td><input name="m_addr" id="m_addr" size="60"></td>
+                           <td><input name="m_addr" id="m_addr" size="60" value="${ vo.m_addr }"></td>
                         </tr>
                         <tr>
                            <th>상세주소</th>
-                           <td><input name="m_detail_addr" id="m_detail_addr"></td>
+                           <td><input name="m_detail_addr" id="m_detail_addr" value="${ vo.m_detail_addr }"></td>
                         </tr>
                         <tr>
                            <th>관심지역</th>
@@ -290,11 +291,11 @@ function send(f) {
                         </tr>
                         <tr>
                            <th>이메일</th>
-                           <td><input name="m_email" id="m_email"></td>
+                           <td><input name="m_email" id="m_email" value="${ vo.m_email }"></td>
                         </tr>
                         <tr>
                            <th>주민번호</th>
-                           <td><input name="m_jumin" id="m_jumin" placeholder="000000-0000000"></td>
+                           <td><input name="m_jumin" id="m_jumin" value="${ vo.m_jumin }" placeholder="000000-0000000"></td>
                         </tr>
                         <tr>
                            <th>휴대전화</th>
@@ -302,12 +303,12 @@ function send(f) {
                               <input type="radio">SKT
                               <input type="radio">KT
                               <input type="radio">LGU+
-                              <input name ="m_phone" placeholder="000-0000-0000">
+                              <input name ="m_phone" placeholder="000-0000-0000" value="${ vo.m_phone }">
                            </td>
                         </tr>
                         <tr>
                            <td colspan="2" align="center">
-                              <input class="btn btn-warning" type="button" id="btn_register" value="회원가입" 
+                              <input class="btn btn-warning" type="button" id="btn_register" value="정보수정" 
                                      disabled="disabled" onclick="send(this.form);">
                               <input class="btn btn-warning" type="button" value="메인화면" 
                                                    onclick="location.href='../main/index.do'">

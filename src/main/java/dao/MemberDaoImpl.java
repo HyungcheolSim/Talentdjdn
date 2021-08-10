@@ -41,7 +41,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int update(MemberVo vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("member.member_update",vo);
 	}
 
 	@Override

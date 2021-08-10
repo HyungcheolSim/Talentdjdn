@@ -20,9 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 추가 -->
 	<insert id="member_insert" parameterType="member">
-		insert into member(m_id,m_pwd,m_name,m_addr,m_detail_addr,m_zipcode,m_email,m_phone,m_local,m_grade,m_regdate) 
+		insert into member(m_id,m_pwd,m_name,m_jumin,m_addr,m_detail_addr,m_zipcode,m_email,m_phone,m_local,m_grade,m_regdate) 
 		
-		values(#{ m_id}, #{ m_pwd },#{ m_name },#{ m_addr }, #{ m_detail_addr },
+		values(#{ m_id}, #{ m_pwd },#{ m_name },#{ m_jumin },#{ m_addr }, #{ m_detail_addr },
 				 #{ m_zipcode }, #{ m_email },#{ m_phone },#{ m_local }, default, now() )
 	</insert>
 	
@@ -33,14 +33,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 수정 -->
 	<update id="member_update" parameterType="member">
-		update member set m_name=#{ m_name },
-						  m_id=#{ m_id },
+		update member set m_id=#{ m_id },
 						  m_pwd=#{ m_pwd },
+						  m_name=#{ m_name },
+						  m_jumin=#{ m_jumin },
+						  m_addr=#{ m_addr },
+						  m_detail_addr=#{ m_detail_addr },
 						  m_zipcode=#{ m_zipcode },
-						  ,m_addr=#{ m_addr },
-						  m_ip=#{ m_ip },
-						  m_grade=#{ m_grade }
-						  ,m_modifydate=sysdate 
+						  m_email=#{ m_email },
+						  m_phone=#{ m_phone },
+						  m_local=#{ m_local },
+						  m_grade=#{ m_grade },
+						  m_regdate=now()
 		where m_idx=#{ m_idx }
 	</update>
 

@@ -94,7 +94,7 @@ function send(f) {
 						<tr>
 							<td colspan="2" align="center">
 								<input class="btn btn-warning" type="button" value="로그인" onclick="send(this.form);">
-								<input class="btn btn-warning" type="button" value="메인화면" onclick="location.href='../member/list.do'">
+								<input class="btn btn-warning" type="button" value="메인화면" onclick="location.href='../main/index.do'">
 							</td>
 						</tr>
 					</table>
