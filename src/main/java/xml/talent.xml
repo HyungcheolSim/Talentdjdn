@@ -57,6 +57,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					<if test="content!=null">
 						or t_content like CONCAT('%',#{content},'%')
 					</if>
+					<if test="bfield!=null">
+						or t_big_field like CONCAT('%',#{bfield},'%')
+					</if>
 				</trim>
 
 		    ) a 
@@ -74,11 +77,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="name!=null">
 						s_id like CONCAT('%',#{name},'%')
 					</if>
-					<if test="subject!=null">
-						t_title like CONCAT('%',#{subject},'%')
-					</if>
-					<if test="content!=null">
-						or t_content like CONCAT('%',#{content},'%')
+			<if test="subject!=null">
+				t_title like CONCAT('%',#{subject},'%')
+			</if>
+			<if test="content!=null">
+				or t_content like CONCAT('%',#{content},'%')
+			</if>
+			<if test="bfield!=null">
+				or t_big_field like CONCAT('%',#{bfield},'%')
 			</if>
 		</trim>
 	</select>

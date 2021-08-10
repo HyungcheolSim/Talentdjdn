@@ -151,7 +151,7 @@ $(document).ready(function(){
 				</div>
 				<div class="talent_detail_price_purchasebtn_container">
 					<div class="talent_detail_price_container">
-						<h2 class="price_h2">${talentvo.t_price}</h2>
+						<h2 class="price_h2">${talentvo.t_price} 원</h2>
 					</div>
 					<div class="talent_detail_purchasebtn_container">
 						<button class="purchasebtn">구매하기</button>
@@ -164,9 +164,11 @@ $(document).ready(function(){
 					<h2>서비스 가능 지역</h2>
 					<p>${talentvo.t_local}</p>
 					<br>
+					<c:if test="${talentvo.t_cat}=='재능'">
 					<h2>카테고리(재능/상품)</h2>
 					<p>${talentvo.t_cat }</p>
 					<br>
+					</c:if>
 					<h2>판매자명</h2>
 					<p>${talentvo.seller.s_id }</p>
 					<br>

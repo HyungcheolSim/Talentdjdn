@@ -18,7 +18,7 @@
 <div class="sidebar_body_container">
 	<div class="sidebar_header_container">
 		<div class="sidebar_header_title_container">
-			<h1 id="sidebar_header_title">IT·프로그래밍</h1><!-- 동적으로 바뀔 수 있게 해야함 -->
+			<h1 id="sidebar_header_title">재능목록</h1><!-- 동적으로 바뀔 수 있게 해야함 -->
 		</div>
 	</div>
 	<div class="sidebar_content_container">

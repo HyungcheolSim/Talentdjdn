@@ -62,7 +62,7 @@ th, td {
 		//전체검색이면 검색창 내용 지워라..
 		if (search == 'all') {
 			$("#search_text").val("");
-			location.href = "list.do";
+			location.href = "talentlist.do";
 			return;
 		}
 
@@ -139,6 +139,7 @@ th, td {
 						<option value="name">판매자</option>
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
+						<option value="bfield">카테고리</option>
 						<option value="subject_content">제목+내용</option>
 					</select> <input id="search_text" value="${ param.search_text }"> <input
 						class="btn btn-warning" style="width: 60px;" type="button"
