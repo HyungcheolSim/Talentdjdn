@@ -296,22 +296,29 @@ public class SellerController {
    }
    
 	@RequestMapping("thumb_insert.do")
-	public String thumb_insert(ThumbVo vo,Model model) {
-			
+	@ResponseBody
+	public Map thumb_insert(ThumbVo vo) {
+		
+	Map map = new HashMap();	
 
 	ThumbVo thumb = sellerDao.selectOne(vo);	
-	
+
 	if(thumb!=null) {
 		int res = sellerDao.delete_thumb(vo);
-		model.addAttribute("is_insert", "delete");
+		int cnt = sellerDao.selectCount(vo.getS_idx());
+		
+		map.put("result","cancle_success");
+		map.put("count", cnt);
 		
 	}else {
 		int res = sellerDao.insert_thumb(vo);
-		model.addAttribute("is_insert", "insert");
+		int cnt = sellerDao.selectCount(vo.getS_idx());
+		
+		map.put("result","success");
+		map.put("count", cnt);
 	}
-	 sellerDao.update_tcount(vo.getS_idx());
-	 
-	return "redirect:list.do";
+	
+	return map;
 	}
    
 }

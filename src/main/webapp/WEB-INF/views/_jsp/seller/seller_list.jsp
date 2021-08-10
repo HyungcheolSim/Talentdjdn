@@ -180,10 +180,39 @@ var search_text2;
 
 				      }else{
 						
-
+				          //Ajax로 전송
+				          $.ajax({
+				             url   : 'thumb_insert.do',
+				             data  : {'s_idx' :  s_idx, 
+				                      'm_idx' :  "${ user.m_idx }"
+				                     },
+				             dataType : 'json',
+				             success  : function(result_data){
+				                //result_data = { "result" : "success" }
+				                //result_data = { "result" : "fail" }
+				                
+				                if(result_data.result == "cancle_success"){
+				                   swal.fire("좋아요를 취소하셨습니다");
+				                   $("#thumb_count_" + s_idx).html(result_data.count);
+				                }
+				                else if(result_data.result == "success"){   
+				             	   swal.fire("좋아요를 누르셨습니다");
+				                   //좋아요 증가
+				                   $("#thumb_count_" + s_idx).html(result_data.count);
+				                   
+				                }else{
+				             	   swal.fire("좋아요 실패");
+				                }
+				             },
+				             error    : function(err){
+				                alert(err.responseText);
+				             }
+				          }); //end-ajax
 				    	  
-				    	  location.href='thumb_insert.do?s_idx=' + s_idx + '&m_idx=${ user.m_idx }#select_sub_box';
+				    	  
 				      }
+				      
+				      
 				      
 				   }// end thumb_insert
 
@@ -262,9 +291,8 @@ var search_text2;
 							src="${pageContext.request.contextPath}/resources/img/thumb.png"
 							onclick="thumb_insert('${vo.s_idx}');">
 					</button>
-
 						
-					<span id="thumb_count">${ vo.s_tcount }</span>
+					<span id="thumb_count_${vo.s_idx}">${ vo.s_tcount }</span>
 
 					<c:if test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
 					<input type="button" id="delete_btn" class="btn btn-warning" value="삭제" 
