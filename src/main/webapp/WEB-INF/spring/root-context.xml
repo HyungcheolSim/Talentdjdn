@@ -10,59 +10,85 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 
 	<!-- RDS -->
- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-   	 	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-   		<property name="url" value="jdbc:mysql://talentdjdn-rds.covqcsrmfqv5.ap-northeast-2.rds.amazonaws.com:3308/talentdjdn?useSSL=false"></property>
-    	<property name="username" value="root"></property>
-    	<property name="password" value="rootpassword"></property>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://talentdjdn-rds.covqcsrmfqv5.ap-northeast-2.rds.amazonaws.com:3308/talentdjdn?useSSL=false"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="rootpassword"></property>
 	</bean>
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-    	<property name="dataSource" ref="dataSource"></property>
-    	<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation"
+			value="classpath:/mybatis-config.xml"></property>
 	</bean>
 
-		  <!--  SqlSession sqlSession 생성   SqlSessionTemplate  template;-->
-		
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<!-- SqlSession sqlSession 생성 SqlSessionTemplate template; -->
+
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
-	</bean> 
-	
+	</bean>
+
 	<bean id="memberDao" class="dao.MemberDaoImpl">
-		<property name="sqlSession" ref="sqlSession"/>
+		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	<bean id="talentDao" class="dao.TalentDaoImpl">
-		<property name="sqlSession" ref="sqlSession"/>
+		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	<bean id="reviewDao" class="dao.ReviewDaoImpl">
-		<property name="sqlSession" ref="sqlSession"/>
+		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
+
 	<bean id="boardDao" class="dao.BoardDaoImpl">
-		<property name="sqlSession" ref="sqlSession"/>
+		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
+
 	<bean id="sellerDao" class="dao.SellerDaoImpl">
-		<property name="sqlSession" ref="sqlSession"/>
+		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
+
 	<bean id="mainDao" class="dao.MainDaoImpl">
-		<property name="sqlSession" ref="sqlSession"/>
+		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
-	
-	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+
+	<bean id="talentService" class="service.TalentServiceImpl">
+		<property name="talentDao" ref="talentDao"></property>
+	</bean>
+	<bean id="sellerService" class="service.SellerServiceImpl">
+		<property name="sellerDao" ref="sellerDao"></property>
+	</bean>
+	<bean id="memberService" class="service.MemberServiceImpl">
+		<property name="memberDao" ref="memberDao"></property>
+	</bean>
+	<bean id="boardService" class="service.BoardServiceImpl">
+		<property name="boardDao" ref="boardDao"></property>
+	</bean>
+	<bean id="reviewService" class="service.ReviewServiceImpl">
+		<property name="reviewDao" ref="reviewDao"></property>
+	</bean>
+	<bean id="mainService" class="service.MainServiceImpl">
+		<property name="mainDao" ref="mainDao"></property>
+	</bean>
+
+
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 
 	<!-- multipartResolver -->
 	<bean name="multipartResolver"
-	      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	    <property name="defaultEncoding" value="utf-8"/>
-	    <property name="maxUploadSize" value="104857600"></property>
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="104857600"></property>
 	</bean>
-	
+
 </beans>
 

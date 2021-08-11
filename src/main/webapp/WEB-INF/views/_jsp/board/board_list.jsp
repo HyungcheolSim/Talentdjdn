@@ -128,7 +128,7 @@
 						<th>조회수</th>
 					</tr>
 					<!-- Data없는 경우 -->
-					<c:if test="${ empty list }">
+					<c:if test="${ empty map.list }">
 						<tr>
 							<td colspan="5">
 								<div id="empty_message">게시물이 존재하지 않습니다.</div>
@@ -138,7 +138,7 @@
 
 					<!-- Data있는 경우 -->
 					<!-- for(BoardVo vo : list) -->
-					<c:forEach var="vo" items="${ list }">
+					<c:forEach var="vo" items="${ map.list }">
 						<tr>
 							<td>${ vo.b_idx }</td>
 							<td><a href="view.do?b_idx=${ vo.b_idx }">${ vo.b_title }</a></td>
@@ -179,7 +179,7 @@
 		<!-- Page메뉴 넣기 -->
 		<div style="text-align: center; font-size: 12pt;">
 		
-			${ pageMenu }
+			${ map.pageMenu }
 
 		</div>
 		

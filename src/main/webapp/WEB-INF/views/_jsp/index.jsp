@@ -14,7 +14,7 @@
 <!-- this page -->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/index.css">
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- image slider_bxslider -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
@@ -71,10 +71,10 @@
 			</div>
 			<div id="tt">
 				<ul class="bxslider">
-					<c:forEach var="talent" items="${ t_list }">
+					<c:forEach var="talent" items="${ map.t_list }">
 
 						<li id="pic1"><img class="index_image"
-							src="${pageContext.request.contextPath }/resources/img/${talent.t_image}">
+							src="../seller/displayFile?fileName=${talent.t_image}&directory=talent">
 							<div class="c_title">
 								<span class="c_name">${ talent.t_title }</span> <span
 									class="c_star">${ talent.t_starscore }</span>
@@ -89,10 +89,10 @@
 			</div>
 			<div>
 				<ul class="bxslider">
-					<c:forEach var="product" items="${ p_list }">
+					<c:forEach var="product" items="${ map.p_list }">
 
 						<li id="pic1"><img class="index_image"
-							src="${pageContext.request.contextPath }/resources/img/${product.t_image}">
+							src="../seller/displayFile?fileName=${product.t_image}&directory=talent">
 							<div class="c_title">
 								<span class="c_name">${ product.t_title }</span> <span
 									class="c_star">${ product.t_starscore }</span>
@@ -107,10 +107,10 @@
 			</div>
 			<div>
 				<ul class="bxslider">
-					<c:forEach var="seller" items="${ s_list }">
+					<c:forEach var="seller" items="${ map.s_list }">
 
 						<li id="pic1"><img class="index_image"
-							src="${pageContext.request.contextPath }/resources/img/${seller.s_potfolio}">
+							src="displayFile?fileName=${seller.s_potfolio}&directory=seller">
 							<div class="c_title">
 								<span class="c_name">${ seller.s_id }</span> <span
 									class="c_star">${ seller.s_tcount }</span>

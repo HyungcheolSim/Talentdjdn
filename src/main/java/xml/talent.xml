@@ -118,15 +118,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 수정 -->
 	<update id="talent_update" parameterType="talent">
-		update talent set t_title=#{t_title},
+		update talent set 
+		t_title=#{t_title},
 		t_content=#{t_content},
 		t_big_field=#{t_big_field},
 		t_small_field=#{t_small_field},
 		t_price=#{t_price},
 		t_local=#{t_local},
 		t_cat=#{t_cat},
-		t_big_image=#{t_big_image},
-			t_small_image=#{t_small_image},s_idx=#{s_idx}
+		t_starscore=#{t_starscore},
+		t_image=#{t_image}
 		where t_idx=#{ t_idx }
 	</update>
 

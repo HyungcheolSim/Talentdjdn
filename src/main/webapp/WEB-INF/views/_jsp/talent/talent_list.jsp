@@ -106,7 +106,7 @@ th, td {
 						</tr>
 					</thead>
 					<tbody id="tbody">
-						<c:if test="${ empty list }">
+						<c:if test="${ empty map.list }">
 							<tr>
 								<td colspan="5">
 									<div id="empty_message">재능이 존재하지 않습니다.</div>
@@ -116,9 +116,9 @@ th, td {
 
 						<!-- Data있는 경우 -->
 						<!-- for(TalentVo vo : list) -->
-						<c:forEach var="vo" items="${ list }">
+						<c:forEach var="vo" items="${ map.list }">
 							<tr>
-								<td>${ vo.t_image }</td>
+								<td><img class="thumbnail" src="../seller/displayFile?fileName=${vo.t_image}&directory=talent"></td>
 								<td>${ vo.t_idx }</td>
 								<td><a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a></td>
 								<td>${ vo.t_price }</td>
@@ -148,7 +148,7 @@ th, td {
 				</div>
 
 				<!-- Page메뉴 넣기 -->
-				<div style="text-align: center; font-size: 12pt;">${ pageMenu }
+				<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }
 
 				</div>
 			</div>

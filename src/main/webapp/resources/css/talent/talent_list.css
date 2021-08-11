@@ -31,6 +31,12 @@ html,body {
 
 }
 
+.thumbnail {
+	margin:auto;
+	width:100px;
+	height: 70%;
+}
+
 td{
 	text-align: center;
 }

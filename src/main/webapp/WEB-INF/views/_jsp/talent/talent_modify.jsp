@@ -59,7 +59,7 @@ textarea[name='t_content'] {
 			f.t_content.focus();
 		}
 		//
-		f.action = "talentinsert"; //TalentInsertAction
+		f.action = "modify.do"; //TalentInsertAction
 		f.submit();//전송
 
 
@@ -80,7 +80,7 @@ textarea[name='t_content'] {
 			<div class="table_container">
 				<div class="inner">
 					<form method="post" enctype="multipart/form-data">
-
+						<input type="hidden" name="t_idx" value="${ vo.t_idx }">
 						<div class="panel panel-warning">
 							<div class="panel-heading">
 								<h2>재능 등록</h2>
@@ -92,11 +92,11 @@ textarea[name='t_content'] {
 								<tbody id="tbody">
 									<tr>
 										<th>제목<span class="t_red">*</span></th>
-										<td><input id="t_title" name="t_title" /></td>
+										<td><input id="t_title" name="t_title" value="${vo.t_title}"/></td>
 									</tr>
 									<tr>
 										<th>내용<span class="t_red">*</span></th>
-										<td><textarea id="t_content" name="t_content"></textarea></td>
+										<td><textarea id="t_content" name="t_content">${vo.t_content}</textarea></td>
 									</tr>
 									<tr>
 										<th>대분류<span class="t_red">*</span></th>
@@ -113,15 +113,15 @@ textarea[name='t_content'] {
 									</tr>
 									<tr>
 										<th>소분류<span class="t_red">*</span></th>
-										<td><input id="t_small_field" name="t_small_field" /></td>
+										<td><input id="t_small_field" name="t_small_field" value="${vo.t_small_field}"/></td>
 									</tr>
 									<tr>
 										<th>이미지<span class="t_red">*</span></th>
-										<td><input type="file" id="image" name="image" /></td>
+										<td><input type="file" id="image" name="image"/><p>${vo.t_image}</p></td>
 									</tr>
 									<tr>
 										<th>가격<span class="t_red">*</span></th>
-										<td><input id="t_price" name="t_price" /></td>
+										<td><input id="t_price" name="t_price" value="${vo.t_price}"/></td>
 									</tr>
 									<tr>
 										<th>지역<span class="t_red">*</span></th>
@@ -160,7 +160,7 @@ textarea[name='t_content'] {
 								<button type="button" class="btn btn-warning"
 									onclick="javascript:goBoardList();">목록으로</button>
 								<button type="button" class="btn btn-warning"
-									onclick="send(this.form);">등록하기</button>
+									onclick="send(this.form);">수정하기</button>
 							</div>
 						</div>
 					</form>

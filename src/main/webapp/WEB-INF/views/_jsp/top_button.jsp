@@ -7,17 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
-
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/top_button.css">
-
-<!-- bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -27,7 +19,9 @@
 		</div>
 		<ul class="main_top_button">
 			<li><a href="../board/list.do">게시판</a></li>
+			<c:if test="${ empty user }">
 			<li><a href="../member/insert_form.do">회원가입</a></li>
+			</c:if>
 		    <li><a href="../seller/list.do">고수찾기</a></li>
 		    <c:if test="${ empty user }">
 		    	<li><a href="../member/login_form.do">로그인</a></li>
@@ -36,7 +30,8 @@
 		    	<li><a href="../member/logout.do">로그아웃</a></li>
 		    	<div>
 					<b>[${ user.m_id }]</b>님 로그인 하셨습니다
-					<input type="button" class="btn btn-warning" value="정보수정" onclick="location.href='${ pageContext.request.contextPath }/member/modify_form.do?m_idx=${ user.m_idx }'">
+					<%-- <input type="button" class="btn btn-warning" value="정보수정" onclick="location.href='${ pageContext.request.contextPath }/member/modify_form.do?m_idx=${ user.m_idx }'"> --%>
+					<a href="${ pageContext.request.contextPath }/member/modify_form.do?m_idx=${ user.m_idx }">[정보수정]</a>
 				</div>
 		    </c:if> 
 		</ul>
