@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.ReviewDao;
+import service.ReviewService;
 import vo.MemberVo;
 import vo.ReviewVo;
 import vo.TalentVo;
@@ -29,57 +30,22 @@ public class ReviewController {
 	@Autowired
 	HttpServletRequest request;
 
-	ReviewDao reviewDao;
+	ReviewService reviewService;
 
-	public void setReviewDao(ReviewDao reviewDao) {
-		this.reviewDao = reviewDao;
+	public void setReviewService(ReviewService reviewService) {
+		this.reviewService = reviewService;
 	}
 
-	/*
-	 * @RequestMapping("reviewinsert") public String insert(ReviewVo vo, Model
-	 * model) { MemberVo user = (MemberVo) session.getAttribute("user");
-	 * 
-	 * if (user == null) {
-	 * 
-	 * model.addAttribute("reason", "end_session");
-	 * 
-	 * return "redirect:../member/login_form.do"; } vo.setM_idx(user.getM_idx());
-	 * TalentVo tvo=(TalentVo)session.getAttribute("tvo"); Integer
-	 * TID=tvo.getT_idx(); vo.setT_idx(TID); // DB Insert try { int insert =
-	 * reviewDao.insert(vo);
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } return
-	 * "redirect:../talent/talentdetail.do?t_idx="+TID;
-	 * 
-	 * }
-	 */
 	@RequestMapping("insert.do")
 	@ResponseBody
 	public Map insert(ReviewVo vo) {
 		
-		String c_content = vo.getR_content().replaceAll("\n", "<br>");
-		vo.setR_content(c_content);
-
-		int res = 0;
-		try {
-			res = reviewDao.insert(vo);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//Map -> JSON�ڵ�� ��ȯ => �������
-		Map map = new HashMap();
-		
-		map.put("result", (res==1) ? "success" : "fail"); // { "result" : "success" }
-		
-		return map;
+		return reviewService.insertReview(vo);
 	}
 
 	@RequestMapping("list.do")
 	public String getReviewsforonetalent(int t_idx,Model model) {
-		List<ReviewVo> reviewlist = reviewDao.getReviewsForOne(t_idx);
+		List<ReviewVo> reviewlist = reviewService.getReviewsOne(t_idx);
 		
 		model.addAttribute("reviewlist", reviewlist);
 		

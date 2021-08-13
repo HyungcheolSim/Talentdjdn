@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.MemberDao;
+import service.MemberService;
 import vo.MemberVo;
 
 @Controller
@@ -24,14 +25,16 @@ public class MemberController {
 
 	@Autowired
 	HttpServletRequest request;
-
-	MemberDao memberDao;
-
-	public void setMemberDao(MemberDao memberDao) {
-		this.memberDao = memberDao;
+	
+	@Autowired
+	MemberService memberService;
+	
+	
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
-	
-	
+
+
 	@RequestMapping("login_form.do")
 	public String login_form() {
 		
@@ -43,7 +46,7 @@ public class MemberController {
 
 	public String login(String m_id,String url,String m_pwd,Model model) {
 
-		MemberVo user = memberDao.selectOne(m_id);
+		MemberVo user = memberService.getMemberOne(m_id);
 		  
 		if(user==null) { 
 		 
@@ -90,7 +93,7 @@ public class MemberController {
 	public String insert(MemberVo vo) {
 		
 		//5. DB insert
-		int res = memberDao.insert(vo);
+		int res = memberService.insertMember(vo);
 		
 		return "redirect:login_form.do";
 	}
@@ -99,23 +102,8 @@ public class MemberController {
 	@RequestMapping("check_id.do")
 	@ResponseBody
 	public Map check_id(String m_id) {
-	      
-	      Map map = new HashMap();
-	      
-	      //DB���� m_id���翩�� �˻� 
-	      boolean bResult;
-	      MemberVo vo = memberDao.selectOne(m_id);
-	         
-	      if(vo==null) {//��밡���� ID
-	         bResult = true;
-	      }else {
-	         //������� ID
-	         bResult = false; 
-	      }
-	      
-	      map.put("result", bResult);
-	      
-	      return map;
+	      Map map=memberService.checkMemberId(m_id);
+	     return map;
 	}
 	
 	
@@ -128,7 +116,7 @@ public class MemberController {
 	   @RequestMapping("modify_form.do")
 	   public String modify_form(int m_idx,Model model) {
 		   	
-			  MemberVo vo = memberDao.selectOne(m_idx);
+			  MemberVo vo = memberService.getMemberOne(m_idx);
 			  
 			  model.addAttribute("vo", vo);
 				   
@@ -139,7 +127,7 @@ public class MemberController {
 	   @RequestMapping("modify.do")
 		public String modify(MemberVo vo) {
 			
-			int res = memberDao.update(vo);
+			int res = memberService.updateMember(vo);
 
 			return "redirect:../main/index.do";
 		}

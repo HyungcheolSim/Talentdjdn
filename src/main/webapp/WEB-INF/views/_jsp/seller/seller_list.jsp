@@ -1,49 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-    
+	pageEncoding="UTF-8"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- jquery -->
-<script src="../resource/js/jquery-3.6.0.min.js"></script>
 
 <!-- bootstrap을 사용하기 위한 설정 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- common -->
-<link rel="stylesheet" href="../_css/common.css">
-
-<!-- this page -->
-<link rel="stylesheet" href="../_css/index.css">
-
-
+<link rel="stylesheet"
+	href="${ pageContext.request.contextPath }/resources/css/common.css">
 <!-- this page-->
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/seller_list.css"> 
+<link rel="stylesheet"
+	href="${ pageContext.request.contextPath }/resources/css/seller_list.css">
 
 <!-- SweetAlert사용설정 : 알림박스 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style type="text/css">
-
 .ghost-button {
-    background-color: transparent !important;
-    background-image: none !important;
-    border-color: transparent;
-    border: none;
-    color: #FFFFFF;
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: transparent;
+	border: none;
+	color: #FFFFFF;
 }
 
-#td_thumb{
+#td_thumb {
 	width: 30px;
 }
-
 </style>
 
 <script type="text/javascript">
@@ -221,42 +217,44 @@ var search_text2;
 </head>
 <body>
 	<div class="back_color">
-	<div class="tp_layers">
-		<div class="tp_button_layout">
-			<%@ include file="seller_top_button.jsp" %>
+		<div class="tp_layers">
+			<div class="tp_button_layout">
+				<%@ include file="seller_top_button.jsp"%>
+			</div>
 		</div>
 	</div>
-	</div>
-	<div id= "instrest_box">	
-		<div id ="interest_img">			
+	<div id="instrest_box">
+		<div id="interest_img">
+			<div id="select_menu_box"></div>
 			<div id="select_menu_box">
-			</div>
-			<div id="select_menu_box">
-				<div class="select_main"><span><b>고수찾기</b></span></div>
-				<div class="select_main2"><span class="s_main2">홈>고수찾기><b>지역,카테고리</b></span></div>
+				<div class="select_main">
+					<span><b>고수찾기</b></span>
+				</div>
+				<div class="select_main2">
+					<span class="s_main2">홈>고수찾기><b>지역,카테고리</b></span>
+				</div>
 			</div>
 			<div id="click_box">
-				<select class="loc_cate" id="search_text1" onchange="find();">                          
-	           		<option value="">선택</option>
-	           		<option value="서울">서울</option>
-	           		<option value="경기">경기</option>
-	           		<option value="인천">인천</option>
-	           		<option value="강원">강원</option>
-	           		<option value="충남">충남</option>
-	           		<option value="충북">충북</option>
-	           		<option value="경남">경남</option>
-	           		<option value="경북">경북</option>
-	           		<option value="전남">전남</option>
-	           		<option value="전북">전북</option>
-	           		<option value="대구">대구</option>
-	           		<option value="대전">대전</option>
-	           		<option value="광주">광주</option>
-	           		<option value="울산">울산</option>
-	           		<option value="부산">부산</option>
-	           		<option value="세종">세종</option>
-	           		<option value="제주도">제주도</option>
-				</select>
-				<select class="loc_cate" id="search_text2" onchange="find();">
+				<select class="loc_cate" id="search_text1" onchange="find();">
+					<option value="">선택</option>
+					<option value="서울">서울</option>
+					<option value="경기">경기</option>
+					<option value="인천">인천</option>
+					<option value="강원">강원</option>
+					<option value="충남">충남</option>
+					<option value="충북">충북</option>
+					<option value="경남">경남</option>
+					<option value="경북">경북</option>
+					<option value="전남">전남</option>
+					<option value="전북">전북</option>
+					<option value="대구">대구</option>
+					<option value="대전">대전</option>
+					<option value="광주">광주</option>
+					<option value="울산">울산</option>
+					<option value="부산">부산</option>
+					<option value="세종">세종</option>
+					<option value="제주도">제주도</option>
+				</select> <select class="loc_cate" id="search_text2" onchange="find();">
 					<option value="">카테고리</option>
 					<option value="디자인">디자인</option>
 					<option value="IT·프로그래밍">IT·프로그래밍</option>
@@ -267,59 +265,63 @@ var search_text2;
 					<option value="상품">상품</option>
 				</select>
 			</div>
-			
+
 			<div id="click_box">
-				<div class="loc_cate1"><b>${ s_count }명의 고수</b></div>
+				<div class="loc_cate1">
+					<b>${ map.s_count }명의 고수</b>
+				</div>
 				<div class="loc_cate_null"></div>
 			</div>
-				<c:forEach var="vo" items="${ list }">
+			<c:forEach var="vo" items="${ map.list }">
 				<div id="select_box">
-				<a href="view.do?s_idx=${ vo.s_idx }&page=${ (empty param.page) ? 1 :  param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">
-					<table id = "select_sub_box">
-						<tr class="select_sub_box_tr">
-							<td rowspan='5' class="sub_text"><img class="select_p_img" alt="" src="${ pageContext.request.contextPath }/resources/img/${ vo.s_potfolio }"></td>
-							<td class="sub_text1">${ vo.s_id }</td>
-							<td class="sub_text1">${ vo.s_msg }</td>
-							<td class="sub_text1">${ vo.s_field }</td>
-							<td class="sub_text1">${ vo.s_local }</td>
-						</tr>
-					</table>
-				</a>
-					
+					<a
+						href="view.do?s_idx=${ vo.s_idx }&page=${ (empty param.page) ? 1 :  param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">
+						<table id="select_sub_box">
+							<tr class="select_sub_box_tr">
+								<td rowspan='5' class="sub_text"><img class="select_p_img"
+									alt=""
+									src="displayFile?fileName=${vo.s_potfolio}&directory=seller"></td>
+								<td class="sub_text1">${ vo.s_id }</td>
+								<td class="sub_text1">${ vo.s_msg }</td>
+								<td class="sub_text1">${ vo.s_field }</td>
+								<td class="sub_text1">${ vo.s_local }</td>
+							</tr>
+						</table>
+					</a>
+
 					<button class='ghost-button' type="button">
 						<img id="td_thumb"
 							src="${pageContext.request.contextPath}/resources/img/thumb.png"
 							onclick="thumb_insert('${vo.s_idx}');">
 					</button>
-						
+
 					<span id="thumb_count_${vo.s_idx}">${ vo.s_tcount }</span>
 
-					<c:if test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
-					<input type="button" id="delete_btn" class="btn btn-warning" value="삭제" 
-					 	   onclick="del_seller('${ vo.s_idx }');">
-					</c:if> 
+					<c:if
+						test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
+						<input type="button" id="delete_btn" class="btn btn-warning"
+							value="삭제" onclick="del_talent('${ vo.s_idx }');">
+					</c:if>
 				</div>
 			</c:forEach>
-			
-			<div class ="gosu">
-				<input id="gosu_btn" class="btn btn-warning" type="button" value="고수등록"
-					onclick="insert_form();">
+
+			<div class="gosu">
+				<input id="gosu_btn" class="btn btn-warning" type="button"
+					value="고수등록" onclick="insert_form();">
 			</div>
-			
 
-		<!-- Page메뉴 넣기 -->
-		<div style="text-align: center; font-size: 12pt;">
-		
-			${ pageMenu }
 
-		</div>
-			
-			
+			<!-- Page메뉴 넣기 -->
+			<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }
+
+			</div>
+
+
 		</div>
 	</div>
 	<div class="tp_layers">
 		<div class="tp_bottom_layout">
-			<%@ include file="../bottom.jsp" %>
+			<%@ include file="../bottom.jsp"%>
 		</div>
 	</div>
 </body>

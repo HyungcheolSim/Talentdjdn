@@ -123,6 +123,32 @@ function review_list() {
 	});
 }
 
+function modify_form(t_idx) {
+	
+	location.href="modify_form.do?t_idx=" + t_idx;
+	
+}
+
+function del_talent(s_idx) {
+	
+	Swal.fire({
+		  title: '재능삭제',
+		  html: "정말 삭제하시겠습니까?",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '예',
+		  cancelButtonText : "아니오"
+		}).then((result) => {
+		  if (result.isConfirmed) {
+
+			  location.href="delete.do?t_idx=${talentvo.t_idx}";
+		  }
+		});
+}
+
+
 //jQuery초기화
 $(document).ready(function(){
 	//리뷰목록 출력 
@@ -147,17 +173,35 @@ $(document).ready(function(){
 			</div>
 			<div class="talent_detail_content">
 				<div class="talent_detail_title_container">
+					<c:if test="${ (talentvo.seller.s_id eq user.m_id) or (user.m_grade eq '관리자') }">
+							<td class="sub_text2">
+								<input id= "select_btn" class="btn btn-warning" type="button" value="정보수정" onclick="modify_form('${ talentvo.t_idx }');">
+							</td>
+						</c:if>
+						<c:if test="${ (talentvo.seller.s_id eq user.m_id) or (user.m_grade eq '관리자') }">
+							<td class="sub_text2">
+								<input type="button" id="delete_btn" class="btn btn-warning"
+							value="삭제" onclick="del_talent('${ talentvo.t_idx }');">
+							</td>
+						</c:if>
+				
 					<h2 id="talent_detail_title">${talentvo.t_title}</h2>
 				</div>
 				<div class="talent_detail_price_purchasebtn_container">
 					<div class="talent_detail_price_container">
-						<h2 class="price_h2">${talentvo.t_price} 원</h2>
+						<h2 class="price_h2">${talentvo.t_price}원</h2>
 					</div>
 					<div class="talent_detail_purchasebtn_container">
 						<button class="purchasebtn">구매하기</button>
 					</div>
 				</div>
 				<div class="talent_detail_infomation">
+					<h2>재능 이미지</h2>
+					<p>
+						<img style="width: 200px;"
+							src="../seller/displayFile?fileName=${vo.t_image}&directory=talent" />
+					</p>
+					<br>
 					<h2>세부 설명</h2>
 					<p>${talentvo.t_content }</p>
 					<br>
@@ -165,9 +209,9 @@ $(document).ready(function(){
 					<p>${talentvo.t_local}</p>
 					<br>
 					<c:if test="${talentvo.t_cat}=='재능'">
-					<h2>카테고리(재능/상품)</h2>
-					<p>${talentvo.t_cat }</p>
-					<br>
+						<h2>카테고리(재능/상품)</h2>
+						<p>${talentvo.t_cat }</p>
+						<br>
 					</c:if>
 					<h2>판매자명</h2>
 					<p>${talentvo.seller.s_id }</p>
@@ -175,6 +219,8 @@ $(document).ready(function(){
 					<h2>별점 평균</h2>
 					<p>${talentvo.t_starscore}</p>
 					<br>
+
+
 				</div>
 				<div class="talent_detail_review_register_container">
 					<div class="form_container">
@@ -199,17 +245,15 @@ $(document).ready(function(){
 										<option value="4">★★★★</option>
 										<option value="5">★★★★★</option>
 									</select></td> -->
-									<td class="star-rating">
-										<input type="radio" name="r_star" id="5r_star" value="5" />
-										<label for="5r_star" class="star">&#9733;</label>
-										<input type="radio" name="r_star" id="4r_star" value="4" /> 
-										<label for="4r_star" class="star">&#9733;</label> 
-										<input type="radio"	name="r_star" id="3r_star" value="3" /> 
-										<label for="3r_star" class="star">&#9733;</label> 
-										<input type="radio" name="r_star" id="2r_star" value="2" /> 
-										<label for="2r_star" class="star">&#9733;</label>
-										<input type="radio" name="r_star" id="1r_star" value="1" /> 
-										<label for="1r_star" class="star">&#9733;</label></td>
+									<td class="star-rating"><input type="radio" name="r_star"
+										id="5r_star" value="5" /> <label for="5r_star" class="star">&#9733;</label>
+										<input type="radio" name="r_star" id="4r_star" value="4" /> <label
+										for="4r_star" class="star">&#9733;</label> <input type="radio"
+										name="r_star" id="3r_star" value="3" /> <label for="3r_star"
+										class="star">&#9733;</label> <input type="radio" name="r_star"
+										id="2r_star" value="2" /> <label for="2r_star" class="star">&#9733;</label>
+										<input type="radio" name="r_star" id="1r_star" value="1" /> <label
+										for="1r_star" class="star">&#9733;</label></td>
 								</tr>
 								<tr>
 									<td><input type="button" value="리뷰작성"
@@ -223,7 +267,7 @@ $(document).ready(function(){
 					<div id="disp"></div>
 
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="talent_detail_footer_container">

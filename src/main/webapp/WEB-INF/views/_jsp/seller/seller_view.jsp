@@ -15,12 +15,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- common -->
-<link rel="stylesheet" href="../_css/common.css">
-
-
-<!-- this page -->
-<link rel="stylesheet" href="../_css/index.css">
-
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 
 <!-- this page (경로 수정필요)-->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/seller_view.css"> 
@@ -52,7 +47,7 @@
 			<div id="select_menu_box1">
  				<table id = "select_sub_box" class="table">
 					<tr class="select_sub_box_tr">
-						<td rowspan='4' class="sub_text"><img class="select_p_img" alt="" src="${ pageContext.request.contextPath }/resources/img/${ vo.s_potfolio }"></td>
+						<td rowspan='4' class="sub_text"><img class="select_p_img" alt="" src="displayFile?fileName=${vo.s_potfolio}&directory=seller"></td>
 						<td class="sub_text1"><b>${ vo.s_id }</b>님 이력</b></td>
 						<c:if test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
 							<td class="sub_text2">
@@ -80,7 +75,7 @@
 						<td class="detail">지  역 : ${ vo.s_local }</td>
 						<td class="detail">이 메 일 : ${ vo.member.m_email }</td>
 						<td class="detail">포트폴리오 :</br></br>
-							<img src="${ pageContext.request.contextPath }/resources/img/${ vo.s_potfolio }" width="500">
+							<img src="displayFile?fileName=${vo.s_potfolio}&directory=seller" width="500">
 						</td>
 					</tr>
 				</table>

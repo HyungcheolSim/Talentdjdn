@@ -1,12 +1,14 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dao.MainDao;
+import service.MainService;
 import vo.SellerVo;
 import vo.TalentVo;
 
@@ -14,22 +16,17 @@ import vo.TalentVo;
 @Controller
 public class MainController {
 	
-	MainDao mainDao;
-
-	public void setMainDao(MainDao mainDao) {
-		this.mainDao = mainDao;
-	}
+	MainService mainService;
 	
+	public void setMainService(MainService mainService) {
+		this.mainService = mainService;
+	}
+
 	@RequestMapping("index.do")
 	public String index(Model model) {
 		
-		List<TalentVo> t_list = mainDao.selectTList();
-		List<TalentVo> p_list = mainDao.selectPList();
-		List<SellerVo> s_list = mainDao.selectSList();
-		
-		model.addAttribute("t_list", t_list);
-		model.addAttribute("p_list", p_list);
-		model.addAttribute("s_list", s_list);
+		Map map=mainService.getAllLists();
+		model.addAttribute("map",map);
 		
 		return "_jsp/index";
 	}

@@ -6,10 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- common -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/common.css">
-
 
 <!-- this page -->
 <link rel="stylesheet"
@@ -68,10 +64,10 @@
 
 				<div class="icon_box">
 					<a
-						href="../talent/talentlist.do?search=bfield&search_text=영상ㆍ사진ㆍ음향"><img
+						href="../talent/talentlist.do?search=bfield&search_text=영상·사진·음향"><img
 						class="main_icon" alt=""
 						src="${ pageContext.request.contextPath }/resources/img/picture.png"></a>
-					<p id="font">영상ㆍ사진ㆍ음향</p>
+					<p id="font">영상·사진·음향</p>
 				</div>
 
 				<div class="icon_box">
@@ -82,17 +78,17 @@
 				</div>
 
 				<div class="icon_box">
-					<a href="../talent/talentlist.do?search=bfield&search_text=번역ㆍ통역"><img
+					<a href="../talent/talentlist.do?search=bfield&search_text=번역·통역"><img
 						class="main_icon" alt=""
 						src="${ pageContext.request.contextPath }/resources/img/transfer.png"></a>
-					<p id="font">번역ㆍ통역</p>
+					<p id="font">번역·통역</p>
 				</div>
 
 				<div class="icon_box">
-					<a href="../talent/talentlist.do?search=bfield&search_text=레슨ㆍ실무교육"><img
+					<a href="../talent/talentlist.do?search=bfield&search_text=레슨·실무교육"><img
 						class="main_icon" alt=""
 						src="${ pageContext.request.contextPath }/resources/img/lesson.png"></a>
-					<p id="font">레슨ㆍ실무교육</p>
+					<p id="font">레슨·실무교육</p>
 				</div>
 
 				<div class="icon_box">

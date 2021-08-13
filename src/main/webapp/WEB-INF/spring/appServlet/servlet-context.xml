@@ -25,23 +25,24 @@
 	<context:annotation-config/>
 	
 	<beans:bean class="controller.MemberController">
-		<beans:property name="memberDao" ref="memberDao"/>
+		<beans:property name="memberService" ref="memberService"/>
 	</beans:bean>
 
 	<beans:bean class="controller.TalentController">
-		<beans:property name="talentDao" ref="talentDao"/>
+		<beans:property name="talentService" ref="talentService"/>
 	</beans:bean>
 	<beans:bean class="controller.ReviewController">
-		<beans:property name="reviewDao" ref="reviewDao"></beans:property>
+		<beans:property name="reviewService" ref="reviewService"></beans:property>
 	</beans:bean>
 	<beans:bean class="controller.BoardController">
-		<beans:property name="boardDao" ref="boardDao"/>
+		<beans:property name="boardService" ref="boardService"/>
 	</beans:bean>
 	<beans:bean class="controller.SellerController">
-		<beans:property name="sellerDao" ref="sellerDao"/>
+		<beans:property name="sellerService" ref="sellerService"/>
 	</beans:bean>
 		<beans:bean class="controller.MainController">
-		<beans:property name="mainDao" ref="mainDao"/>
+		<beans:property name="mainService" ref="mainService"/>
 	</beans:bean>
+	
 
 </beans:beans>
