@@ -19,4 +19,6 @@ public interface MemberService {
 	public MemberVo getMemberOne(String m_id);
 	
 	public Map checkMemberId(String m_id);
+
+	public int delete(int m_idx);
 }
