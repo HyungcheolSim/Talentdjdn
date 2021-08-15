@@ -41,8 +41,6 @@ public class BoardController {
 			@RequestParam(value = "search_text", required = false, defaultValue = "") String search_text, Model model) {
 
 		Map map=boardService.getPagingBoardList(nowPage,search,search_text);
-		
-		
 
 		model.addAttribute("map", map);
 
@@ -87,10 +85,15 @@ public class BoardController {
 	@RequestMapping("view.do")
 	public String view(int b_idx, Model model) {
 
-		BoardVo vo = boardService.getOneBoardAndUpdateReadHit(b_idx);
+		BoardVo vo = boardService.getOneBoard(b_idx);
 
-
-
+		try {
+			int res = boardService.updateBoardReadHit(b_idx);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		model.addAttribute("vo", vo);
 
 		return "_jsp/board/board_view";
