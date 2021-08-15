@@ -35,7 +35,8 @@
 			maxSlides : 4,
 			caption : false,
 			slideWidth : 900,
-			slideMargin : 10
+			slideMargin : 10,
+			touchEnabled : (navigator.maxTouchPoints > 0)
 		});
 	});
 </script>
@@ -72,14 +73,16 @@
 			<div id="tt">
 				<ul class="bxslider">
 					<c:forEach var="talent" items="${ map.t_list }">
-
-						<li id="pic1"><img class="index_image"
-							src="../seller/displayFile?fileName=${talent.t_image}&directory=talent">
+						
+						<li id="pic1">
+						<a href="../talent/talentdetail.do?t_idx=${talent.t_idx }">
+						<img class="index_image"
+							src="../seller/displayFile?fileName=${talent.t_image}&directory=talent"></a>
 							<div class="c_title">
-								<span class="c_name">${ talent.t_title }</span> <span
-									class="c_star">${ talent.t_starscore }</span>
+								<span class="c_name">${ talent.t_title }</span> 
+								<span class="c_star">${ talent.t_starscore }</span>
 							</div></li>
-
+						
 					</c:forEach>
 				</ul>
 			</div>
@@ -90,7 +93,7 @@
 			<div>
 				<ul class="bxslider">
 					<c:forEach var="product" items="${ map.p_list }">
-
+					
 						<li id="pic1"><img class="index_image"
 							src="../seller/displayFile?fileName=${product.t_image}&directory=talent">
 							<div class="c_title">

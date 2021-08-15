@@ -45,7 +45,8 @@ public class SellerServiceImpl implements SellerService {
 			map.put("s_field", search_text2);
 		}
 		List<SellerVo> list = sellerDao.selectList(map);		
-
+		map.remove("start");
+		map.remove("end");
 		int rowTotal = sellerDao.selectRowTotal(map);
 
 		String search_filter = String.format("&search_text1=%s&search_text2=%s", search_text1, search_text2);

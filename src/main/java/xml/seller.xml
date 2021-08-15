@@ -5,141 +5,150 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="seller">
 
 	<resultMap type="member" id="memberResult">
-		<id property="m_idx" column="m_idx"/>
-		<result column="m_name" property="m_name"/>
-		<result column="m_phone" property="m_phone"/>
-		<result column="m_email" property="m_email"/>
-	</resultMap> 
+		<id property="m_idx" column="m_idx" />
+		<result column="m_name" property="m_name" />
+		<result column="m_phone" property="m_phone" />
+		<result column="m_email" property="m_email" />
+	</resultMap>
 
 	<resultMap type="seller" id="SellerResult">
-		<id column="s_id" property="s_id"/>
-		<result column="s_account" property="s_account"/>
-		<result column="s_field" property="s_field"/>
-		<result column="s_rank" property="s_rank"/>
-		<result column="s_career" property="s_career"/>
-		<result column="s_education" property="s_education"/>
-		<result column="s_license" property="s_license"/>
-		<result column="s_potfolio" property="s_potfolio"/>
-		<result column="s_skill" property="s_skill"/>
-		<result column="s_local" property="s_local"/>
-		<result column="s_msg" property="s_msg"/>
-		<result column="s_idx" property="s_idx"/>
-		<result column="s_tcount" property="s_tcount"/>
-		
-		<association property="member" column="m_idx" resultMap="memberResult">
-			<id property="m_idx" column="m_idx"/>
-  			<result property="m_name" column="m_name"/>
-  			<result property="m_phone" column="m_phone"/>
-  			<result property="m_email" column="m_email"/>
+		<id column="s_idx" property="s_idx" />
+		<result column="s_account" property="s_account" />
+		<result column="s_field" property="s_field" />
+		<result column="s_rank" property="s_rank" />
+		<result column="s_career" property="s_career" />
+		<result column="s_education" property="s_education" />
+		<result column="s_license" property="s_license" />
+		<result column="s_potfolio" property="s_potfolio" />
+		<result column="s_skill" property="s_skill" />
+		<result column="s_local" property="s_local" />
+		<result column="s_msg" property="s_msg" />
+		<result column="s_id" property="s_id" />
+		<result column="s_tcount" property="s_tcount" />
+
+		<association property="member" column="m_idx"
+			resultMap="memberResult">
+			<id property="m_idx" column="m_idx" />
+			<result property="m_name" column="m_name" />
+			<result property="m_phone" column="m_phone" />
+			<result property="m_email" column="m_email" />
 		</association>
-	</resultMap> 
+	</resultMap>
 
 	<!-- 조건별 조회 -->
-	<select id="seller_list" parameterType="Map" resultMap="SellerResult">
-		 select b.* from 
-		 (
-			select
-				a.*,
-			    rank() over(order by s_idx desc) as no    
-		    from 
-		    
-		    (
-		    	select seller.*,member.m_name,member.m_phone,member.m_email from seller left join member on seller.m_idx = member.m_idx
-		     	<trim prefix="where" prefixOverrides="and"> 		
-					<if test="s_local!=null">
-						 s_local = #{s_local}
-					</if>
-					<if test="s_field!=null">
-						 and s_field = #{s_field}
-					</if>
-				</trim>
-		    ) a 
-		 ) b
-		 where no between #{ start } and #{ end }
-	</select>
+	<select id="seller_list" parameterType="Map"
+		resultMap="SellerResult">
+		select b.* from
+		(
+		select
+		a.*,
+		rank() over(order by s_idx desc) as no
+		from
 
-	<!-- 전체게시물수 구하기-->
-	<select id="seller_row_total" resultType="int">
-		select 
-			ifnull(count(*),0)
-		from seller
-	</select>
-	
-	<!-- 검색조건별 게시물수 구하기-->
-	<select id="seller_condition_row_total" parameterType="Map" resultType="int">
-		select ifnull(count(*),0) from seller 
-		
-		<trim prefix="where" prefixOverrides="or"> 
-			
-			<if test="s_id!=null">
-				s_id like CONCAT('%',#{s_id},'%')
+		(
+		select seller.*,member.m_name,member.m_phone,member.m_email from seller left
+		join member on seller.m_idx = member.m_idx
+		<trim prefix="where" prefixOverrides="and">
+			<if test="s_local!=null">
+				s_local = #{s_local}
 			</if>
 			<if test="s_field!=null">
-				s_field like CONCAT('%',#{s_field},'%')
+				and s_field = #{s_field}
 			</if>
 		</trim>
-		
+		) a
+		) b
+		where no between #{ start } and #{ end }
 	</select>
-	
-	
+
+	<!-- 전체게시물수 구하기 -->
+	<select id="seller_row_total" resultType="int">
+		select
+		ifnull(count(*),0)
+		from seller
+	</select>
+
+	<!-- 검색조건별 게시물수 구하기 -->
+	<select id="seller_condition_row_total" parameterType="Map"
+		resultType="int">
+		select ifnull(count(*),0) from seller
+
+		<trim prefix="where" prefixOverrides="and">
+			<if test="s_local!=null">
+				s_local = #{s_local}
+			</if>
+			<if test="s_field!=null">
+				and s_field = #{s_field}
+			</if>
+		</trim>
+
+	</select>
+
+
 	<!-- 데이터 한건 조회 -->
-	<select id="seller_one" parameterType="int" resultMap="SellerResult">
-		select 
-			seller.*,member.m_name,member.m_phone,member.m_email 
-		from 
-			seller left join member on seller.m_idx = member.m_idx
-		where s_idx = #{ s_idx }
+	<select id="seller_one" parameterType="int"
+		resultMap="SellerResult">
+		select
+		seller.*,member.m_name,member.m_phone,member.m_email
+		from
+		seller left join member on seller.m_idx = member.m_idx
+		where s_idx = #{ s_idx
+		}
 	</select>
 
 	<!-- 글쓰기 -->
 	<insert id="seller_insert" parameterType="seller">
-		  insert into seller(s_id,s_msg,s_account,s_field,s_career,s_education,s_license,s_potfolio,s_skill,s_local,m_idx) 
-		  	values(#{s_id},#{s_msg},#{s_account},#{s_field},#{s_career},#{s_education},#{s_license},#{s_potfolio},#{s_skill},#{s_local},#{m_idx})
+		insert into
+		seller(s_id,s_msg,s_account,s_field,s_career,s_education,s_license,s_potfolio,s_skill,s_local,m_idx)
+		values(#{s_id},#{s_msg},#{s_account},#{s_field},#{s_career},#{s_education},#{s_license},#{s_potfolio},#{s_skill},#{s_local},#{m_idx})
 	</insert>
-	
+
 	<!-- 수정 -->
 	<update id="seller_update" parameterType="seller">
-		update seller set s_account = #{ s_account },
-						 s_career = #{ s_career },
-						 s_education = #{ s_education },
-						 s_license = #{ s_license },
-						 s_potfolio = #{ s_potfolio },
-						 s_local = #{ s_local },
-						 s_msg = #{ s_msg }
-		where s_idx = #{ s_idx }				 
-						 
+		update seller set
+		s_account = #{ s_account },
+		s_career = #{ s_career },
+		s_education = #{ s_education },
+		s_license = #{ s_license },
+		s_potfolio = #{ s_potfolio },
+		s_local = #{ s_local },
+		s_msg = #{ s_msg }
+		where s_idx = #{ s_idx }
+
 	</update>
-	
+
 	<!-- 삭제 -->
 	<delete id="seller_delete" parameterType="int">
-		delete from seller where s_idx = #{ s_idx }
+		delete from seller
+		where s_idx = #{ s_idx }
 	</delete>
-	
-	
+
+
 	<!-- 좋아요 조회 -->
 	<select id="thumb_list" resultType="thumb" parameterType="thumb">
-      	select * from thumb where m_idx = #{ m_idx } and s_idx = #{ s_idx }
-   	</select>
-   
-   	<!-- 좋아요 추가 -->
-   	<insert id="thumb_insert" parameterType="thumb">
-     	 insert into thumb(m_idx,s_idx) values(#{ m_idx },#{ s_idx })
-   	</insert>
-   
-   	<!-- s_idx에 해당되는 좋아요의 갯수 -->
-   	<select id="thumb_count" parameterType="int" resultType="int">
-     	 select ifnull(count(*),0) from thumb where s_idx = #{ s_idx }
-   	</select>
-   <update id="thumb_update" parameterType="int">
-   		update seller set s_tcount=(
-   		select ifnull(count(*),0) from thumb where thumb.s_idx = #{ s_idx }
-   		)where seller.s_idx=#{s_idx}
-   </update> 
-   	<!-- 좋아요 취소 -->
-   	<select id="thumb_delete" resultType="thumb" parameterType="thumb">
-    	  delete from thumb where m_idx = #{ m_idx } and s_idx = #{ s_idx }
-   	</select>
-	
+		select * from thumb where m_idx = #{ m_idx } and s_idx = #{ s_idx }
+	</select>
+
+	<!-- 좋아요 추가 -->
+	<insert id="thumb_insert" parameterType="thumb">
+		insert into thumb(m_idx,s_idx) values(#{ m_idx },#{ s_idx })
+	</insert>
+
+	<!-- s_idx에 해당되는 좋아요의 갯수 -->
+	<select id="thumb_count" parameterType="int" resultType="int">
+		select ifnull(count(*),0) from thumb where s_idx = #{ s_idx }
+	</select>
+	<update id="thumb_update" parameterType="int">
+		update seller set s_tcount=(
+		select ifnull(count(*),0) from thumb where thumb.s_idx = #{ s_idx }
+		)where seller.s_idx=#{s_idx}
+	</update>
+	<!-- 좋아요 취소 -->
+	<select id="thumb_delete" resultType="thumb"
+		parameterType="thumb">
+		delete from thumb where m_idx = #{ m_idx } and s_idx = #{ s_idx }
+	</select>
+
 </mapper>
 
 
