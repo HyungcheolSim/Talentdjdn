@@ -45,7 +45,9 @@
 </style>
 
 <script type="text/javascript">
-
+$(document).ready(function(){
+	sessionStorage.setItem("show",true);
+});
 	//삭제
 	function del(b_idx){
 		alert('정말 삭제하시겠습니까?');
@@ -53,7 +55,10 @@
 		
 	}//end-del
 	
-	
+	function golist(){
+		sessionStorage.removeItem("show");
+		location.href="list.do";
+	}
 	function modify_form(b_idx) {
 		
 		location.href="modify_form.do?b_idx=" + b_idx;
@@ -99,8 +104,8 @@
 							<tr>
 								<td colspan="2" align="center"><input
 									class="btn btn-warning" type="button" value="목록보기"
-									onclick="location.href='list.do'"> <!-- 본인 또는 관리자 --> <c:if
-										test="${ user.m_grade eq '관리자' }">
+									onclick="golist();"> <!-- 본인 또는 관리자 --> 
+									<c:if test="${ user.m_grade eq '관리자' }">
 										<input class="btn btn-warning" type="button" value="수정"
 											onclick="modify_form('${ vo.b_idx }');">
 										<input class="btn btn-warning" type="button" value="삭제"

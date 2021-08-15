@@ -56,7 +56,7 @@ public class BoardServiceImpl implements BoardService {
 
 		String pageMenu = Paging.getPaging("list.do", nowPage, rowTotal, search_filter, MyConstant.Board.BLOCK_LIST,
 				MyConstant.Board.BLOCK_PAGE);
-		
+
 		Map resultMap = new HashMap();
 		resultMap.put("list", list);
 		if (rowTotal > 0) {
@@ -100,11 +100,13 @@ public class BoardServiceImpl implements BoardService {
 		BoardVo bv = boardDao.selectOne(b_idx);
 		String content = bv.getB_content().replaceAll("<br>", "\r\n");
 		bv.setB_content(content);
+
 		return bv;
 	}
 
 	@Override
 	public int updateBoardReadHit(int b_idx) throws Exception {
+
 	      int res = 0;
 	      
 	      //조회수 증가
@@ -125,6 +127,7 @@ public class BoardServiceImpl implements BoardService {
 	      }      
 	      
 	      return res;
+
 	}
 
 	@Override
@@ -148,12 +151,7 @@ public class BoardServiceImpl implements BoardService {
 
 		try {
 
-			if (session.getAttribute("show") == null) {
-
-				int res = boardDao.update_readhit(b_idx);
-
-				session.setAttribute("show", true);
-			}
+			int res = boardDao.update_readhit(b_idx);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

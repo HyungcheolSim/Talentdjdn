@@ -59,6 +59,9 @@
 	<bean id="mainDao" class="dao.MainDaoImpl">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	<bean id="purchaseDao" class="dao.PurchaseDaoImpl">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
 
 	<bean id="talentService" class="service.TalentServiceImpl">
 		<property name="talentDao" ref="talentDao"></property>
@@ -77,6 +80,11 @@
 	</bean>
 	<bean id="mainService" class="service.MainServiceImpl">
 		<property name="mainDao" ref="mainDao"></property>
+	</bean>
+	<bean id="purchaseService" class="service.PurchaseServiceImpl">
+		<property name="purchaseDao" ref="purchaseDao"></property>
+		<property name="memberDao" ref="memberDao"></property>
+		<property name="talentDao" ref="talentDao"></property>
 	</bean>
 
 

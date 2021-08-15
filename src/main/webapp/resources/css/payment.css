@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+#instrest_box {
+   min-height: 700px;
+   width: 100%;
+   height: auto;
+}
+
+#interest_img {
+   min-height: 300px;
+   height: auto;
+   margin: auto;
+}
+
+#select_menu_box {
+   min-height: 80px;
+   height: auto; width : 77%;
+   margin: auto;
+   width: 77%;
+}
+
+#select_box {
+   width: 77%;
+   margin: auto;
+   border-top: 3px solid black;
+   border-bottom: 2px solid #6E6E6E;
+}
+
+#select_sub_box {
+   height: 70px;
+   text-align: center;
+   margin-top: 20px;
+   font-size: 17px;
+}
+
+.sub_text {
+   width: 40%;
+   height: 100%;
+   float: left;
+   border-right: 2px solid #E6E6E6;
+   vertical-align: middle;
+}
+
+.sub_text1 {
+   width: 30%;
+   height: 100%;
+   float: left;
+}
+
+.sub_text2 {
+   width: 15%;
+   height: 100%;
+   float: left;
+   border-left: 2px solid #E6E6E6;
+}
+
+.select_main span b {
+   display: inline-block;
+   width: 100%;
+   height : 40px;
+   margin: 0;
+   height: 40px;
+}
+
+.select_main span {
+   display: inline-block;
+   width: 128px;
+   height: 40px;
+   margin: 0;
+}
+
+.select_main {
+   height: auto;
+   min-height: 80px;
+   width: 50%;
+   float: left;
+   font-size: 32px;
+   border: 5px;
+   color: black;
+}
+
+.select_main2 {
+   width: 50%;
+   float: left;
+   font-size: 15px;
+   border: 5px;
+   color: black;
+}
+
+.s_main2 {
+   float: right;
+   margin-top: 10px;
+}
+
+#select_menu_box1 {
+   width: 77%;
+   height: 100px;
+   margin: auto;
+   background: #F2F2F2;
+   margin-top: 20px;
+   margin-bottom: 50px;
+   border-radius: 5px;
+   border: 2px solid #E6E6E6;
+}
+
+#select_menu1 {
+   text-align: center;
+}
+
+.select_m_b {
+   color: gray;
+   font-size: 15px;
+   margin-top: 6px;
+   margin-left: 10px;
+}
+#addr{
+   display:flex;
+}
+#newaddr{
+   display: flex;
+}
+#newemail{
+   display:flex;
+}
+#email{
+   display: flex;
+}
+#cb1 {
+   width: 20px;
+   height: 20px;
+   margin-right: 20px;
+   float: left;
+}
+
+#select_btn {
+   width: 130px;
+   height: 40px;
+   float: left;
+   margin-right: 10px;
+}
+
+.select_p_img {
+   width: 70px;
+   height: 70px;
+   margin-left: 40px;
+   float: left;
+}
+
+.total_sum {
+   font-size: 25px;
+}
+
+#pay_button{
+   text-align: center;
+}
+
+#table_id tr{
+   
+   border:none !important;
+}
+
