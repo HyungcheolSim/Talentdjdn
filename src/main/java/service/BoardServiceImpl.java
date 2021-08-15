@@ -63,6 +63,8 @@ public class BoardServiceImpl implements BoardService {
 			resultMap.put("pageMenu", pageMenu);
 		}
 
+
+		
 		return resultMap;
 	}
 
@@ -103,8 +105,26 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int updateBoardReadHit(int b_idx) throws Exception {
-		int update = boardDao.update_readhit(b_idx);
-		return update;
+	      int res = 0;
+	      
+	      //조회수 증가
+	      try {
+	         
+	         //게시물을 봤냐?
+	         if(session.getAttribute("show")==null) {
+	             //안봤으면  null
+	             res = boardDao.update_readhit(b_idx);//조회수증가
+	             
+	             //봤다고 기록
+	             session.setAttribute("show", true);
+	         }
+	         
+	      } catch (Exception e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }      
+	      
+	      return res;
 	}
 
 	@Override

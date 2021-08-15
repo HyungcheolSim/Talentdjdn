@@ -35,7 +35,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int delete(int m_idx) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("member.member_delete",m_idx);
 	}
 
 	@Override

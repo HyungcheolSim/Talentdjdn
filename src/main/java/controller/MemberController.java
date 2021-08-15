@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dao.MemberDao;
 import service.MemberService;
 import vo.MemberVo;
 
@@ -35,12 +34,22 @@ public class MemberController {
 	}
 
 
+	@RequestMapping("list.do")
+	
+	public String member_list(Model model){
+		
+		List<MemberVo> list = memberService.getMemberList();
+		
+		model.addAttribute("list", list);
+		
+		return "_jsp/member/member_list";
+	}
+	
 	@RequestMapping("login_form.do")
 	public String login_form() {
 		
 		return "_jsp/member/login";
 	}
-	
 	
 	@RequestMapping("login.do")
 
@@ -113,6 +122,16 @@ public class MemberController {
 		return "_jsp/member/join_page";
 	}
 	
+	@RequestMapping("member_info_form.do")
+	   public String member_info_form(int m_idx,Model model) {
+		   	
+			  MemberVo vo = memberService.getMemberOne(m_idx);
+			  
+			  model.addAttribute("vo", vo);
+				   
+		   return "_jsp/member/member_info";
+	   }	
+	
 	   @RequestMapping("modify_form.do")
 	   public String modify_form(int m_idx,Model model) {
 		   	
@@ -130,6 +149,15 @@ public class MemberController {
 			int res = memberService.updateMember(vo);
 
 			return "redirect:../main/index.do";
+		}
+	   
+		@RequestMapping("delete.do")
+		public String delete(int m_idx) {
+			
+			//2. DB delete
+			int res = memberService.delete(m_idx);
+			
+			return "redirect:list.do";
 		}
 	
 }
