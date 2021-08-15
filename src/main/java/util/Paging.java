@@ -188,7 +188,7 @@ public class Paging {
 		return sb.toString();
 }
 	
-	public static String getSellerPaging(
+	public static String getMemberPaging(
 			int nowPage, 
 			int rowTotal,
 			int blockList, 
@@ -236,10 +236,10 @@ if(isPrevPage){
 
 sb.append(String.format("<a href='#' onclick=\"comment_list('%d');\">", startPage-1));
 //sb.append("<a href ='#' onclick=\"comment_list('"+ (startPage-1) +"');\"> ");
-sb.append("��</a>");
+sb.append("◀</a>");
 }
 else
-sb.append("��");
+sb.append("◀");
 
 //------������ ��� ��� -------------------------------------------------------------------------------------------------
 sb.append("|");
@@ -266,10 +266,10 @@ sb.append("|");
 if(isNextPage){
 //sb.append("<a href='"+pageURL+"?page=");
 sb.append(String.format("<a href='#' onclick=\"comment_list('%d');\">", endPage+1));
-sb.append("��</a>");
+sb.append("▶</a>");
 }
 else
-sb.append("��");
+sb.append("▶");
 //---------------------------------------------------------------------------------------------------------------------	    
 
 return sb.toString();

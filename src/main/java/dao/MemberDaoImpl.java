@@ -1,10 +1,12 @@
 	package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import vo.MemberVo;
+import vo.ReviewVo;
 
 public class MemberDaoImpl implements MemberDao {
 
@@ -48,6 +50,18 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberVo selectOne(String m_id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("member.member_one_m_id", m_id);
+	}
+
+	@Override
+	public List<ReviewVo> selectList(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("member.member_page_list",map);
+	}
+
+	@Override
+	public int selectRowTatal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.member_row_total");
 	}
 
 }
