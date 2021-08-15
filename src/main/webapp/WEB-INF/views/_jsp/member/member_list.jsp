@@ -54,10 +54,11 @@ function del(m_idx) {
 					<th>전화번호</th>
 					<th>지역</th>
 					<th>가입일자</th>
+					<th>등급</th>
 				</tr>
 				
 				<!-- data가 비어있으면 -->
-				<c:if test="${ empty list }">
+				<c:if test="${ empty map.list }">
 					<tr>
 						<td colspan="9">
 							<p style="text-align: center; color:red;'">데이터가 없습니다</p>
@@ -65,7 +66,7 @@ function del(m_idx) {
 					</tr>
 				</c:if>
 				
-				<c:forEach var="vo" items="${ list }">
+				<c:forEach var="vo" items="${ map.list }">
 					<tr>
 						<td>${ vo.m_idx }</td>
 						<td>${ vo.m_id }</td>
@@ -76,9 +77,12 @@ function del(m_idx) {
 						<td>${ vo.m_phone }</td>
 						<td>${ vo.m_local }</td>
 						<td>${ vo.m_regdate }</td>
+						<td>${ vo.m_grade }</td>
 						<td>
-							<input class="btn btn-danger" type="button" value="탈퇴" 
+							<c:if test="${ vo.m_grade eq '일반' }">
+								<input class="btn btn-danger" type="button" value="탈퇴" 
 							                              onclick="del('${vo.m_idx}');">
+							</c:if>                              
 						</td>
 					</tr>
 				</c:forEach>
@@ -87,6 +91,12 @@ function del(m_idx) {
 			
 			</div>
 		</div>
+		
+			<!-- Page메뉴 넣기 -->
+			<div style="text-align: center; font-size: 12pt;">
+				${ map.pageMenu }
+			</div>
+		
 	</div>
 
 	<div class="tp_layers">

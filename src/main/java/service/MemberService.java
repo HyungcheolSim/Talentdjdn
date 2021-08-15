@@ -21,4 +21,7 @@ public interface MemberService {
 	public Map checkMemberId(String m_id);
 
 	public int delete(int m_idx);
+
+	Map getPagingMemberList(int nowPage);
+
 }

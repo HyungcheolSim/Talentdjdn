@@ -299,9 +299,6 @@ function send(f) {
                         <tr>
                            <th>휴대전화</th>
                            <td>
-                              <input type="radio">SKT
-                              <input type="radio">KT
-                              <input type="radio">LGU+
                               <input name ="m_phone" placeholder="000-0000-0000">
                            </td>
                         </tr>

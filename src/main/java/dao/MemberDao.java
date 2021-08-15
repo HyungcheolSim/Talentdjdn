@@ -1,8 +1,10 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import vo.MemberVo;
+import vo.ReviewVo;
 
 public interface MemberDao {
 
@@ -23,4 +25,10 @@ public interface MemberDao {
 
 
 	public MemberVo selectOne(String m_id);
+
+
+	public List<ReviewVo> selectList(Map map);
+
+
+	public int selectRowTatal();
 }

@@ -23,8 +23,13 @@
 		<a href="../main/index.do"><img class="main_logo" alt="" src="${ pageContext.request.contextPath }/resources/img/logo.png"></a>
 		</div>
 		<ul class="main_top_button">
+			<c:if test="${ user.m_grade eq '관리자' }">
+			<li><a href="../member/list.do">회원관리</a></li>
+			</c:if>
 			<li><a href="../board/list.do">게시판</a></li>
+			<c:if test="${ empty user }">
 			<li><a href="../member/insert_form.do">회원가입</a></li>
+			</c:if>
 		    <li><a href="../seller/list.do">고수찾기</a></li>
 		    <c:if test="${ empty user }">
 		    	<li><a href="../member/login_form.do">로그인</a></li>

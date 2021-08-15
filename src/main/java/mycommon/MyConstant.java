@@ -24,6 +24,12 @@ public class MyConstant {
 		
 		public static final int BLOCK_LIST = 5; 
 		public static final int BLOCK_PAGE = 3; 
-	}	
+	}
+	
+   public static class Member{
+	      
+	      public static final int BLOCK_LIST = 10; 
+	      public static final int BLOCK_PAGE = 10; 
+	   }
 	
 }
