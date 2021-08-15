@@ -223,7 +223,7 @@ function send(f) {
       </div>
    </div>
    
-   <div class="tp_layer">
+   <div class="newtp_layer">
       <div class="tp_main_layout">
       
          <div id="join_box">

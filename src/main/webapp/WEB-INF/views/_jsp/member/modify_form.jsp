@@ -223,7 +223,7 @@ function send(f) {
       </div>
    </div>
    
-   <div class="tp_layer">
+   <div class="newtp_layer">
       <div class="tp_main_layout">
       
          <div id="join_box">
@@ -309,7 +309,7 @@ function send(f) {
                         <tr>
                            <td colspan="2" align="center">
                               <input class="btn btn-warning" type="button" id="btn_register" value="정보수정" 
-                                     disabled="disabled" onclick="send(this.form);">
+                                     onclick="send(this.form);">
                               <input class="btn btn-warning" type="button" value="메인화면" 
                                                    onclick="location.href='../main/index.do'">
                            </td>

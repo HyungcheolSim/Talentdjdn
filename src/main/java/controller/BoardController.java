@@ -42,7 +42,7 @@ public class BoardController {
 
 		Map map=boardService.getPagingBoardList(nowPage,search,search_text);
 		
-		session.removeAttribute("show");
+		
 
 		model.addAttribute("map", map);
 
@@ -88,6 +88,8 @@ public class BoardController {
 	public String view(int b_idx, Model model) {
 
 		BoardVo vo = boardService.getOneBoardAndUpdateReadHit(b_idx);
+
+
 
 		model.addAttribute("vo", vo);
 

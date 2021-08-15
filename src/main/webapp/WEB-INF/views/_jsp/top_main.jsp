@@ -48,7 +48,7 @@
 			</div>
 			<div id="icon_selecter">
 				<div class="icon_box">
-					<a href="../talent/talentlist.do?search=bfield&search_text=마케팅"><img
+					<a href="../talent/talentlist.do?search=bfield&search_text=디자인"><img
 						class="main_icon" alt=""
 						src="${ pageContext.request.contextPath }/resources/img/designs.png"></a>
 					<p id="font">디자인</p>

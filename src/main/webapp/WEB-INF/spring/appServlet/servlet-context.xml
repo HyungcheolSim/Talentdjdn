@@ -40,9 +40,11 @@
 	<beans:bean class="controller.SellerController">
 		<beans:property name="sellerService" ref="sellerService"/>
 	</beans:bean>
-		<beans:bean class="controller.MainController">
+	<beans:bean class="controller.MainController">
 		<beans:property name="mainService" ref="mainService"/>
 	</beans:bean>
-	
+	<beans:bean class="controller.PurchaseController">
+		<beans:property name="purchaseService" ref="purchaseService"/>
+	</beans:bean>
 
 </beans:beans>

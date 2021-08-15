@@ -192,7 +192,7 @@ $(document).ready(function(){
 						<h2 class="price_h2">${talentvo.t_price}원</h2>
 					</div>
 					<div class="talent_detail_purchasebtn_container">
-						<button class="purchasebtn">구매하기</button>
+						<button class="purchasebtn" onclick="location.href='../purchase/purchaselist.do?t_idx=${param.t_idx}'">구매하기</button>
 					</div>
 				</div>
 				<div class="talent_detail_infomation">

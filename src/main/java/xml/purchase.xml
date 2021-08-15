@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="purchase">
+	<resultMap type="member" id="MemberResult">
+		<id property="m_idx" column="m_idx" />
+		<result column="m_name" property="m_name" />
+		<result column="m_id" property="m_id" />
+		<result column="m_addr" property="m_addr" />
+		<result column="m_detail_addr" property="m_detail_addr" />
+		<result column="m_email" property="m_email"/>
+	</resultMap>
+
+	<resultMap type="talent" id="TalentResult">
+		<id column="t_idx" property="t_idx" />
+		<result column="t_title" property="t_title" />
+		<result column="t_content" property="t_content" />
+		<result column="t_big_field" property="t_big_field" />
+		<result column="t_small_field" property="t_small_field" />
+		<result column="t_price" property="t_price" />
+		<result column="t_local" property="t_local" />
+		<result column="t_cat" property="t_cat" />
+		<result column="t_starscore" property="t_starscore" />
+		<result column="t_image" property="t_image" />
+		<result column="t_regdate" property="t_regdate" />
+	</resultMap>
+
+	<resultMap type="purchase" id="PurchaseResult">
+		<id column="p_idx" property="p_idx"/>
+		<result column="p_address" property="p_address"/>
+		<result column="p_email" property="p_email"/>
+		<result column="p_regdate" property="p_regdate"/>
+
+		<association property="member" column="m_idx"
+			resultMap="MemberResult">
+			<id property="m_idx" column="m_idx" />
+			<result column="m_name" property="m_name" />
+			<result column="m_id" property="m_id" />
+			<result column="m_addr" property="m_addr" />
+			<result column="m_detail_addr" property="m_detail_addr" />
+			<result column="m_email" property="m_email"/>
+		</association>
+		<association property="talent" column="t_idx"
+			resultMap="TalentResult">
+			<id column="t_idx" property="t_idx" />
+			<result column="t_title" property="t_title" />
+			<result column="t_content" property="t_content" />
+			<result column="t_big_field" property="t_big_field" />
+			<result column="t_small_field" property="t_small_field" />
+			<result column="t_price" property="t_price" />
+			<result column="t_local" property="t_local" />
+			<result column="t_cat" property="t_cat" />
+			<result column="t_starscore" property="t_starscore" />
+			<result column="t_image" property="t_image" />
+			<result column="t_regdate" property="t_regdate" />
+		</association>
+	</resultMap>
+
+<!-- 유저별 월별 구매목록 -->
+	<select id="purchase_monthly_select" parameterType="Map" resultMap="PurchaseResult">
+		select purchase.*,member.m_name,member.m_id,member.m_addr,member.m_detail_addr,member.m_email,
+			talent.t_title,talent.t_content,talent.t_big_field,talent.t__small_field,talent.t_price,talent.t_local,
+				talent.t_cat,talent.t_starscore,t_image,t_regdate from purchase 
+			left join member on purchase.m_idx=member.m_idx
+			left join talent on purchase.t_idx=talent.t_idx where purchase.m_idx=#{m_idx} 
+			<if test="month!=null">
+				and	purchase.p_regdate like CONCAT('%','-',#{month}+'-','%')
+			</if>
+			
+	</select>
+	
+<!-- 구매목록 등록 1(배송지가 있는 통한 등록)-->
+	<insert id="purchase_insert" parameterType="purchase">
+		insert into
+		<if test="p_email=null">
+			purchase(p_address,p_regdate,m_idx,t_idx)
+			values(#{p_address},curdate(),#{m_idx},#{t_idx})
+		</if> 
+		<if test="p_address=null">
+			purchase(p_email,p_regdate,m_idx,t_idx)
+			values(#{p_email},curdate(),#{m_idx},#{t_idx})
+		</if>
+	</insert>
+
+
+</mapper>
