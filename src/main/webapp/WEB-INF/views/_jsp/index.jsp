@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,21 +9,22 @@
 
 <!-- common -->
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/common.css">
+   href="${ pageContext.request.contextPath }/resources/css/common.css">
 
 <!-- this page -->
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/index.css">
+   href="${ pageContext.request.contextPath }/resources/css/index.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- image slider_bxslider -->
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+   href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
-	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+   src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
 <script>
+
 	$(document).ready(function() {
 		$('.bxslider').bxSlider({
 			auto : true,
@@ -39,18 +40,20 @@
 			touchEnabled : (navigator.maxTouchPoints > 0)
 		});
 	});
+
 </script>
 
 <style>
 .bx-wrapper {
-	border: 0;
-	background: #fbfbfb;
-	box-shadow: none;
+   border: 0;
+   background: #fbfbfb;
+   box-shadow: none;
 }
 </style>
 
 </head>
 <body>
+
 	<div class="back_color">
 		<div class="tp_layers">
 			<div class="tp_button_layout">
@@ -130,5 +133,6 @@
 			<%@ include file="bottom.jsp"%>
 		</div>
 	</div>
+
 </body>
 </html>

@@ -9,6 +9,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member order by m_idx 
 	</select>
 	
+   <!-- 조건별(페이징) 조회 -->
+   <select id="member_page_list" parameterType="Map" resultType="member">
+      select * from
+      (   
+      	select 
+      	m.*, 
+      	rank() over(order by m_idx desc) as no
+      	from (select * from member order by m_idx)m
+      )a
+      where no between #{ start } and #{ end } 
+
+   </select>
+	
 	<!-- m_idx에 해당되는 회원정보 1건 얻어오기 -->
 	<select id="member_one_m_idx" parameterType="int" resultType="member">
 		select * from member where m_idx=#{ m_idx }
@@ -47,5 +60,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						  m_regdate=now()
 		where m_idx=#{ m_idx }
 	</update>
+	
+   <!-- 전체 멤버 명수 -->
+   <select id="member_row_total" resultType="int">
+      select ifnull(count(*),0) from member
+   </select>
 
 </mapper>

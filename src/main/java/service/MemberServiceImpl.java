@@ -4,17 +4,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.MemberDao;
+import mycommon.MyConstant;
+import util.Paging;
 import vo.MemberVo;
+import vo.ReviewVo;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberDao;
 
+	@Autowired
+	HttpSession session;
+	
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
@@ -79,5 +87,31 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.delete(m_idx);
 	}
+
+	@Override
+	public Map getPagingMemberList(int nowPage) {
+		// TODO Auto-generated method stub
+		int start = (nowPage - 1) * MyConstant.Member.BLOCK_LIST + 1;
+		int end = start + MyConstant.Member.BLOCK_LIST - 1;
+		
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+
+		List<ReviewVo> list = memberDao.selectList(map);
+
+        int row_total = memberDao.selectRowTatal();
+      
+        String pageMenu = Paging.getMemberPaging(nowPage, row_total, 
+                                        MyConstant.Member.BLOCK_LIST, 
+                                        MyConstant.Member.BLOCK_PAGE);
+       
+	    Map resultMap = new HashMap();
+	    resultMap.put("list", list);
+	    if(row_total>0){
+		    resultMap.put("pageMenu", pageMenu);
+		    }
+	    return resultMap;
+}
 
 }

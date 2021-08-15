@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.MemberService;
@@ -36,11 +36,12 @@ public class MemberController {
 
 	@RequestMapping("list.do")
 	
-	public String member_list(Model model){
+	public String member_list(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage,
+			                 Model model){
 		
-		List<MemberVo> list = memberService.getMemberList();
+		Map map = memberService.getPagingMemberList(nowPage);
 		
-		model.addAttribute("list", list);
+		model.addAttribute("map", map);
 		
 		return "_jsp/member/member_list";
 	}

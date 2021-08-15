@@ -320,8 +320,8 @@ var search_text2;
 
 
 			<!-- Page메뉴 넣기 -->
-			<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }
-
+			<div style="text-align: center; font-size: 12pt;">
+				${ map.pageMenu }
 			</div>
 
 
