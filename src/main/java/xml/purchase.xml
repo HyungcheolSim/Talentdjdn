@@ -9,7 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="m_id" property="m_id" />
 		<result column="m_addr" property="m_addr" />
 		<result column="m_detail_addr" property="m_detail_addr" />
-		<result column="m_email" property="m_email"/>
+		<result column="m_email" property="m_email" />
+	</resultMap>
+
+	<resultMap type="seller" id="SellerResult">
+		<id property="s_idx" column="s_idx" />
+		<result column="s_id" property="s_id" />
 	</resultMap>
 
 	<resultMap type="talent" id="TalentResult">
@@ -24,13 +29,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="t_starscore" property="t_starscore" />
 		<result column="t_image" property="t_image" />
 		<result column="t_regdate" property="t_regdate" />
+		<association property="seller" column="s_idx"
+			resultMap="SellerResult">
+			<id property="s_idx" column="s_idx" />
+			<result property="s_id" column="s_id" />
+		</association>
 	</resultMap>
 
 	<resultMap type="purchase" id="PurchaseResult">
-		<id column="p_idx" property="p_idx"/>
-		<result column="p_address" property="p_address"/>
-		<result column="p_email" property="p_email"/>
-		<result column="p_regdate" property="p_regdate"/>
+		<id column="p_idx" property="p_idx" />
+		<result column="p_address" property="p_address" />
+		<result column="p_email" property="p_email" />
+		<result column="p_regdate" property="p_regdate" />
 
 		<association property="member" column="m_idx"
 			resultMap="MemberResult">
@@ -39,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="m_id" property="m_id" />
 			<result column="m_addr" property="m_addr" />
 			<result column="m_detail_addr" property="m_detail_addr" />
-			<result column="m_email" property="m_email"/>
+			<result column="m_email" property="m_email" />
 		</association>
 		<association property="talent" column="t_idx"
 			resultMap="TalentResult">
@@ -54,34 +64,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="t_starscore" property="t_starscore" />
 			<result column="t_image" property="t_image" />
 			<result column="t_regdate" property="t_regdate" />
+			<association property="seller" column="s_idx"
+				resultMap="SellerResult">
+				<id property="s_idx" column="s_idx" />
+				<result property="s_id" column="s_id" />
+			</association>
 		</association>
 	</resultMap>
 
-<!-- 유저별 월별 구매목록 -->
-	<select id="purchase_monthly_select" parameterType="Map" resultMap="PurchaseResult">
-		select purchase.*,member.m_name,member.m_id,member.m_addr,member.m_detail_addr,member.m_email,
-			talent.t_title,talent.t_content,talent.t_big_field,talent.t__small_field,talent.t_price,talent.t_local,
-				talent.t_cat,talent.t_starscore,t_image,t_regdate from purchase 
-			left join member on purchase.m_idx=member.m_idx
-			left join talent on purchase.t_idx=talent.t_idx where purchase.m_idx=#{m_idx} 
-			<if test="month!=null">
-				and	purchase.p_regdate like CONCAT('%','-',#{month}+'-','%')
-			</if>
-			
+	<!-- 유저별 월별 구매목록 -->
+	<select id="purchase_monthly_select" parameterType="Map"
+		resultMap="PurchaseResult">
+		select b.* from
+		(
+		select
+		
+		rank() over(order by p_idx desc) as no,c.*
+		from
+		(select
+		purchase.*,member.m_name,member.m_id,member.m_addr,member.m_detail_addr,member.m_email,
+		T.t_title,T.t_content,T.t_big_field,T.t_small_field,T.t_price,T.t_local,
+		T.t_cat,T.t_starscore,T.t_image,T.t_regdate,T.s_idx, T.s_id from
+		purchase
+		left join member on purchase.m_idx=member.m_idx
+		left join
+		(select talent.* ,seller.s_id from talent left join seller on
+		talent.s_idx=seller.s_idx)T on
+		purchase.t_idx=T.t_idx)c
+		where c.m_idx=#{m_idx}		
+		)b
+
+		where
+		b.m_idx=#{m_idx}
+<!-- 		<if test="month!=null">
+			and b.p_regdate like
+			CONCAT('%','-',#{month},'-','%')
+		</if> -->
+		and no between #{ start } and #{ end }
 	</select>
-	
-<!-- 구매목록 등록 1(배송지가 있는 통한 등록)-->
+
+	<!-- 구매목록 등록 1(배송지가 있는 통한 등록) -->
 	<insert id="purchase_insert" parameterType="purchase">
 		insert into
-		<if test="p_email=null">
+		<if test="p_address!=null">
 			purchase(p_address,p_regdate,m_idx,t_idx)
 			values(#{p_address},curdate(),#{m_idx},#{t_idx})
-		</if> 
-		<if test="p_address=null">
+		</if>
+		<if test="p_email!=null">
 			purchase(p_email,p_regdate,m_idx,t_idx)
 			values(#{p_email},curdate(),#{m_idx},#{t_idx})
 		</if>
 	</insert>
-
+	<select id="purchase_row_total" resultType="int" parameterType="int">
+		select
+		ifnull(count(*),0)
+		from purchase where m_idx=#{m_idx}
+	</select>
 
 </mapper>

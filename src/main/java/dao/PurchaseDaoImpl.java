@@ -28,6 +28,11 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("purchase.purchase_insert",vo);
 	}
+	@Override
+	public int selectRowTotal(int m_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("purchase.purchase_row_total",m_idx);
+	}
 
 	
 

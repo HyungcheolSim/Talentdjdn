@@ -24,21 +24,23 @@
    src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
 <script>
-   $(document).ready(function() {
-      $('.bxslider').bxSlider({
-         auto : true,
-         autoHover : true,
-         speed : 500,
-         pause : 3000,
-         randomStart : true,
-         minSlides : 4,
-         maxSlides : 4,
-         caption : false,
-         slideWidth : 900,
-         slideMargin : 10,
-         touchEnabled : (navigator.maxTouchPoints > 0)
-      });
-   });
+
+	$(document).ready(function() {
+		$('.bxslider').bxSlider({
+			auto : true,
+			autoHover : true,
+			speed : 500,
+			pause : 3000,
+			randomStart : true,
+			minSlides : 4,
+			maxSlides : 4,
+			caption : false,
+			slideWidth : 900,
+			slideMargin : 10,
+			touchEnabled : (navigator.maxTouchPoints > 0)
+		});
+	});
+
 </script>
 
 <style>
@@ -51,88 +53,86 @@
 
 </head>
 <body>
-   <div class="back_color">
-      <div class="tp_layers">
-         <div class="tp_button_layout">
-            <%@ include file="top_button.jsp"%>
-         </div>
-      </div>
-   </div>
-   <div class="tp_layer">
-      <div class="tp_search_layout">
-         <%@ include file="top_main.jsp"%>
-      </div>
-   </div>
-   <div class="tp_layer_main">
-      <div class="tp_index_layout">
+
+	<div class="back_color">
+		<div class="tp_layers">
+			<div class="tp_button_layout">
+				<%@ include file="top_button.jsp"%>
+			</div>
+		</div>
+	</div>
+	<div class="tp_layer">
+		<div class="tp_search_layout">
+			<%@ include file="top_main.jsp"%>
+		</div>
+	</div>
+	<div class="tp_layer_main">
+		<div class="tp_index_layout">
 
 
-         <div id="text_box">
-            <b>재능마켓 인기서비스</b>
-         </div>
-         <div id="tt">
-            <ul class="bxslider">
-               <c:forEach var="talent" items="${ map.t_list }">
-                  
-                  <li id="pic1">
-                  <a href="../talent/talentdetail.do?t_idx=${talent.t_idx }">
-                  <img class="index_image"
-                     src="../seller/displayFile?fileName=${talent.t_image}&directory=talent"></a>
-                     <div class="c_title">
-                        <span class="c_name">${ talent.t_title }</span> 
-                        <span class="c_star">${ talent.t_starscore }</span>
-                     </div></li>
-                  
-               </c:forEach>
-            </ul>
-         </div>
+			<div id="text_box">
+				<b>재능마켓 인기서비스</b>
+			</div>
+			<div id="tt">
+				<ul class="bxslider">
+					<c:forEach var="talent" items="${ map.t_list }">
+						
+						<li id="pic1">
+						<a href="../talent/talentdetail.do?t_idx=${talent.t_idx }">
+						<img class="index_image"
+							src="../seller/displayFile?fileName=${talent.t_image}&directory=talent"></a>
+							<div class="c_title">
+								<span class="c_name">${ talent.t_title }</span> 
+								<span class="c_star">${ talent.t_starscore }</span>
+							</div></li>
+						
+					</c:forEach>
+				</ul>
+			</div>
 
-         <div id="text_box">
-            <b>재능마켓 인기상품</b>
-         </div>
-         <div>
-            <ul class="bxslider">
-               <c:forEach var="product" items="${ map.t_list }">
-               
-                  <li id="pic1">
-                  <a href="../talent/talentdetail.do?t_idx=${product.t_idx }">
-                  <img class="index_image"
-                     src="../seller/displayFile?fileName=${product.t_image}&directory=talent"></a>
-                     <div class="c_title">
-                        <span class="c_name">${ product.t_title }</span> <span
-                           class="c_star">${ product.t_starscore }</span>
-                     </div></li>
+			<div id="text_box">
+				<b>재능마켓 인기상품</b>
+			</div>
+			<div>
+				<ul class="bxslider">
+					<c:forEach var="product" items="${ map.p_list }">
+					
+						<li id="pic1"><img class="index_image"
+							src="../seller/displayFile?fileName=${product.t_image}&directory=talent">
+							<div class="c_title">
+								<span class="c_name">${ product.t_title }</span> <span
+									class="c_star">${ product.t_starscore }</span>
+							</div></li>
 
-               </c:forEach>
-            </ul>
-         </div>
+					</c:forEach>
+				</ul>
+			</div>
 
-         <div id="text_box">
-            <b>재능마켓 인기고수</b>
-         </div>
-         <div>
-            <ul class="bxslider">
-               <c:forEach var="seller" items="${ map.s_list }">
+			<div id="text_box">
+				<b>재능마켓 인기고수</b>
+			</div>
+			<div>
+				<ul class="bxslider">
+					<c:forEach var="seller" items="${ map.s_list }">
 
-                  <li id="pic1">
-                   <a href="../seller/view.do?s_idx=${seller.s_idx }">
-                  <img class="index_image"
-                     src="../seller/displayFile?fileName=${seller.s_potfolio}&directory=seller"></a>
-                     <div class="c_title">
-                        <span class="c_name">${ seller.s_id }</span> <span
-                           class="c_star">${ seller.s_tcount }</span>
-                     </div></li>
+						<li id="pic1"><img class="index_image"
+							src="displayFile?fileName=${seller.s_potfolio}&directory=seller">
+							<div class="c_title">
+								<span class="c_name">${ seller.s_id }</span> <span
+									class="c_star">${ seller.s_tcount }</span>
+							</div></li>
 
-               </c:forEach>
-            </ul>
-         </div>
+					</c:forEach>
+				</ul>
+			</div>
 
-      </div>
-   </div>
-   <div class="tp_layers">
-      <div class="tp_bottom_layout">
-         <%@ include file="bottom.jsp"%>
-      </div>
-   </div>
+		</div>
+	</div>
+	<div class="tp_layers">
+		<div class="tp_bottom_layout">
+			<%@ include file="bottom.jsp"%>
+		</div>
+	</div>
+
 </body>
 </html>

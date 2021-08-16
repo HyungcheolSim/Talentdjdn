@@ -48,54 +48,41 @@
 		});
 	});
 
-/* 	function new_addr() {
-
-		document.getElementById('newaddr').style.display = 'block'
-		//document.getElementById('addr').style.display='none'
-	}
-
-	function new_email() {
-		document.getElementById('newemail').style.display = 'block'
-		// document.getElementById('email').style.display='none'
-	} */
-
 	function send(f) {
-
-		//var addr = f.newaddr.value.trim();
-
-		var email = f.newemail.value.trim();
-		console.log(addr);
-		alert(addr);
-		console.log(email);
-		alert(email);
-		//var newaddr=f.newaddr.value.trim();
-
-		//var newemail=f.newemail.value.trim();
-		//var email=document.getElementById('email').innerHTML;
-
-		/*  var addr;
-		if(f.newaddr.value.trim()=='')
-				addr= $('#addr').text();
-		else{
-		   addr=f.newaddr.value.trim();
-		}
-		var email;
-		if(f.newemail.value.trim()=='')
-				email= $('#email').text();
-		else{
-		   email=f.newaddr.value.trim();
-		} */
-		var t_idx = "${ param.t_idx }";
-
-		/* 	   if(addr=='' && email==''){
-		 alert('주소또는 이메일을 입력하세요!!')
-		 f.addr.value = '';
-		 f.addr.focus();
+		if ("${ map.tv.t_cat eq '상품' }" == "true"){
+			var p_addr = f.p_address.value.trim();
 		
-		 return;
-		 } */
+			if(p_addr==''){
+				 alert('주소를 입력하세요!!')
+				 f.p_addr.value = '';
+				 f.p_addr.focus();
+				
+				 return;
+				 }
+		}else{
+			var p_email = f.p_email.value.trim();
+			
+			if(p_email==''){
+				 alert('이메일을 입력하세요!!')
+				 f.p_email.value = '';
+				 f.p_email.focus();
+				
+				 return;
+				 }
 
-		f.action ="insert.do";
+		}
+		
+		var pay = f.pay.value;
+		if(pay==''){
+			 alert('결제수단을 선택하세요!!')
+			 f.pay.value = '';
+			 f.pay.focus();
+			
+			 return;
+			 }
+
+
+		f.action = "insert.do";
 		f.submit();
 	}
 </script>
@@ -159,6 +146,8 @@
 				</table>
 
 				<form>
+					<input type="hidden" name="m_idx" value="${ map.mv.m_idx }">
+					<input type="hidden" name="t_idx" value="${ map.tv.t_idx }">
 					<table id="table_id" class="table">
 						<tr>
 							<th>배송지정보</th>
@@ -171,15 +160,14 @@
 						</tr>
 						<tr>
 							<td><c:if test="${ map.tv.t_cat eq '상품' }">
-            주소 : <%-- <span id="addr">${map.mv.m_addr } ${map.mv.m_detail_addr }</span> --%>
-									<input id="newaddr" name="newaddr" size="60" type="text"
+            				주소 : 
+									<input id="p_address" name="p_address" size="60" type="text"
 										value="${map.mv.m_addr } ${map.mv.m_detail_addr }" />
-									<!-- <input class="btn btn-warning" type="button" value="정보수정" onclick="new_addr();"> -->
-								</c:if> <c:if test="${ map.tv.t_cat eq '재능' }">
-            이메일 :<%--  <span id="email">${map.mv.m_email }</span> --%>
-									<input id="newemail" name="newemail" size="30" type="text"
+								</c:if> 
+								<c:if test="${ map.tv.t_cat eq '재능' }">
+            				이메일 :
+									<input id="p_email" name="p_email" size="30" type="text"
 										value="${map.mv.m_email }">
-									<!-- <input class="btn btn-warning" type="button" value="정보수정" onclick="new_email();"> -->
 								</c:if></td>
 						</tr>
 						<tr>

@@ -268,7 +268,14 @@ var search_text2;
 
 			<div id="click_box">
 				<div class="loc_cate1">
+				<c:if test="${map.s_count >= 1 }">
+					
 					<b>${ map.s_count }명의 고수</b>
+				</c:if>
+				<c:if test="${empty map.s_count}">
+					<h1>해당하는 고수가 없습니다.</h1>
+				</c:if>
+					
 				</div>
 				<div class="loc_cate_null"></div>
 			</div>
@@ -281,6 +288,7 @@ var search_text2;
 								<td rowspan='5' class="sub_text"><img class="select_p_img"
 									alt=""
 									src="displayFile?fileName=${vo.s_potfolio}&directory=seller"></td>
+									
 								<td class="sub_text1">${ vo.s_id }</td>
 								<td class="sub_text1">${ vo.s_msg }</td>
 								<td class="sub_text1">${ vo.s_field }</td>
