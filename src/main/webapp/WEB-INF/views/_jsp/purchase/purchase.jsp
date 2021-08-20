@@ -84,6 +84,8 @@
 
 		f.action = "insert.do";
 		f.submit();
+		
+		
 	}
 </script>
 
@@ -132,17 +134,6 @@
 						<td class="sub_text2">${map.tv.t_price}</td>
 						<td class="sub_text2">${map.tv.seller.s_id}</td>
 					</tr>
-
-
-					<!--                <tr>
-                  <td colspan="4">
-                     <input id= "select_btn" class="btn btn-default" type="button" value="선택상품 삭제">
-                     <input id= "select_btn" class="btn btn-warning" type="button" value="주문하기">
-                  </td>
-               </tr> -->
-					<!-- <tr>
-                  <td class="total_sum" colspan="2">총 합계금액: 30,000원</td>
-               </tr> -->
 				</table>
 
 				<form>

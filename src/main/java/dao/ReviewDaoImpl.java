@@ -1,10 +1,12 @@
 	package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import vo.ReviewVo;
+
 
 public class ReviewDaoImpl implements ReviewDao {
 
@@ -40,13 +42,31 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int delete(int r_idx) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("review.review_delete",r_idx);
 	}
 
 	@Override
 	public int update(ReviewVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("review.review_update",vo);
+	}
+
+	@Override
+	public List<ReviewVo> selectList(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("review.review_list_condition",map);
+	}
+
+	@Override
+	public int selectRowTotal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("review.review_row_total");
+	}
+
+	@Override
+	public int selectRowTotal(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("review.review_condition_row_total",map);
 	}
 
 }

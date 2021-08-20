@@ -11,4 +11,6 @@ public interface ReviewService {
 
 	List<ReviewVo> getReviewsOne(int t_idx);
 
+	Map getPagingReviewList(int t_idx, int nowPage, String search, String search_text);
+
 }
