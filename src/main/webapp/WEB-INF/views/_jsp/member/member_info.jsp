@@ -86,6 +86,8 @@
                                      onclick="modify_form('${ vo.m_idx }')">
                               <input class="btn btn-warning" type="button" value="메인화면" 
                                                    onclick="location.href='../main/index.do'">
+                              <input class="btn btn-warning" type="button" value="구매목록" 
+                                                   onclick="location.href='../purchase/list.do'">
                            </td>
                         </tr>
                      </table>

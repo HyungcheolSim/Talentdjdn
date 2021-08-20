@@ -106,12 +106,14 @@ function add_review() {
 }// end add_review
 
 
-function review_list() {
+function review_list() {                                    
 	
 	//Ajax로 요청
 	$.ajax({
 		url  : "../review/list.do",
-		data : { 't_idx' : '${ param.t_idx }'},
+		data : { 't_idx' : '${ param.t_idx }'
+				
+		},
 		success  : function(result_data){
 			//수신된 결과 데이터(댓글목록) disp에 출력
 			$("#disp").html(result_data);
@@ -173,18 +175,19 @@ $(document).ready(function(){
 			</div>
 			<div class="talent_detail_content">
 				<div class="talent_detail_title_container">
-					<c:if test="${ (talentvo.seller.s_id eq user.m_id) or (user.m_grade eq '관리자') }">
-							<td class="sub_text2">
-								<input id= "select_btn" class="btn btn-warning" type="button" value="정보수정" onclick="modify_form('${ talentvo.t_idx }');">
-							</td>
-						</c:if>
-						<c:if test="${ (talentvo.seller.s_id eq user.m_id) or (user.m_grade eq '관리자') }">
-							<td class="sub_text2">
-								<input type="button" id="delete_btn" class="btn btn-warning"
-							value="삭제" onclick="del_talent('${ talentvo.t_idx }');">
-							</td>
-						</c:if>
-				
+					<c:if
+						test="${ (talentvo.seller.s_id eq user.m_id) or (user.m_grade eq '관리자') }">
+						<td class="sub_text2"><input id="select_btn"
+							class="btn btn-warning" type="button" value="정보수정"
+							onclick="modify_form('${ talentvo.t_idx }');"></td>
+					</c:if>
+					<c:if
+						test="${ (talentvo.seller.s_id eq user.m_id) or (user.m_grade eq '관리자') }">
+						<td class="sub_text2"><input type="button" id="delete_btn"
+							class="btn btn-warning" value="삭제"
+							onclick="del_talent('${ talentvo.t_idx }');"></td>
+					</c:if>
+
 					<h2 id="talent_detail_title">${talentvo.t_title}</h2>
 				</div>
 				<div class="talent_detail_price_purchasebtn_container">
@@ -192,7 +195,8 @@ $(document).ready(function(){
 						<h2 class="price_h2">${talentvo.t_price}원</h2>
 					</div>
 					<div class="talent_detail_purchasebtn_container">
-						<button class="purchasebtn" onclick="location.href='../purchase/purchaselist.do?t_idx=${param.t_idx}'">구매하기</button>
+						<button class="purchasebtn"
+							onclick="location.href='../purchase/purchaselist.do?t_idx=${param.t_idx}'">구매하기</button>
 					</div>
 				</div>
 				<div class="talent_detail_infomation">
@@ -265,7 +269,7 @@ $(document).ready(function(){
 				</div>
 				<div class="talent_detail_review_list_container">
 					<div id="disp"></div>
-
+					
 				</div>
 
 			</div>

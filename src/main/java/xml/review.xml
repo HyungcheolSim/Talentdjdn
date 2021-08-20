@@ -58,7 +58,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			left join member on review.m_idx=member.m_idx
 			left join talent on review.t_idx=talent.t_idx
 	</select>
+	
+	<select id="review_list_condition" parameterType="Map" resultMap="ReviewResult">
 
+		 select b.* from 
+		 (
+			select
+				a.*,
+			    rank() over(order by r_idx desc) as no
+		    from 
+		    
+		    (
+		    	select review.*,talent.t_title,member.m_id,member.m_name from review 
+			left join member on review.m_idx=member.m_idx
+			left join talent on review.t_idx=talent.t_idx
+				where review.t_idx=#{t_idx}
+			    <trim prefixOverrides="or"> 			
+					<if test="name!=null">
+						r_content like CONCAT('%',#{name},'%')
+					</if>
+					<if test="star!=null">
+						r_star >=#{star}
+					</if>
+				</trim>
+
+		    ) a 
+		 ) b
+		 where no between #{ start } and #{ end }
+	</select>
+
+	
+	
+	<!-- 검색조건별 게시물수 구하기-->
+	<select id="review_condition_row_total" parameterType="Map" resultType="int">
+		select ifnull(count(*),0) from review
+			where t_idx=#{t_idx}
+			    <trim prefixOverrides="or"> 			
+					<if test="name!=null">
+						r_content like CONCAT('%',#{name},'%')
+					</if>
+					<if test="star!=null">
+						r_star >=#{star}
+					</if>
+				</trim>
+	</select>
+	
+	
+	<!-- 전체게시물수 구하기-->
+	<select id="review_row_total" parameterType="int" resultType="int">
+		select 
+			ifnull(count(*),0)
+		from review where t_idx=#{t_idx} 
+	</select>
+	
 	<!-- r_idxx에 해당되는 회원정보 1건 얻어오기 -->
 	<select id="review_one" parameterType="int" resultMap="ReviewResult">
 		select review.*,talent.t_title,member.m_id,member.m_name from review 

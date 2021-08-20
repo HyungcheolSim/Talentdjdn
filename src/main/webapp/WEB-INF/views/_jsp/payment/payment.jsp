@@ -29,9 +29,9 @@
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/payment.css">
 <script>
-$(document).ready(function(){
-	alert('${ map.list}');
-});
+	$(document).ready(function() {
+		
+	});
 </script>
 </head>
 <body>
@@ -77,9 +77,9 @@ $(document).ready(function(){
 					<tr id="select_menu1" class="warning">
 						<th class="sub_text30"><input id="cb1" type="checkbox">상품정보</th>
 						<th class="sub_text3">배송지/이메일</th>
-						<th class="sub_text2">금액</th>
-						<th class="sub_text2">판매자</th>
-						<th class="sub_text2">구매일</th>
+						<th class="sub_text3">금액</th>
+						<th class="sub_text3">판매자</th>
+						<th class="sub_text3">구매일</th>
 					</tr>
 					<c:forEach var="vo" items="${ map.list }">
 						<tr>
@@ -101,12 +101,13 @@ $(document).ready(function(){
 							<td colspan="4"><input id="select_btn"
 								class="btn btn-default" type="button" value="선택구매기록 삭제"></td>
 						</tr>
-						<tr>
-							<td class="total_sum" colspan="2">총 구매금액: 30,000원</td>
-						</tr>
+
+
 					</c:forEach>
 				</table>
-
+				<tr>
+					<td class="total_sum" colspan="2">총 구매금액: ${ map.totalPrice}원</td>
+				</tr>
 			</div>
 			<!-- Page메뉴 넣기 -->
 			<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }

@@ -47,6 +47,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public int insertPurchase(PurchaseVo vo) throws Exception {
 		// TODO Auto-generated method stub
 		
+		//구매목록 추가시  상품일 경우 상품 삭제
+		int t_idx=vo.getT_idx();
+		TalentVo tv= talentDao.selectOne(t_idx);
+		if(tv.getT_cat().equals("상품")) {
+			talentDao.delete(t_idx);
+		}
 		return purchaseDao.insert(vo);
 	}
 
@@ -73,6 +79,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 		if(rowTotal>0) {
 			resultMap.put("pageMenu", pageMenu);
 			resultMap.put("s_count", rowTotal);
+			int sum=0;
+			for(int i=0;i<rowTotal;i++) {
+				
+				sum+=list.get(i).getTalent().getT_price();
+			}
+			resultMap.put("totalPrice", sum);
 		}
 		return resultMap;
 	}
