@@ -24,4 +24,6 @@ public interface MemberService {
 
 	Map getPagingMemberList(int nowPage);
 
+	public List getSellerList(int m_idx);
+
 }

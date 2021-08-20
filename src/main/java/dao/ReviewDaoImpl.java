@@ -64,9 +64,9 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int selectRowTotal(Map map) {
+	public int selectRowTotal(int t_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("review.review_condition_row_total",map);
+		return sqlSession.selectOne("review.review_condition_row_total",t_idx);
 	}
 
 }

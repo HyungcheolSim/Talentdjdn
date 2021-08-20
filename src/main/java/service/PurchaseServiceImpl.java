@@ -80,7 +80,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 			resultMap.put("pageMenu", pageMenu);
 			resultMap.put("s_count", rowTotal);
 			int sum=0;
-			for(int i=0;i<rowTotal;i++) {
+			for(int i=0;i<list.size();i++) {
 				
 				sum+=list.get(i).getTalent().getT_price();
 			}

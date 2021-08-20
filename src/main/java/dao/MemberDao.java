@@ -31,4 +31,7 @@ public interface MemberDao {
 
 
 	public int selectRowTatal();
+
+
+	public List selectSellerList(int m_idx);
 }

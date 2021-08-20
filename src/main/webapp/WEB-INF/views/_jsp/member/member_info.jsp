@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +17,7 @@
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 
 <!-- this page -->
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/join_page.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/member_info.css">
 
 <script type="text/javascript">
 
@@ -38,7 +40,7 @@
    <div class="tp_layer">
       <div class="tp_main_layout">
       
-         <div id="join_box">
+         <div id="member_box">
             <form>
                <div class="panel panel-warning">
                   <div class="panel-heading">회원정보</div>
@@ -95,9 +97,27 @@
                </div>
             </form>
          </div>
-      
-         
-      </div>
+
+			
+			<div id="seller_box" >
+				<div class="panel panel-warning">
+					<div class="panel-heading">판매정보</div>
+					<div class="panel-body">
+						<table>
+							<tr>
+								<c:forEach var="seller" items="${ list }" >
+									<td>
+										${ seller.s_msg }
+									</td>
+								</c:forEach>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+
+		</div>
    </div>
    
    <div class="tp_layers">

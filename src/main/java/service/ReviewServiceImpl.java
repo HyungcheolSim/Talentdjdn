@@ -52,36 +52,33 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Map getPagingReviewList(int t_idx, int nowPage, String search, String search_text) {
-		int start = (nowPage - 1) * MyConstant.Board.BLOCK_LIST + 1;
-		int end = start + MyConstant.Board.BLOCK_LIST - 1;
+	public Map getPagingReviewList(int t_idx,int nowPage) {
+		// TODO Auto-generated method stub
+		int start = (nowPage - 1) * MyConstant.Member.BLOCK_LIST + 1;
+		int end = start + MyConstant.Member.BLOCK_LIST - 1;
 
 		Map map = new HashMap();
-		map.put("t_idx",t_idx);
+		map.put("t_idx", t_idx);
 		map.put("start", start);
 		map.put("end", end);
 
-		if (search.equals("name")) {
-			map.put("name", search_text);
-		} else if (search.equals("star")) {
-			map.put("star", search_text);
-		}
 		List<ReviewVo> reviewlist = reviewDao.selectList(map);
-
-		int rowTotal = reviewDao.selectRowTotal(map);
-
-		String search_filter = String.format("&search=%s&search_text=%s", search, search_text);
-
-		String pageMenu = Paging.getPaging("list.do", nowPage, rowTotal, search_filter,
-				MyConstant.Board.BLOCK_LIST, MyConstant.Board.BLOCK_PAGE);
-
+		
+		 //c_idx�� �޸� ������ ����
+	      int row_total = reviewDao.selectRowTotal(t_idx);
+	      
+	      String pageMenu = Paging.getMemberPaging(nowPage, row_total, 
+	                                      MyConstant.Member.BLOCK_LIST, 
+	                                      MyConstant.Member.BLOCK_PAGE);
+	      
 		Map resultMap = new HashMap();
 		resultMap.put("reviewlist", reviewlist);
-		if (rowTotal > 0) {
+		if(row_total>0){
 			resultMap.put("pageMenu", pageMenu);
-		}
-
+			}
 		return resultMap;
-	}
+
+}
+
 
 }
