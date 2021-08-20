@@ -96,10 +96,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		where
 		b.m_idx=#{m_idx}
-<!-- 		<if test="month!=null">
+ 		<if test="month!=null">
 			and b.p_regdate like
-			CONCAT('%','-',#{month},'-','%')
-		</if> -->
+			CONCAT(#{month},'-','%')
+		</if> 
 		and no between #{ start } and #{ end }
 	</select>
 

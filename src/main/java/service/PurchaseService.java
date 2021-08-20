@@ -10,5 +10,5 @@ public interface PurchaseService {
 	
 	public Map getPaymentList(int m_idx,int t_idx);
 
-	public Map getPurchaseList(int m_idx, int nowPage, Integer month);
+	public Map getPurchaseList(int m_idx, int nowPage, String month);
 }
