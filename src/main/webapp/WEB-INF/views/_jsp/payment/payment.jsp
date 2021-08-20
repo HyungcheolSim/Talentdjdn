@@ -7,10 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-<!-- jquery -->
-<script src="../resource/js/jquery-3.6.0.min.js"></script>
-
 <!-- bootstrap -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -18,7 +14,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<!-- jquery UI -->
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script
+	src="${ pageContext.request.contextPath }/resources/js/jquery.mtz.monthpicker.js"></script>
 <!-- common -->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/common.css">
@@ -29,9 +31,52 @@
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/payment.css">
 <script>
-	$(document).ready(function() {
-		
-	});
+	$(document).ready(
+			function() {
+				var options = {
+					pattern : 'yyyy-mm',
+					selectedYear : 2021,
+					startYear : 1990,
+					finalYear : 2022,
+					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+							'8월', '9월', '10월', '11월', '12월' ],
+					openOnFocus : true,
+					disableMonths : []
+				};
+				$("#monthPicker").monthpicker(options);
+			}
+			$(".cbx_chkAll").click(function() {
+				if ($(".cbx_chkAll").is(":checked"))
+					$("input[name=chk]").prop("checked", true);
+				else
+					$("input[name=chk]").prop("checked", false);
+			});
+
+			$("input[name=chk]").click(function() {
+				var total = $("input[name=chk]").length;
+				var checked = $("input[name=chk]:checked").length;
+
+				if (total != checked)
+					$(".cbx_chkAll").prop("checked", false);
+				else
+					$(".cbx_chkAll").prop("checked", true);
+			});		
+	);
+	function find() {
+		month = $("#monthPicker").val();
+
+		if (month == '') {
+			location.href = "list.do";
+			
+		}
+		if (month != '') {
+			location.href = "list.do?month="
+					+ encodeURIComponent(month, "utf-8");
+			
+		}
+
+
+	}//end-find
 </script>
 </head>
 <body>
@@ -65,6 +110,11 @@
 				</div>
 			</div>
 			<div id="select_box">
+				<div>
+					<h2>monthPicker</h2>
+					<input type="text" id="monthPicker" name="monthPicker" style=""
+						onchange="find();" />
+				</div>
 				<c:if test="${ empty map.list }">
 					<tr>
 						<td colspan="5">

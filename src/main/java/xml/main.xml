@@ -7,18 +7,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="main_tlist" resultType="talent">
 		select * from talent
 		where t_cat = "재능"
-		order by t_starscore desc
+		order by t_starscore desc limit 12
 	</select>
 
 	<select id="main_plist" resultType="talent">
 		select * from talent
 		where t_cat = "상품"
-		order by t_starscore desc
+		order by t_starscore desc limit 12
 	</select>
 	
 	<select id="main_slist" resultType="seller">
 		select * from seller
-		order by s_tcount desc
+		order by s_tcount desc limit 12
 	</select>
 
 </mapper>

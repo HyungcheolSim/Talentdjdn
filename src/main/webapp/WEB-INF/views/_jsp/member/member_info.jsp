@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 
 <!-- this page -->
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/join_page.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/member_info.css">
 
 <script type="text/javascript">
 

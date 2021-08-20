@@ -39,7 +39,7 @@ public class PurchaseController {
 	}
 
 	@RequestMapping("list.do")
-	public String list(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage,@RequestParam(value = "month", required = false) Integer month,Model model) {
+	public String list(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage,@RequestParam(value = "month", required = false) String month,Model model) {
 		MemberVo user = (MemberVo) session.getAttribute("user");
 
 		if (user == null) {
@@ -49,7 +49,7 @@ public class PurchaseController {
 			return "redirect:../member/login_form.do";
 		}
 		int m_idx=user.getM_idx();
-		Map map =purchaseService.getPurchaseList(nowPage,m_idx, month);
+		Map map =purchaseService.getPurchaseList(m_idx,nowPage, month);
 		model.addAttribute("map",map);
 		return "_jsp/payment/payment";
 		
