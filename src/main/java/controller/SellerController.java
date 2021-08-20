@@ -195,7 +195,7 @@ public class SellerController {
 		}
 		else if(directory.equals("talent")) {
 			inputDirectory = "img/talent";
-		}else {
+		}else if(directory.equals("product")){
 			inputDirectory = "img/product";
 		}
 

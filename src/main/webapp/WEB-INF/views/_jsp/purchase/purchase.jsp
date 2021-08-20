@@ -30,22 +30,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".cbx_chkAll").click(function() {
-			if ($(".cbx_chkAll").is(":checked"))
-				$("input[name=chk]").prop("checked", true);
-			else
-				$("input[name=chk]").prop("checked", false);
-		});
-
-		$("input[name=chk]").click(function() {
-			var total = $("input[name=chk]").length;
-			var checked = $("input[name=chk]:checked").length;
-
-			if (total != checked)
-				$(".cbx_chkAll").prop("checked", false);
-			else
-				$(".cbx_chkAll").prop("checked", true);
-		});
 	});
 
 	function send(f) {
@@ -119,16 +103,14 @@
 			<div id="select_box">
 				<table id="select_sub_box" class="table">
 					<tr id="select_menu1" class="warning">
-						<th class="sub_text"><input id="cb1" class="cbx_chkAll"
-							type="checkbox">상품정보</th>
+						<th class="sub_text">상품정보</th>
 						<th class="sub_text1">내용</th>
 						<th class="sub_text2">금액</th>
 						<th class="sub_text2">판매자</th>
 					</tr>
 
 					<tr>
-						<td class="sub_text"><input id="cb1" name="chk"
-							type="checkbox"> <img class="select_p_img" alt=""
+						<td class="sub_text"><img class="select_p_img" alt=""
 							src="../seller/displayFile?fileName=${map.tv.t_image}&directory=talent" />${map.tv.t_title}</td>
 						<td class="sub_text1">${map.tv.t_content}</td>
 						<td class="sub_text2">${map.tv.t_price}</td>

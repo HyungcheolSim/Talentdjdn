@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>다재다능</title>
 
 <!-- common -->
 <link rel="stylesheet"
@@ -116,7 +116,7 @@
 					<c:forEach var="seller" items="${ map.s_list }">
 
 						<li id="pic1"><img class="index_image"
-							src="displayFile?fileName=${seller.s_potfolio}&directory=seller">
+							src="../seller/displayFile?fileName=${seller.s_potfolio}&directory=seller">
 							<div class="c_title">
 								<span class="c_name">${ seller.s_id }</span> <span
 									class="c_star">${ seller.s_tcount }</span>

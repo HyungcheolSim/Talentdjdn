@@ -59,8 +59,6 @@ public class MemberController {
 		MemberVo user = memberService.getMemberOne(m_id);
 		  
 		if(user==null) { 
-		 
-			
 			model.addAttribute("reason", "fail_id");
 			
 			return "redirect:login_form.do";
