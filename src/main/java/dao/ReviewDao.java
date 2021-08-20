@@ -15,7 +15,7 @@ public interface ReviewDao {
 	
 	public int selectRowTotal();
 	
-	public int selectRowTotal(Map map);
+	public int selectRowTotal(int t_idx);
 	
 	public ReviewVo selectOne(int r_idx);
 	
@@ -30,4 +30,5 @@ public interface ReviewDao {
 
 	
 	public int update(ReviewVo vo) throws Exception;
+
 }

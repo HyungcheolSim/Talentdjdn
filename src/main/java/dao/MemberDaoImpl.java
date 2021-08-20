@@ -64,4 +64,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.member_row_total");
 	}
 
+	@Override
+	public List selectSellerList(int m_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("member.member_seller_list", m_idx);
+	}
+
 }

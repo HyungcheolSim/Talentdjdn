@@ -105,22 +105,10 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<!-- 검색메뉴 -->
-	<div style="text-align: center;">
-
-		<select id="search">
-			<option value="all">전체보기</option>
-			<option value="name">내용</option>
-			<option value="star">*점 이상의 별점만 보기</option>
-		</select> <input id="search_text" value="${ param.search_text }"> <input
-			class="btn btn-warning" style="width: 60px;" type="button" value="검색"
-			onclick="find();">
-
-	</div>
 
 	<!-- Page메뉴 넣기 -->
-	<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }
-
+	<div style="text-align: center; font-size: 12pt;">
+		${ map.pageMenu }
 	</div>
 </body>
 </html>

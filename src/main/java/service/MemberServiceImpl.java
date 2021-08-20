@@ -114,4 +114,10 @@ public class MemberServiceImpl implements MemberService {
 	    return resultMap;
 }
 
+	@Override
+	public List getSellerList(int m_idx) {
+		// TODO Auto-generated method stub
+		return memberDao.selectSellerList(m_idx);
+	}
+
 }

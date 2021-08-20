@@ -80,6 +80,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 		if (rowTotal > 0) {
 			resultMap.put("pageMenu", pageMenu);
 			resultMap.put("s_count", rowTotal);
+
+
 			int sum = 0;
 			for (int i = 0; i < list.size(); i++) {
 

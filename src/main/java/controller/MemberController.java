@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.MemberService;
 import vo.MemberVo;
+import vo.SellerVo;
 
 @Controller
 @RequestMapping("/member/")
@@ -126,7 +128,10 @@ public class MemberController {
 		   	
 			  MemberVo vo = memberService.getMemberOne(m_idx);
 			  
+			  List list = memberService.getSellerList(m_idx);
+			  
 			  model.addAttribute("vo", vo);
+			  model.addAttribute("list", list);
 				   
 		   return "_jsp/member/member_info";
 	   }	

@@ -308,7 +308,7 @@ var search_text2;
 					<c:if
 						test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
 						<input type="button" id="delete_btn" class="btn btn-warning"
-							value="삭제" onclick="del_talent('${ vo.s_idx }');">
+							value="삭제" onclick="del_seller('${ vo.s_idx }');">
 					</c:if>
 				</div>
 			</c:forEach>

@@ -21,6 +21,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       where no between #{ start } and #{ end } 
 
    </select>
+   
+   <select id="member_seller_list" parameterType="int" resultType="seller">
+   		select * from seller where m_idx = #{ m_idx }
+   </select>
 	
 	<!-- m_idx에 해당되는 회원정보 1건 얻어오기 -->
 	<select id="member_one_m_idx" parameterType="int" resultType="member">

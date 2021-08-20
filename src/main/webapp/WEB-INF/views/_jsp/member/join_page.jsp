@@ -75,6 +75,18 @@ $(document).ready(function(){
       
       
    }); // end keyup
+
+   
+	//전화번호 입력시 번호 사이에 자동 - 붙여주는 코드
+	$(document).on("keyup", "#m_phone", function() { 
+		$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+
+	
+	});
+   
+	$(document).on("keyup", "#m_jumin", function() { 
+		$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(\d{6})(\d{7})/, '$1-*******').replace("--", "-") );
+	});
    
    //주소찾기 버튼 클릭시 
    $("#btn_find").click(function(){
@@ -299,7 +311,7 @@ function send(f) {
                         <tr>
                            <th>휴대전화</th>
                            <td>
-                              <input name ="m_phone" placeholder="000-0000-0000">
+                              <input id="m_phone" name ="m_phone" placeholder="000-0000-0000">
                            </td>
                         </tr>
                         <tr>

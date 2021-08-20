@@ -97,8 +97,10 @@
 				<ul class="bxslider">
 					<c:forEach var="product" items="${ map.p_list }">
 					
-						<li id="pic1"><img class="index_image"
-							src="../seller/displayFile?fileName=${product.t_image}&directory=talent">
+						<li id="pic1">
+						<a href="../talent/talentdetail.do?t_idx=${product.t_idx }">
+						<img class="index_image"
+							src="../seller/displayFile?fileName=${product.t_image}&directory=talent"></a>
 							<div class="c_title">
 								<span class="c_name">${ product.t_title }</span> <span
 									class="c_star">${ product.t_starscore }</span>
@@ -115,8 +117,12 @@
 				<ul class="bxslider">
 					<c:forEach var="seller" items="${ map.s_list }">
 
-						<li id="pic1"><img class="index_image"
-							src="../seller/displayFile?fileName=${seller.s_potfolio}&directory=seller">
+
+						<li id="pic1">
+						<a href="../seller/view.do?s_idx=${seller.s_idx }">
+						<img class="index_image"
+							src="../seller/displayFile?fileName=${seller.s_potfolio}&directory=seller"></a>
+
 							<div class="c_title">
 								<span class="c_name">${ seller.s_id }</span> <span
 									class="c_star">${ seller.s_tcount }</span>
