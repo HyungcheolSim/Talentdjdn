@@ -126,8 +126,7 @@ public class SellerController {
 	@RequestMapping("modify.do")
 	public String modify(SellerVo vo, int page,
 			@RequestParam(value = "search", required = false, defaultValue = "all") String search,
-			@RequestParam(value = "search_text", required = false, defaultValue = "") String search_text, Model model,
-			@RequestParam MultipartFile potfolio) throws Exception {
+			@RequestParam(value = "search_text", required = false, defaultValue = "") String search_text, Model model) throws Exception {
 
 		MemberVo user = (MemberVo) session.getAttribute("user");
 
@@ -139,10 +138,11 @@ public class SellerController {
 		}
 
 		vo.setS_id(user.getM_id());
+		
 		// DB update
 		try {
 
-			int res = sellerService.updateSeller(vo,potfolio);
+			int res = sellerService.updateSeller(vo);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -51,12 +51,14 @@ textarea[name='t_content'] {
 			alert("제목을 입력해주세요.");
 			f.t_title.value = '';
 			f.t_title.focus();
+			return;
 		}
 
 		if (t_content == "") {
 			alert("내용을 입력해주세요.");
 			f.t_content.value = '';
 			f.t_content.focus();
+			return;
 		}
 		//
 		f.action = "talentinsert"; //TalentInsertAction

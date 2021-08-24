@@ -13,4 +13,6 @@ public interface InterestService {
 
 	Map insert(InterestVo vo);
 
+	int deleteInterest(int pNum);
+
 }

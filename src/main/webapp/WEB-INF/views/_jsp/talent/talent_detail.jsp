@@ -258,9 +258,6 @@ $(document).ready(function(){
 			    		<h2>분야</h2>
 						<p>${talentvo.t_big_field }</p>
 			    		<br>
-			    		<h2>세부 설명</h2>
-						<p>${talentvo.t_content }</p>
-						<br>
 						<h2>서비스 가능 지역</h2>
 						<p>${talentvo.t_local}</p>
 						<br>
@@ -292,9 +289,6 @@ $(document).ready(function(){
 							<img id="cart" src="${ pageContext.request.contextPath }/resources/img/cart.png" onclick="add_cart()">
 							<button class="purchasebtn" onclick="location.href='../purchase/purchaselist.do?t_idx=${param.t_idx}'">구매하기</button>
 						</div>
-						<div class="dd2">
-						 무이자 할부 혜택 보기
-						</div>
 					</div>
 					<div class="detail_empty">
 					</div>
@@ -304,7 +298,8 @@ $(document).ready(function(){
 					<div class="detail_empty">
 					</div>
 					<div class="detail5">
-						서비스 제공자의 디테일 사항이 들어갈 예정 
+						<h2>세부 설명</h2>
+						<p>${talentvo.t_content }</p>
 					</div>
 				</div>
 			

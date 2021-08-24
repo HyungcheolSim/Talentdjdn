@@ -102,13 +102,7 @@ function send(f) {
                            <th>자격증</th>
                            <td><input name="s_license" id="s_license" value="${ vo.s_license }"></td>
                         </tr>
-                        <tr>
-                           <th>포트폴리오</th>
-                           <td>
-                           	<input type="file" name="potfolio" id="potfolio" >
-                           	<p>${ vo.s_potfolio }</p>
-                           </td>
-                        </tr>
+
                         <tr>
                            <th>지역</th>
                            <td>

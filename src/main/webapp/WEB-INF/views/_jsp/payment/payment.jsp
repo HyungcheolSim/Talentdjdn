@@ -138,7 +138,7 @@
 					<input type="text" id="monthPicker" name="monthPicker" style=""
 						onchange="find();" />
 					<input id="select_btn"
-							class="selectDelete_btn" type="button" value="선택 삭제" onclick="javascript:deletelist()">
+							class="btn btn-warning" type="button" value="선택 삭제" onclick="javascript:deletelist()">
 				</div>
 				<c:if test="${ empty map.list }">
 					<tr>

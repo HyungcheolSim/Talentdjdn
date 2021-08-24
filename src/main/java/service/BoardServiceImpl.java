@@ -110,10 +110,7 @@ public class BoardServiceImpl implements BoardService {
 	public int updateBoardReadHit(int b_idx) throws Exception {
 
 	      int res = boardDao.update_readhit(b_idx);//조회수증가
-   
-	      
 	      return res;
-
 	}
 
 	@Override
@@ -125,7 +122,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int updateBoard(BoardVo vo) throws Exception {
-		String b_content = vo.getB_content().replaceAll("\r\n", "<br>");
+		String b_content = vo.getB_content().replaceAll("\r\n","<br>");
 		vo.setB_content(b_content);
 		int update = boardDao.update(vo);
 		return update;

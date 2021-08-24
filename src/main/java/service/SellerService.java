@@ -25,7 +25,7 @@ public interface SellerService {
 	
 	SellerVo getSellerOne(SellerVo vo);
 
-	int updateSeller(SellerVo vo,@RequestParam MultipartFile potfolio);
+	int updateSeller(SellerVo vo);
 
 	int deleteSeller(int s_idx);
 
