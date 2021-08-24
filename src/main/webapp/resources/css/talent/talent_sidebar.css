@@ -13,7 +13,8 @@ html,body {
 .sidebar_header_container{
 	width:100%;
 	height:auto;
-	border:orange solid 2px;
+	border-bottom:orange solid 2px;
+	
 }
 .sidebar_content_container{
 	width:100%;
@@ -22,10 +23,15 @@ html,body {
 }
 
 #sidebar_header_title{
-	font-size:2em;
+	font-size:1.5em;
 	text-decoration: none;
-	
+	font-weight:bold;
 }
+
+#sidebar_header_title>a{
+	color:#000000;	
+}
+
 .sidebar_header_title_container{
 	padding-bottom: 1.5%;
 	height:100%;
@@ -49,18 +55,23 @@ html,body {
 	height:30px;
 }
 .sidebar_content_title_container{
-	width:80%;
+	width:100%;
 	height:auto;
 	float:left;
+	border-bottom: solid 1px #a4a4a4;
 }
 .sidebar_content_title{
-	font-size:1.2em;
+	font-size:1.0em;
 	width:100%;
 	height:auto;
  	line-height: 200%;
  	float:left;
-
 }
+
+.sidebar_content_title>a{
+	color:#000000;
+}
+
 .sidebar_hidden_content{
 	width:100%;
 	height:auto;
@@ -82,3 +93,9 @@ html,body {
 h2:hover{
 	font-weight: bold;
 }
+
+h1:hover{
+	font-weight: bold;
+}
+
+

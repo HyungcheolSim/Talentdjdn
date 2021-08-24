@@ -24,6 +24,78 @@
 <!-- SweetAlert사용설정 : 알림박스 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
+
+function add_cart() {
+	
+	//로그인 여부 체크
+	if('${ empty user }'=='true'){	//로그인 안된상태
+		
+		Swal.fire({
+             title: '로그인',
+             html: "관심목록 담기는 로그인이 필요합니다<br> 로그인 하시겠습니까?",
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             confirmButtonText: '예',
+             cancelButtonText: '아니오'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+			  	location.href='${ pageContext.request.contextPath }/member/login_form.do?url=' + location.href 
+			    
+			  }
+			});
+
+	}else{	
+		//로그인이 된상태
+		
+		//Ajax처리
+		$.ajax({
+			url		: '../interest/insert.do',	//FavoritesInsertAction
+			data	: {'t_idx' : '${param.t_idx}', 'm_idx' : '${user.m_idx}'},
+			dataType: 'json',	//결과 json으로 받겠다(수신 DataType)
+			success : function(result_data){
+				//result_data = {"result" : "success"}
+				//result_data = {"result" : "fail"}
+
+				if(result_data.result == 'success'){
+								
+					Swal.fire(
+							
+						   '관심목록 등록 성공',
+						   '관심목록에 등록되었습니다',
+						   'warning'
+					);
+					return;
+					
+				}else if(result_data.result == 'exists'){
+								
+					Swal.fire(
+						   '...',
+						   '이미등록되었습니다',
+						   'warning'
+					);
+					return;
+				}
+							
+				else if(result_data.result == 'fail'){
+					
+					Swal.fire(
+								  '관심목록 등록 실패',
+								  '이미 관심목록에 저장되어 있습니다',
+								  'warning'
+					);
+					return;
+				}
+	
+			},
+			error	: function(err){
+				alert("여기는 그냥 에러" + err.responseText);
+			}
+		});
+
+	}
+}
 	
 function add_review() {
 	console.log($("#r_star").val());
@@ -106,13 +178,13 @@ function add_review() {
 }// end add_review
 
 
-function review_list() {                                    
+function review_list(page) {                                    
 	
 	//Ajax로 요청
 	$.ajax({
 		url  : "../review/list.do",
-		data : { 't_idx' : '${ param.t_idx }'
-				
+		data : { 't_idx' : '${ param.t_idx }',
+				 'page'  : page
 		},
 		success  : function(result_data){
 			//수신된 결과 데이터(댓글목록) disp에 출력
@@ -145,7 +217,9 @@ function del_talent(t_idx) {
 		}).then((result) => {
 		  if (result.isConfirmed) {
 
-			  location.href="delete.do?t_idx="+t_idx;
+
+			  location.href="delete.do?t_idx=" + t_idx;
+
 		  }
 		});
 }
@@ -161,7 +235,7 @@ $(document).ready(function(){
 
 </head>
 <body>
-	<div class="talent_detail_body_container">
+		<div class="talent_detail_body_container">
 		<div class="talent_detail_header_container">
 			<div class="tp_layers">
 				<div class="tp_button_layout">
@@ -169,11 +243,71 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
+		<div class ="tt_cont">
 		<div class="talent_detail_content_container">
-			<div class="talent_detail_content_sidebar_container">
-				<%@ include file="talent_sidebar.jsp"%>
-			</div>
 			<div class="talent_detail_content">
+			    <div class="buy_contents">
+			    	<div class="contents_img">
+			    		<img class="thumbnail" src="../seller/displayFile?fileName=${vo.t_image}&directory=talent">
+			    	</div>
+			    	<div class="detail_empty">
+			    	</div>
+			    	<div class="contents_dt1">
+			    		<br>
+			    		<h2>분야</h2>
+						<p>${talentvo.t_big_field }</p>
+			    		<br>
+			    		<h2>세부 설명</h2>
+						<p>${talentvo.t_content }</p>
+						<br>
+						<h2>서비스 가능 지역</h2>
+						<p>${talentvo.t_local}</p>
+						<br>
+						<c:if test="${talentvo.t_cat}=='재능'">
+							<h2>카테고리(재능/상품)</h2>
+							<p>${talentvo.t_cat }</p>
+							<br>
+						</c:if>
+						<h2>판매자명</h2>
+						<p>${talentvo.seller.s_id }</p>
+						<br>
+						<h2>별점 평균</h2>
+						<p>${talentvo.t_starscore}</p>
+			    	</div>
+				</div>
+				<div class="buy_detail">
+					<div class="detail1">
+						<h2 id="talent_detail_title">${talentvo.t_title}</h2>
+					</div>
+					<div class="detail2">
+						<h2 class="price_h2">${talentvo.t_price}원</h2>
+					</div>
+					<div class="detail3">
+						<div class="dd1">
+							재능 관리 서비스 내용 쓰면됨.<br> 
+							작업일:1일 수정횟수: 1회
+						</div>
+						<div class="dd1">
+							<img id="cart" src="${ pageContext.request.contextPath }/resources/img/cart.png" onclick="add_cart()">
+							<button class="purchasebtn" onclick="location.href='../purchase/purchaselist.do?t_idx=${param.t_idx}'">구매하기</button>
+						</div>
+						<div class="dd2">
+						 무이자 할부 혜택 보기
+						</div>
+					</div>
+					<div class="detail_empty">
+					</div>
+					<div class="detail4">
+						서비스 제공이 완료된 이후에 전문가에게 결제 대금이 전달됩니다.
+					</div>
+					<div class="detail_empty">
+					</div>
+					<div class="detail5">
+						서비스 제공자의 디테일 사항이 들어갈 예정 
+					</div>
+				</div>
+			
+			
 				<div class="talent_detail_title_container">
 					<c:if
 						test="${ (talentvo.seller.s_id eq user.m_id) or (user.m_grade eq '관리자') }">
@@ -187,44 +321,6 @@ $(document).ready(function(){
 							class="btn btn-warning" value="삭제"
 							onclick="del_talent('${ talentvo.t_idx }');"></td>
 					</c:if>
-
-					<h2 id="talent_detail_title">${talentvo.t_title}</h2>
-				</div>
-				<div class="talent_detail_price_purchasebtn_container">
-					<div class="talent_detail_price_container">
-						<h2 class="price_h2">${talentvo.t_price}원</h2>
-					</div>
-					<div class="talent_detail_purchasebtn_container">
-						<button class="purchasebtn"
-							onclick="location.href='../purchase/purchaselist.do?t_idx=${param.t_idx}'">구매하기</button>
-					</div>
-				</div>
-				<div class="talent_detail_infomation">
-					<h2>재능 이미지</h2>
-					<p>
-						<img style="width: 200px;"
-							src="../seller/displayFile?fileName=${vo.t_image}&directory=talent" />
-					</p>
-					<br>
-					<h2>세부 설명</h2>
-					<p>${talentvo.t_content }</p>
-					<br>
-					<h2>서비스 가능 지역</h2>
-					<p>${talentvo.t_local}</p>
-					<br>
-					<c:if test="${talentvo.t_cat}=='재능'">
-						<h2>카테고리(재능/상품)</h2>
-						<p>${talentvo.t_cat }</p>
-						<br>
-					</c:if>
-					<h2>판매자명</h2>
-					<p>${talentvo.seller.s_id }</p>
-					<br>
-					<h2>별점 평균</h2>
-					<p>${talentvo.t_starscore}</p>
-					<br>
-
-
 				</div>
 				<div class="talent_detail_review_register_container">
 					<div class="form_container">
@@ -235,7 +331,7 @@ $(document).ready(function(){
 									<td><input name="r_title" id="r_title"></td>
 								</tr> -->
 								<tr>
-									<th>리뷰</th>
+									<th>한줄 리뷰</th>
 									<td><input name="r_content" id="r_content"></td>
 								</tr>
 								<tr>
@@ -271,7 +367,7 @@ $(document).ready(function(){
 					<div id="disp"></div>
 					
 				</div>
-
+			</div>
 			</div>
 		</div>
 		<div class="talent_detail_footer_container">

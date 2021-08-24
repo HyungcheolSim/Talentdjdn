@@ -83,8 +83,7 @@ th, td {
 </script>
 </head>
 <body>
-
-	<div class="talent_list_body_container">
+<div class="talent_list_body_container"></div>
 		<div class="tp_layers">
 			<div class="tp_button_layout">
 				<%@ include file="../top_button.jsp"%>
@@ -94,47 +93,32 @@ th, td {
 			<div class="talent_list_content_sidebar_container">
 				<%@ include file="talent_sidebar.jsp"%>
 			</div>
+		<div class ="tt_cont">
 			<div class="table_container">
-				<table class="table">
-					<thead>
-						<tr class="warning">
-							<th>썸네일</th>
-							<th>글번호</th>
-							<th width="50%">제목</th>
-							<th>가격</th>
-							<th>작성자</th>
-							<th>평점</th>
-						</tr>
-					</thead>
-					<tbody id="tbody">
-						<c:if test="${ empty map.list }">
-							<tr>
-								<td colspan="5">
-									<div id="empty_message">재능이 존재하지 않습니다.</div>
-								</td>
-							</tr>
-						</c:if>
-
-						<!-- Data있는 경우 -->
-						<!-- for(TalentVo vo : list) -->
-						<c:forEach var="vo" items="${ map.list }">
-							<tr>
-								<td><img class="thumbnail" src="../seller/displayFile?fileName=${vo.t_image}&directory=talent"></td>
-								<td>${ vo.t_idx }</td>
-								<td><a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a></td>
-								<td>${ vo.t_price }</td>
-								<td>${ vo.seller.s_id }</td>
-								<td>${ vo.t_starscore }점</td>
-							</tr>
-						</c:forEach>
-
-					</tbody>
-				</table>
-				<button type="button" class="btn btn-warning"
-					onclick="javascript:goTalentInsert();">등록하러가기</button>
+				<div class = "container_bx">
+				<c:forEach var="vo" items="${ map.list }">
+					<div class ="container_pr">
+						<div class ="p_dt">
+							<a href="talentdetail.do?t_idx=${ vo.t_idx }"><img class="thumbnail" src="../seller/displayFile?fileName=${vo.t_image}&directory=talent"></a>
+						</div>
+						<div class ="h_dt">
+							<a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a>
+						</div>
+						<div class ="price_dt">
+							<span>${ vo.t_price }원</span>
+						</div>
+						<div class ="s_dt">
+							<span>${ vo.t_starscore }점</span>
+						</div>
+					</div>
+				</c:forEach>	
+				</div>
 				<!-- 검색메뉴 -->
-				<div style="text-align: center;">
-
+				<div class ="button_box">
+						<button type="button" class="btn btn-warning"
+						onclick="javascript:goTalentInsert();">등록하러가기</button>
+				</div>
+				<div class ="select_box" style="text-align: center;">
 					<select id="search">
 						<option value="all">전체보기</option>
 						<option value="name">판매자</option>
@@ -145,21 +129,21 @@ th, td {
 					</select> <input id="search_text" value="${ param.search_text }"> <input
 						class="btn btn-warning" style="width: 60px;" type="button"
 						value="검색" onclick="find();">
-
-				</div>
-
 				<!-- Page메뉴 넣기 -->
 				<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }
-
+				</div>
 				</div>
 			</div>
 		</div>
-		<div class="tp_layers">
-			<div class="tp_bottom_layout">
-				<%@ include file="../bottom.jsp"%>
+	</div>
+	<div class="f_section">
+		<div class="talent_detail_footer_container">
+			<div class="tp_layers">
+				<div class="tp_bottom_layout">
+					<%@ include file="../bottom.jsp"%>
+				</div>
 			</div>
 		</div>
-
 	</div>
 </body>
 </html>

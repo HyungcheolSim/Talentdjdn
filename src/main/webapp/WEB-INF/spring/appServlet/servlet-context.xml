@@ -46,5 +46,8 @@
 	<beans:bean class="controller.PurchaseController">
 		<beans:property name="purchaseService" ref="purchaseService"/>
 	</beans:bean>
+	<beans:bean class="controller.InterestController">
+		<beans:property name="interestService" ref="interestService"/>
+	</beans:bean>
 
 </beans:beans>

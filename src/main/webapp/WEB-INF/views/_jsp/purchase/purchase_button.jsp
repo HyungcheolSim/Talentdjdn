@@ -38,7 +38,7 @@
 		    	<div>
 					<b>[${ user.m_id }]</b>님 로그인 하셨습니다
 					<%-- <input type="button" class="btn btn-warning" value="정보수정" onclick="location.href='${ pageContext.request.contextPath }/member/modify_form.do?m_idx=${ user.m_idx }'"> --%>
-					<a href="${ pageContext.request.contextPath }/member/modify_form.do?m_idx=${ user.m_idx }">[정보수정]</a>
+					<a href="${ pageContext.request.contextPath }/member/member_info_form.do?m_idx=${ user.m_idx }">[마이정보]</a>
 				</div>
 		    </c:if> 
 		</ul>

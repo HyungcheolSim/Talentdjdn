@@ -37,6 +37,7 @@
 
 </head>
 <body>
+
 	<div class="tp_layers">
 		<div class="tp_button_layout">
 			<%@ include file="../top_button.jsp"%>
@@ -91,7 +92,8 @@
 										class="btn btn-warning" type="button" id="btn_register"
 										value="정보수정" onclick="modify_form('${ vo.m_idx }')"> <input
 										class="btn btn-warning" type="button" value="메인화면"
-										onclick="location.href='../main/index.do'"> <input
+										onclick="location.href='../main/index.do'"> <input class="btn btn-warning" type="button" value="관심목록" 
+								           onclick="location.href='../interest/list.do'">   <input
 										class="btn btn-warning" type="button" value="구매목록"
 										onclick="location.href='../purchase/list.do'">
 										<input
@@ -104,6 +106,7 @@
 				</form>
 			</div>
 			<div id="seller_box">
+
 				<div class="panel panel-warning">
 					<div class="panel-heading">내가 등록한 판매자 정보</div>
 					<div class="panel-body">

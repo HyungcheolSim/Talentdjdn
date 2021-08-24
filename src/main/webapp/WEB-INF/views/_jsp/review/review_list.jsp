@@ -38,49 +38,6 @@
 <!-- SweetAlert사용설정 : 알림박스 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-	function find() {
-
-		var search = $("#search").val();
-		var search_text = $("#search_text").val().trim();
-
-		//전체검색이면 검색창 내용 지워라..
-		if (search == 'all') {
-			$("#search_text").val("");
-			location.href = "list.do";
-			return;
-		}
-
-		if (search != 'all' && search_text == '') {
-
-			alert('검색어를 입력하세요');
-			$("#search_text").val("");//값 지우기
-			$("#search_text").focus(); //
-			return;
-		}
-
-		//자바스크립트 이용 요청
-		//encodeURIComponent(search_text,"utf-8")
-		// : search_text기 한글 또는 특수문자인 경우 인코딩해서 넘겨야 서버가 제대로 인식한다                                     
-		/* location.href = "list.do?t_idx='${ param.t_idx }'&search=" + search
-				+ "&search_text=" + encodeURIComponent(search_text, "utf-8"); */
-		$.ajax({
-			url  : "../review/list.do",
-			data : { 't_idx' : '${ param.t_idx }',
-					 'search':search,
-					 'search_text':search_text
-			},
-			success  : function(result_data){
-				//수신된 결과 데이터(댓글목록) disp에 출력
-				$("#disp").html(result_data);
-				
-			},
-			error    : function(err){
-				alert(err.responseText);
-			}
-		});		
-	}
-</script>
 </head>
 <body>
 	<h1>리뷰 목록</h1>

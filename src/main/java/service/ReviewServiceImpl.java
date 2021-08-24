@@ -54,8 +54,8 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public Map getPagingReviewList(int t_idx,int nowPage) {
 		// TODO Auto-generated method stub
-		int start = (nowPage - 1) * MyConstant.Member.BLOCK_LIST + 1;
-		int end = start + MyConstant.Member.BLOCK_LIST - 1;
+		int start = (nowPage - 1) * MyConstant.Review.BLOCK_LIST + 1;
+		int end = start + MyConstant.Review.BLOCK_LIST - 1;
 
 		Map map = new HashMap();
 		map.put("t_idx", t_idx);
@@ -67,9 +67,9 @@ public class ReviewServiceImpl implements ReviewService {
 		 //c_idx�� �޸� ������ ����
 	      int row_total = reviewDao.selectRowTotal(t_idx);
 	      
-	      String pageMenu = Paging.getMemberPaging(nowPage, row_total, 
-	                                      MyConstant.Member.BLOCK_LIST, 
-	                                      MyConstant.Member.BLOCK_PAGE);
+	      String pageMenu = Paging.getReviewPaging(nowPage, row_total, 
+	                                      MyConstant.Review.BLOCK_LIST, 
+	                                      MyConstant.Review.BLOCK_PAGE);
 	      
 		Map resultMap = new HashMap();
 		resultMap.put("reviewlist", reviewlist);
