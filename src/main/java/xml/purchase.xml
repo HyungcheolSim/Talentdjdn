@@ -131,7 +131,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(select	talent.t_idx,talent.t_title,talent.t_image,talent.t_price,talent.t_cat,F.* from talent left join
 				(select seller.s_idx,seller.m_idx as SELLER,member.m_name,member.m_id from seller left join member
 					 on seller.m_idx=member.m_idx where seller.m_idx=#{m_idx})F
-			on talent.s_idx=F.s_idx where F.SELLER=4)S 
+			on talent.s_idx=F.s_idx where F.SELLER=#{m_idx})S 
 		on purchase.t_idx=S.t_idx
 		where S.SELLER=#{m_idx}
 		)c

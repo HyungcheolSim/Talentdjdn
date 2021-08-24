@@ -125,9 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		t_small_field=#{t_small_field},
 		t_price=#{t_price},
 		t_local=#{t_local},
-		t_cat=#{t_cat},
-		t_starscore=#{t_starscore},
-		t_image=#{t_image}
+		t_cat=#{t_cat}
 		where t_idx=#{ t_idx }
 	</update>
 

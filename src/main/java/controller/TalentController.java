@@ -133,7 +133,7 @@ public class TalentController {
 
 	// �닔�젙�븯湲�
 	@RequestMapping("modify.do")
-	public String modify(TalentVo vo,@RequestParam MultipartFile image, Model model) {
+	public String modify(TalentVo vo, Model model) {
 
 		MemberVo user = (MemberVo) session.getAttribute("user");
 
@@ -147,7 +147,7 @@ public class TalentController {
 		// DB update
 		try {
 			
-			int res = talentService.updateTalent(vo,image);
+			int res = talentService.updateTalent(vo);
 			
 
 		} catch (Exception e) {
@@ -155,6 +155,6 @@ public class TalentController {
 			e.printStackTrace();
 		}
 		model.addAttribute("t_idx", vo.getT_idx());
-		return "redirect:talentdetail.do"; // view.do?t_idx=5
+		return "talentdetail.do"; // view.do?t_idx=5
 	}
 }

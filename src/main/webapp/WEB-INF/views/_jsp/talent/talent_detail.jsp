@@ -131,7 +131,7 @@ function modify_form(t_idx) {
 	
 }
 
-function del_talent(s_idx) {
+function del_talent(t_idx) {
 	
 	Swal.fire({
 		  title: '재능삭제',
@@ -145,7 +145,7 @@ function del_talent(s_idx) {
 		}).then((result) => {
 		  if (result.isConfirmed) {
 
-			  location.href="delete.do?t_idx=${talentvo.t_idx}";
+			  location.href="delete.do?t_idx="+t_idx;
 		  }
 		});
 }

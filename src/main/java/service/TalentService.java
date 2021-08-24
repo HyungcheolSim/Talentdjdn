@@ -30,7 +30,7 @@ public interface TalentService {
 	public int deleteTalent(int t_idx) throws Exception;
 
 	
-	public int updateTalent(TalentVo vo,@RequestParam MultipartFile image) throws Exception;
+	public int updateTalent(TalentVo vo) throws Exception;
 	
 	public int updateTalentStar(int t_idx) throws Exception;
 }
