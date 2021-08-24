@@ -153,6 +153,7 @@ public class SellerServiceImpl implements SellerService {
 		if (thumb != null) {
 			int res = sellerDao.delete_thumb(vo);
 			int cnt = sellerDao.selectCount(vo.getS_idx());
+			sellerDao.update_tcount(vo.getS_idx());
 
 			map.put("result", "cancle_success");
 			map.put("count", cnt);
@@ -160,6 +161,7 @@ public class SellerServiceImpl implements SellerService {
 		} else {
 			int res = sellerDao.insert_thumb(vo);
 			int cnt = sellerDao.selectCount(vo.getS_idx());
+			sellerDao.update_tcount(vo.getS_idx());
 
 			map.put("result", "success");
 			map.put("count", cnt);
