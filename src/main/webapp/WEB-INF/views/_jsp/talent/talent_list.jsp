@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,7 +104,7 @@ th, td {
 							<a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a>
 						</div>
 						<div class ="price_dt">
-							<span>${ vo.t_price }원</span>
+							<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${talentvo.t_price}" />원원</span>
 						</div>
 						<div class ="s_dt">
 							<span>${ vo.t_starscore }점</span>
