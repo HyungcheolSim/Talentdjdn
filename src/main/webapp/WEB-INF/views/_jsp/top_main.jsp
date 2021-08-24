@@ -56,7 +56,7 @@
 
 				<div class="icon_box">
 					<a
-						href="../talent/talentlist.do?search=bfield&search_text=ITㆍ프로그래밍"><img
+						href="../talent/talentlist.do?search=bfield&search_text=IT·프로그래밍"><img
 						class="main_icon" alt=""
 						src="${ pageContext.request.contextPath }/resources/img/programming.png"></a>
 					<p id="font">ITㆍ프로그래밍</p>

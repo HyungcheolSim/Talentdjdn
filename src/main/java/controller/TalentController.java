@@ -83,7 +83,7 @@ public class TalentController {
 
 			return "redirect:../member/login_form.do";
 		}
-		vo.setS_idx(user.getM_idx());
+		
 
 		try {
 			talentService.insertTalent(vo, image);

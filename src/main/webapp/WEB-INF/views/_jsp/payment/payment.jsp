@@ -134,7 +134,7 @@
 			</div>
 			<div id="select_box">
 				<div>
-					<h2>monthPicker</h2>
+					<h2>월별 구매목록 보기</h2>
 					<input type="text" id="monthPicker" name="monthPicker" style=""
 						onchange="find();" />
 					<input id="select_btn"

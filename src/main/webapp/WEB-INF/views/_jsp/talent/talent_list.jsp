@@ -52,9 +52,7 @@ th, td {
 }
 </style>
 <script type="text/javascript">
-	function goTalentInsert() {
-		location.href = "inserttalent.do";
-	}
+	
 	function find() {
 
 		var search = $("#search").val();
@@ -114,10 +112,7 @@ th, td {
 				</c:forEach>	
 				</div>
 				<!-- 검색메뉴 -->
-				<div class ="button_box">
-						<button type="button" class="btn btn-warning"
-						onclick="javascript:goTalentInsert();">등록하러가기</button>
-				</div>
+				
 				<div class ="select_box" style="text-align: center;">
 					<select id="search">
 						<option value="all">전체보기</option>

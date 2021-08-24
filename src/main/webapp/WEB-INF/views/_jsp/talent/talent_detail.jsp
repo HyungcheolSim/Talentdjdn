@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -277,7 +278,7 @@ $(document).ready(function(){
 						<h2 id="talent_detail_title">${talentvo.t_title}</h2>
 					</div>
 					<div class="detail2">
-						<h2 class="price_h2">${talentvo.t_price}원</h2>
+						<h2 class="price_h2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${talentvo.t_price}" />원</h2>
 					</div>
 					<div class="detail3">
 						<div class="dd1">

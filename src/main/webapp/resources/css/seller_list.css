@@ -18,6 +18,7 @@
 
 #select_box{
 	width : 70%;
+	height:auto;
 	margin: auto;
    	border-top:1px solid black;
  	border-bottom:2px solid #6E6E6E;
@@ -84,7 +85,8 @@
 }
 
 #select_sub_box{
-	height : 70px;
+	min-height : 70px;
+	height: auto;
 	width:100%;
 	text-align:center;
 	margin-top:20px;
@@ -95,20 +97,25 @@
 .select_sub_box_tr{
 	margin-bottom:5px;
 	color:black;
+	height:auto;
 }
 
-
+tbody{
+	height:100%;
+}
 
 .sub_text{
 	width:15%;
 	float:left;
+	height:100%;
 	vertical-align:middle;
 	border-top:transparent !important;
 }
 
 .sub_text1{
 	width:75%;
-	height:25px;
+	min-height:25px;
+	height:auto;
 	float:left;
 	padding:0px !important;
 	vertical-align:none !important;

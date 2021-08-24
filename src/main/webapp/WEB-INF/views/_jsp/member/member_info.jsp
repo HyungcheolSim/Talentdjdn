@@ -92,11 +92,11 @@
 										class="btn btn-warning" type="button" id="btn_register"
 										value="정보수정" onclick="modify_form('${ vo.m_idx }')"> <input
 										class="btn btn-warning" type="button" value="메인화면"
-										onclick="location.href='../main/index.do'"> <input class="btn btn-warning" type="button" value="관심목록" 
-								           onclick="location.href='../interest/list.do'">   <input
+										onclick="location.href='../main/index.do'"> <input
+										class="btn btn-warning" type="button" value="관심목록"
+										onclick="location.href='../interest/list.do'"> <input
 										class="btn btn-warning" type="button" value="구매목록"
-										onclick="location.href='../purchase/list.do'">
-										<input
+										onclick="location.href='../purchase/list.do'"> <input
 										class="btn btn-warning" type="button" value="판매목록"
 										onclick="location.href='../purchase/soldlist.do'"></td>
 								</tr>
@@ -113,7 +113,9 @@
 						<table>
 							<tr>
 								<c:forEach var="seller" items="${ list }">
-									<tr><td><a href="../seller/view.do?s_idx=${seller.s_idx}">${ seller.s_msg }</a></td></tr>
+									<tr>
+										<td><a href="../seller/view.do?s_idx=${seller.s_idx}">${ seller.s_msg }</a></td>
+									</tr>
 								</c:forEach>
 							</tr>
 						</table>

@@ -44,7 +44,7 @@ public class SellerServiceImpl implements SellerService {
 		if (!search_text2.isEmpty()) {
 			map.put("s_field", search_text2);
 		}
-		List<SellerVo> list = sellerDao.selectList(map);		
+		List<SellerVo> list = sellerDao.selectList(map);
 		map.remove("start");
 		map.remove("end");
 		int rowTotal = sellerDao.selectRowTotal(map);
@@ -55,7 +55,7 @@ public class SellerServiceImpl implements SellerService {
 				MyConstant.Seller.BLOCK_PAGE);
 		Map resultMap = new HashMap();
 		resultMap.put("list", list);
-		if(rowTotal>0) {
+		if (rowTotal > 0) {
 			resultMap.put("pageMenu", pageMenu);
 			resultMap.put("s_count", rowTotal);
 		}
@@ -63,8 +63,6 @@ public class SellerServiceImpl implements SellerService {
 		return resultMap;
 	}
 
-	
-	
 	@Override
 	public List<SellerVo> getSellerList(Map map) {
 		// TODO Auto-generated method stub
@@ -78,8 +76,9 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int insertSeller(SellerVo vo,@RequestParam MultipartFile potfolio) {
+	public int insertSeller(SellerVo vo, @RequestParam MultipartFile potfolio) {
 		// TODO Auto-generated method stub
+	
 		String uploadpath = "img/seller";
 
 		ResponseEntity<String> img_path = null;
@@ -87,7 +86,7 @@ public class SellerServiceImpl implements SellerService {
 			img_path = new ResponseEntity<String>(
 					UploadFileUtils.uploadFile(uploadpath, potfolio.getOriginalFilename(), potfolio.getBytes()),
 					HttpStatus.CREATED);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -95,9 +94,10 @@ public class SellerServiceImpl implements SellerService {
 
 		vo.setS_potfolio(potfolioPath);
 		
+
 		String s_msg = vo.getS_msg().replaceAll("\r\n", "<br>");
 		vo.setS_msg(s_msg);
-		
+
 		return sellerDao.insert(vo);
 	}
 
@@ -108,15 +108,16 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
+
 	public int updateSeller(SellerVo vo) {
 		// TODO Auto-generated method stub
 	
 		String s_msg = vo.getS_msg().replaceAll("\r\n", "<br>");
+
 		vo.setS_msg(s_msg);
-		
+
 		return sellerDao.update(vo);
 	}
-	
 
 	@Override
 	public int deleteSeller(int s_idx) {
@@ -165,13 +166,13 @@ public class SellerServiceImpl implements SellerService {
 		}
 
 		return map;
-		
+
 	}
 
 	@Override
 	public int update_Sellertcount(int s_idx) {
 		// TODO Auto-generated method stub
-		
+
 		return sellerDao.update_tcount(s_idx);
 	}
 
@@ -184,6 +185,5 @@ public class SellerServiceImpl implements SellerService {
 
 		return vo;
 	}
-
 
 }

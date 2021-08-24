@@ -150,7 +150,7 @@
 						<tr>
 							<td>결제수단 : <input type="radio" name="pay">계좌결제 <input
 								type="radio" name="pay">카드결제 <input type="radio"
-								name="pay">일반결제
+								name="pay">무통장입금
 							</td>
 						</tr>
 
