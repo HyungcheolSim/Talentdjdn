@@ -17,6 +17,7 @@
 		<typeAlias type="vo.ReviewVo" alias="review"/>
 		<typeAlias type="vo.ThumbVo"  alias="thumb"/>
 		<typeAlias type="vo.PurchaseVo" alias="purchase"/>
+		<typeAlias type="vo.InterestVo" alias="interest"/>
 	</typeAliases>
 	
 	<mappers>
@@ -27,6 +28,7 @@
 		<mapper resource="xml/seller.xml"/>
 		<mapper resource="xml/main.xml"/>
 		<mapper resource="xml/purchase.xml"/>
+		<mapper resource="xml/interest.xml"/>
 		<!-- <mapper resource="config/mybatis/mapper/photo.xml" /> -->
 	</mappers>
 </configuration>

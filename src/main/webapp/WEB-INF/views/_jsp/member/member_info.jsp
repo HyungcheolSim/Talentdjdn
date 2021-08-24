@@ -90,6 +90,8 @@
                                                    onclick="location.href='../main/index.do'">
                               <input class="btn btn-warning" type="button" value="구매목록" 
                                                    onclick="location.href='../purchase/list.do'">
+                              <input class="btn btn-warning" type="button" value="관심목록" 
+								                   onclick="location.href='../interest/list.do'">                    
                            </td>
                         </tr>
                      </table>

@@ -102,7 +102,7 @@ public class MemberServiceImpl implements MemberService {
 
         int row_total = memberDao.selectRowTatal();
       
-        String pageMenu = Paging.getMemberPaging(nowPage, row_total, 
+        String pageMenu = Paging.getPaging("list.do",nowPage, row_total, 
                                         MyConstant.Member.BLOCK_LIST, 
                                         MyConstant.Member.BLOCK_PAGE);
        

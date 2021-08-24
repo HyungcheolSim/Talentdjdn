@@ -62,6 +62,10 @@
 	<bean id="purchaseDao" class="dao.PurchaseDaoImpl">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
+	
+	<bean id="interestDao" class="dao.InterestDaoImpl">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
 
 	<bean id="talentService" class="service.TalentServiceImpl">
 		<property name="talentDao" ref="talentDao"></property>
@@ -87,6 +91,9 @@
 		<property name="talentDao" ref="talentDao"></property>
 	</bean>
 
+	<bean id="interestService" class="service.InterestServiceImpl">
+		<property name="interestDao" ref="interestDao"></property>
+	</bean>
 
 	<bean id="jacksonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interest">
+  
+   <resultMap type="seller" id="SellerResult">
+      <id property="s_idx" column="s_idx"/>
+      <result column="s_id" property="s_id"/>
+   </resultMap>
+
+   <resultMap type="talent" id="TalentResult">
+      <id column="t_idx" property="t_idx"/>
+      <result column="t_title" property="t_title"/>
+      <result column="t_content" property="t_content"/>
+      <result column="t_big_field" property="t_big_field"/>
+      <result column="t_small_field" property="t_small_field"/>
+      <result column="t_price" property="t_price"/>
+      <result column="t_local" property="t_local"/>
+      <result column="t_cat" property="t_cat"/>
+      <result column="t_starscore" property="t_starscore"/>
+      <result column="t_image" property="t_image"/>
+      <result column="t_regdate" property="t_regdate"/>
+	 <association property="seller" column="s_idx" resultMap="SellerResult">
+         <id property="s_idx" column="s_idx"/>
+         <result property="s_id" column="s_id"/>
+      </association>
+   </resultMap> 
+   
+
+	<resultMap type="interest" id="InterestResult">
+		<id column="i_idx" property="i_idx" />
+		<result column="m_idx" property="m_idx"/>
+		<result column="t_idx" property="t_idx"/>
+		<association property="talent" column="t_idx"
+			resultMap="TalentResult">
+			<id column="t_idx" property="t_idx" />
+			<result column="t_title" property="t_title" />
+			<result column="t_content" property="t_content" />
+			<result column="t_big_field" property="t_big_field" />
+			<result column="t_small_field" property="t_small_field" />
+			<result column="t_price" property="t_price" />
+			<result column="t_local" property="t_local" />
+			<result column="t_cat" property="t_cat" />
+			<result column="t_starscore" property="t_starscore" />
+			<result column="t_image" property="t_image" />
+			<result column="t_regdate" property="t_regdate" />
+			<association property="seller" column="s_idx"
+				resultMap="SellerResult">
+				<id property="s_idx" column="s_idx" />
+				<result property="s_id" column="s_id" />
+			</association>
+		</association>
+	</resultMap>
+
+
+	<!-- 회원별 관심목록 조회 -->
+	<select id="interest_list" parameterType="int" resultMap="InterestResult">
+      select b.* from
+        (
+      select
+      rank() over(order by i_idx desc) as no,c.*
+      from
+        (select 
+      interest.*,T.t_title,T.t_content,T.t_big_field,T.t_small_field,T.t_price,T.t_local,
+      T.t_cat,T.t_starscore,T.t_image,T.t_regdate,T.s_idx, T.s_id
+      from interest left join
+        (select talent.* ,seller.s_id from talent left join seller on talent.s_idx=seller.s_idx)T 
+        on interest.t_idx=T.t_idx) c
+      where c.m_idx= #{m_idx}       
+        )b
+        where b.m_idx = #{m_idx}
+	</select>
+
+	<select id="interest_one"  parameterType="interest"  resultType="interest">  
+       select * from interest where m_idx=#{ m_idx} and t_idx=#{ t_idx }
+    </select>
+	
+	<!-- 관심목록 등록 -->
+	<insert id="interest_insert" parameterType="interest">
+		insert into interest(m_idx,t_idx) values(#{ m_idx },#{ t_idx })
+	</insert>
+	
+	<!-- 관심목록 삭제 -->
+	<delete id="interest_delete" parameterType="int">
+		delete from interest where i_idx=#{ i_idx }
+	</delete>
+
+</mapper>

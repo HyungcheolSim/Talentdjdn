@@ -31,8 +31,8 @@ public class TalentServiceImpl implements TalentService {
 	
 	@Override
 	public Map getPagingTalentList(int nowPage, String search, String search_text) {
-		int start = (nowPage - 1) * MyConstant.Board.BLOCK_LIST + 1;
-		int end = start + MyConstant.Board.BLOCK_LIST - 1;
+		int start = (nowPage - 1) * MyConstant.Talent.BLOCK_LIST + 1;
+		int end = start + MyConstant.Talent.BLOCK_LIST - 1;
 
 		Map map = new HashMap();
 		map.put("start", start);
@@ -59,7 +59,7 @@ public class TalentServiceImpl implements TalentService {
 		String search_filter = String.format("&search=%s&search_text=%s", search, search_text);
 
 		String pageMenu = Paging.getPaging("talentlist.do", nowPage, rowTotal, search_filter,
-				MyConstant.Board.BLOCK_LIST, MyConstant.Board.BLOCK_PAGE);
+				MyConstant.Talent.BLOCK_LIST, MyConstant.Talent.BLOCK_PAGE);
 
 		Map resultMap = new HashMap();
 		resultMap.put("list", list);
