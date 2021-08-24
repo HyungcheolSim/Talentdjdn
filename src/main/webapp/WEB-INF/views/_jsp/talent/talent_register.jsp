@@ -45,7 +45,7 @@ textarea[name='t_content'] {
 		var t_price = f.t_price.value.trim();
 		var t_local = f.t_local.value.trim();
 		var t_cat = f.t_cat.value.trim();
-		
+		var s_idx=sessionStorage.getItem("s_idx");
 
 		if (t_title == "") {
 			alert("제목을 입력해주세요.");
@@ -86,6 +86,7 @@ textarea[name='t_content'] {
 								<h2>재능 등록</h2>
 							</div>
 							<table class="table">
+								
 								<caption>
 									<strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong>
 								</caption>

@@ -1,24 +1,28 @@
 @charset "UTF-8";
 
 #instrest_box{
-	height:1200px;
+	min-height:1200px;
+	height:auto;
 	width : 100%;
 }
 
 #interest_img{
-	height: 300px;
+	min-height: 300px;
+	height:auto;
 	margin: auto;
 }
 
 #select_menu_box{
 	width: 70%;
-	height: 50px;
-	margin: auto;
+	min-height: 50px;
+	height:auto;
+	
 }
 
 #select_menu_box1{
 	width:70%;
-	height:175px;
+	min-height:175px;
+	height:auto;
 	margin:auto;
 	background:#F2F2F2;
 	margin-top:20px;
@@ -28,7 +32,8 @@
 }
 
 #select_box{
-	height:80px;
+	min-height:80px;
+	height:auto;
 	margin: auto;
 	margin-top:10px;
 	margin-bottom:10px;
@@ -58,7 +63,8 @@
 
 #click_box{
 	width:100%;
-	height : 40px;
+	min-height : 40px;
+	height:auto;
 	float:left;
 }
 
@@ -69,7 +75,7 @@
 
 .loc_cate_null{
 	width:90%;
-	height:30px;
+	height:auto;
 	float:left;
 	font-size:20px;
 }

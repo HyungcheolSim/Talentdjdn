@@ -98,8 +98,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVo getOneBoard(int b_idx) {
 		BoardVo bv = boardDao.selectOne(b_idx);
-		String content = bv.getB_content().replaceAll("<br>", "\r\n");
-		bv.setB_content(content);
+		/*
+		 * String content = bv.getB_content().replaceAll("<br>", "\r\n");
+		 * bv.setB_content(content);
+		 */
 
 		return bv;
 	}
@@ -107,24 +109,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int updateBoardReadHit(int b_idx) throws Exception {
 
-	      int res = 0;
-	      
-	      //조회수 증가
-	      try {
-	         
-	         //게시물을 봤냐?
-	         if(session.getAttribute("show")==null) {
-	             //안봤으면  null
-	             res = boardDao.update_readhit(b_idx);//조회수증가
-	             
-	             //봤다고 기록
-	             session.setAttribute("show", true);
-	         }
-	         
-	      } catch (Exception e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }      
+	      int res = boardDao.update_readhit(b_idx);//조회수증가
+   
 	      
 	      return res;
 
