@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.InterestService;
@@ -46,14 +47,18 @@ public class InterestController {
 
 	}
 	
-	// ����ʹ� ����
-	@RequestMapping("delete.do")
 	@ResponseBody
-	public Map delete(int t_idx) {
+	@RequestMapping("deletelist.do")
+	public int delete(@RequestParam(value="chbox[]")List<String> chArr) {
+		int result=0;
+		int pNum=0;
+		for(String i:chArr) {
+			pNum=Integer.parseInt(i);			
+			interestService.deleteInterest(pNum);
+			result=1;
+		}
 		
-		Map map = interestService.delete(t_idx);
-
-		return map;
+		return result;
 	}
 	
 	// ����ʹ� �߰�

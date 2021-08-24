@@ -79,6 +79,12 @@ public class InterestServiceImpl implements InterestService {
 														
 		return map;
 	}
+
+	@Override
+	public int deleteInterest(int pNum) {
+		// TODO Auto-generated method stub
+		return interestDao.delete(pNum);
+	}
 	
 	
 }

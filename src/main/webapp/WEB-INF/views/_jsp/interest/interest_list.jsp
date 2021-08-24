@@ -28,7 +28,55 @@
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/payment.css">
 
+<script type="text/javascript">
 
+$(document).ready(
+		function() {
+
+			$("#allCheck").click(function() {
+				var chk = $("#allCheck").prop("checked");
+				if (chk) {
+					$(".chBox").prop("checked", true);
+				} else {
+					$(".chBox").prop("checked", false);
+				}
+			});
+
+			$(".chBox").click(function() {
+				$("#allCheck").prop("checked", false);
+			});
+		}
+);
+
+
+function deletelist() {
+	var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+	if (confirm_val) {
+		var checkArr = new Array();
+
+		$("input[class='chBox']:checked").each(function() {
+			checkArr.push($(this).attr("data-intNum"));
+		});
+
+		$.ajax({
+			url : "deletelist.do",
+			type : "post",
+			data : {
+				chbox : checkArr
+			},
+			success : function(result) {
+				if (result == 1) {
+					location.href = "list.do";
+				} else {
+					alert("삭제 실패");
+				}
+			}
+		});
+	}
+}
+
+</script>
 
 </head>
 <body>
@@ -58,8 +106,13 @@
 				</div>
 			</div>
 			<div id="select_box">
+			
+							<input id="select_btn"
+							class="btn btn-warning" type="button" value="선택 삭제" onclick="javascript:deletelist()">
 				<table id="select_sub_box" class="table">
 					<tr id="select_menu1" class="warning">
+						<th class="sub_text5"><input type="checkbox" name="allCheck"
+							id="allCheck" /></th>
 						<th class="sub_text">상품정보</th>
 						<th class="sub_text1">내용</th>
 						<th class="sub_text2">금액</th>
@@ -68,6 +121,8 @@
 					
 					<c:forEach var="vo" items="${ list }">
 					<tr>
+						<td class="sub_text5"><input type="checkbox" name="chBox"
+								class="chBox" data-intNum="${vo.i_idx}" /></td>
 						<td class="sub_text"><img class="select_p_img" alt=""
 							src="../seller/displayFile?fileName=${vo.talent.t_image}&directory=talent" />${vo.talent.t_title}</td>
 						<td class="sub_text1">${vo.talent.t_content}</td>

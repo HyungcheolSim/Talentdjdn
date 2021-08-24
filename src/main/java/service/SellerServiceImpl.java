@@ -108,22 +108,9 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int updateSeller(SellerVo vo,@RequestParam MultipartFile potfolio) {
+	public int updateSeller(SellerVo vo) {
 		// TODO Auto-generated method stub
-		String uploadpath = "img/seller";
-
-		ResponseEntity<String> img_path = null;
-		try {
-			img_path = new ResponseEntity<String>(
-					UploadFileUtils.uploadFile(uploadpath, potfolio.getOriginalFilename(), potfolio.getBytes()),
-					HttpStatus.CREATED);
-		}catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String potfolioPath = (String) img_path.getBody();
-
-		vo.setS_potfolio(potfolioPath);
+	
 		String s_msg = vo.getS_msg().replaceAll("\r\n", "<br>");
 		vo.setS_msg(s_msg);
 		

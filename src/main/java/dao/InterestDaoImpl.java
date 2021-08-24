@@ -21,9 +21,9 @@ public class InterestDaoImpl implements InterestDao {
 	}
 
 	@Override
-	public int delete(int t_idx) {
+	public int delete(int i_idx) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("interest.interest_delete", i_idx);
 	}
 
 	@Override

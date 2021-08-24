@@ -110,7 +110,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		s_career = #{ s_career },
 		s_education = #{ s_education },
 		s_license = #{ s_license },
-		s_potfolio = #{ s_potfolio },
 		s_local = #{ s_local },
 		s_msg = #{ s_msg }
 		where s_idx = #{ s_idx }
