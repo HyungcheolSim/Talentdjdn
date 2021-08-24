@@ -217,7 +217,9 @@ function del_talent(t_idx) {
 		}).then((result) => {
 		  if (result.isConfirmed) {
 
+
 			  location.href="delete.do?t_idx=" + t_idx;
+
 		  }
 		});
 }

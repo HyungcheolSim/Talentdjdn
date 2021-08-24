@@ -42,7 +42,7 @@ public class Paging {
 		if (isPrevPage) {
 			sb.append("<a href ='" + pageURL + "?page=");
 			sb.append(startPage - 1);
-			sb.append("'>��</a>");
+			sb.append("'>◀</a>");
 		} else
 			sb.append("◀");
 
@@ -72,7 +72,7 @@ public class Paging {
 		if (isNextPage) {
 			sb.append("<a href='" + pageURL + "?page=");
 			sb.append(endPage + 1);
-			sb.append("'>��</a>");
+			sb.append("'>▶</a>");
 		} else
 			sb.append("▶");
 //---------------------------------------------------------------------------------------------------------------------	    
