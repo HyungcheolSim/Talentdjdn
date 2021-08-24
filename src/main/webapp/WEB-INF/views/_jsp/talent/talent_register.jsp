@@ -87,6 +87,7 @@ textarea[name='t_content'] {
 							<div class="panel-heading">
 								<h2>재능 등록</h2>
 							</div>
+							<input type="hidden" name="s_idx" value="${param.s_idx}">
 							<table class="table">
 								
 								<caption>
@@ -94,6 +95,7 @@ textarea[name='t_content'] {
 								</caption>
 								<tbody id="tbody">
 									<tr>
+										
 										<th>제목<span class="t_red">*</span></th>
 										<td><input id="t_title" name="t_title" /></td>
 									</tr>

@@ -34,8 +34,8 @@
 
 	}//end-modify_form
 	function goTalentInsert(s_idx) {
-		sessionStorage.setItem("s_idx", s_idx);
-		location.href = "../talent/inserttalent.do";
+		
+		location.href = "../talent/inserttalent.do?s_idx="+s_idx;
 	}
 </script>
 
