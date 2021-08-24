@@ -119,16 +119,9 @@ public class TalentServiceImpl implements TalentService {
 	}
 
 	@Override
-	public int updateTalent(TalentVo vo,@RequestParam MultipartFile image) throws Exception {
+	public int updateTalent(TalentVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		String uploadpath = "img/talent";
-
-		ResponseEntity<String> img_path = new ResponseEntity<String>(
-				UploadFileUtils.uploadFile(uploadpath, image.getOriginalFilename(), image.getBytes()),
-				HttpStatus.CREATED);
-		String imagePath = (String) img_path.getBody();
 		
-		vo.setT_image(imagePath);
 		String s_msg = vo.getT_content().replaceAll("<br>", "\r\n");
 		vo.setT_content(s_msg);
 		return talentDao.update(vo);

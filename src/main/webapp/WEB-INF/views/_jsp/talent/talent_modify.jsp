@@ -115,10 +115,7 @@ textarea[name='t_content'] {
 										<th>소분류<span class="t_red">*</span></th>
 										<td><input id="t_small_field" name="t_small_field" value="${vo.t_small_field}"/></td>
 									</tr>
-									<tr>
-										<th>이미지<span class="t_red">*</span></th>
-										<td><input type="file" id="image" name="image"/><p>${vo.t_image}</p></td>
-									</tr>
+
 									<tr>
 										<th>가격<span class="t_red">*</span></th>
 										<td><input id="t_price" name="t_price" value="${vo.t_price}"/></td>

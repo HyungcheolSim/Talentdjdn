@@ -64,11 +64,11 @@
 		month = $("#monthPicker").val();
 
 		if (month == '') {
-			location.href = "list.do";
+			location.href = "soldlist.do";
 
 		}
 		if (month != '') {
-			location.href = "list.do?month="
+			location.href = "soldlist.do?month="
 					+ encodeURIComponent(month, "utf-8");
 
 		}
@@ -92,7 +92,7 @@
 				},
 				success : function(result) {
 					if (result == 1) {
-						location.href = "list.do";
+						location.href = "soldlist.do";
 					} else {
 						alert("삭제 실패");
 					}
@@ -115,15 +115,15 @@
 			<div id="select_menu_box"></div>
 			<div id="select_menu_box">
 				<div class="select_main">
-					<span><b>구매목록</b></span>
+					<span><b>판매목록</b></span>
 				</div>
 				<div class="select_main2">
-					<span class="s_main2">홈><b>구매목록</b></span>
+					<span class="s_main2">홈><b>판매목록</b></span>
 				</div>
 			</div>
 			<div id="select_menu_box1">
 				<div class="select_m_b">
-					<span><b>⊙ 구매목록은 최대 10일간 저장됩니다.</b></span>
+					<span><b>⊙ 판매목록은 최대 10일간 저장됩니다.</b></span>
 				</div>
 				<div class="select_m_b">
 					<span>⊙ 가격, 옵션 등 정보가 일치하지 않을 경우 주문이 변경될 수 있습니다.</span>
@@ -143,7 +143,7 @@
 				<c:if test="${ empty map.list }">
 					<tr>
 						<td colspan="5">
-							<div id="empty_message">아직 재능/상품을 구매하신 적이 없습니다.</div>
+							<div id="empty_message">아직 재능/상품을 판매하신 적이 없습니다.</div>
 						</td>
 					</tr>
 				</c:if>
@@ -157,8 +157,8 @@
 						<th class="sub_text4">상품명</th>
 						<th class="sub_text3">배송지/이메일</th>
 						<th class="sub_text4">금액</th>
-						<th class="sub_text3">판매자</th>
-						<th class="sub_text4">구매일</th>
+						<th class="sub_text3">구매자</th>
+						<th class="sub_text4">판매일</th>
 					
 
 					</tr>
@@ -166,7 +166,7 @@
 					<c:forEach var="vo" items="${ map.list }">
 						<tr>
 							<td class="sub_text5"><input type="checkbox" name="chBox"
-								class="chBox" data-payNum="${vo.p_idx}" /></td>
+								class="chBox" data-payNum="${vo.p_idx}" />${vo.p_idx}</td>
 							<td class="sub_text1"><img class="select_p_img" alt=""
 								src="../seller/displayFile?fileName=${vo.talent.t_image}&directory=talent"></td>
 								<td class="sub_text4">${vo.talent.t_title}</td>
@@ -177,14 +177,14 @@
 								<td class="sub_text3">${vo.p_email}</td>
 							</c:if>
 							<td class="sub_text4">${vo.talent.t_price}</td>
-							<td class="sub_text3">${vo.talent.seller.s_id}</td>
+							<td class="sub_text3">${vo.member.m_idx}</td>
 							<td class="sub_text4">${vo.p_regdate }</td>
 
 						</tr>
 					</c:forEach>
 				</table>
 				<tr>
-					<td class="total_sum" colspan="2">총 구매금액: ${ map.totalPrice}원</td>
+					<td class="total_sum" colspan="2">현재 페이지 총 판매금액: ${ map.totalPrice}원</td>
 				</tr>
 			</div>
 			<!-- Page메뉴 넣기 -->

@@ -33,7 +33,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			resultMap="SellerResult">
 			<id property="s_idx" column="s_idx" />
 			<result property="s_id" column="s_id" />
+			<association property="member" column="m_idx"
+				resultMap="MemberResult">
+				<id property="m_idx" column="m_idx" />
+				<result column="m_name" property="m_name" />
+				<result column="m_id" property="m_id" />
+			</association>
 		</association>
+
 	</resultMap>
 
 	<resultMap type="purchase" id="PurchaseResult">
@@ -68,6 +75,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				resultMap="SellerResult">
 				<id property="s_idx" column="s_idx" />
 				<result property="s_id" column="s_id" />
+				<association property="member" column="m_idx"
+					resultMap="MemberResult">
+					<id property="m_idx" column="m_idx" />
+					<result column="m_name" property="m_name" />
+					<result column="m_id" property="m_id" />
+				</association>
 			</association>
 		</association>
 	</resultMap>
@@ -78,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select b.* from
 		(
 		select
-		
+
 		rank() over(order by p_idx desc) as no,c.*
 		from
 		(select
@@ -91,17 +104,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select talent.* ,seller.s_id from talent left join seller on
 		talent.s_idx=seller.s_idx)T on
 		purchase.t_idx=T.t_idx)c
-		where c.m_idx=#{m_idx}		
+		where
+		c.m_idx=#{m_idx}
 		)b
 
 		where
 		b.m_idx=#{m_idx}
- 		<if test="month!=null">
+		<if test="month!=null">
 			and b.p_regdate like
 			CONCAT(#{month},'-','%')
-		</if> 
+		</if>
 		and no between #{ start } and #{ end }
 	</select>
+
+
+	<!-- 유저별 월별 판매목록 -->
+	<select id="sold_monthly_select" parameterType="Map"
+		resultMap="PurchaseResult">
+		select b.* from
+		(
+		select
+		rank() over(order by p_idx desc) as no,c.*
+		from
+		(
+		select purchase.p_idx,purchase.p_address,purchase.p_email,purchase.p_regdate,purchase.m_idx,S.* from purchase left join 
+			(select	talent.t_idx,talent.t_title,talent.t_image,talent.t_price,talent.t_cat,F.* from talent left join
+				(select seller.s_idx,seller.m_idx as SELLER,member.m_name,member.m_id from seller left join member
+					 on seller.m_idx=member.m_idx where seller.m_idx=#{m_idx})F
+			on talent.s_idx=F.s_idx where F.SELLER=#{m_idx})S 
+		on purchase.t_idx=S.t_idx
+		where S.SELLER=#{m_idx}
+		)c
+		where
+		c.SELLER=#{m_idx}
+		)b
+
+		where
+		b.SELLER=#{m_idx}
+		<if test="month!=null">
+			and b.p_regdate like
+			CONCAT(#{month},'-','%')
+		</if>
+		and no between #{ start } and #{ end }
+	</select>
+
 
 	<!-- 구매목록 등록 1(배송지가 있는 통한 등록) -->
 	<insert id="purchase_insert" parameterType="purchase">
@@ -115,10 +161,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			values(#{p_email},curdate(),#{m_idx},#{t_idx})
 		</if>
 	</insert>
-	<select id="purchase_row_total" resultType="int" parameterType="int">
+	<select id="purchase_row_total" resultType="int"
+		parameterType="int">
 		select
 		ifnull(count(*),0)
-		from purchase where m_idx=#{m_idx}
+		from purchase where
+		m_idx=#{m_idx}
 	</select>
 
+	<delete id="purchase_delete" parameterType="int">
+		delete from purchase
+		where p_idx=#{p_idx}
+	</delete>
 </mapper>

@@ -33,6 +33,16 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("purchase.purchase_row_total",m_idx);
 	}
+	@Override
+	public int delete(int p_idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("purchase.purchase_delete",p_idx);
+	}
+	@Override
+	public List<PurchaseVo> selectMonthlySoldList(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("purchase.sold_monthly_select",map);
+	}
 
 	
 
