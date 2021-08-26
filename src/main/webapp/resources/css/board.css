@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+	#box{
+		width: 700px;
+		margin: auto;
+		margin-top: 50px;
+	}
+	
+	textarea[name='b_content'] {
+		width: 100%;
+		resize: none;
+    }
+    
+	#main_box{
+		width: 1000px;
+		margin: auto;
+		margin-top: 20px;
+	}
+
+	#title{
+		text-align: center;
+		font-size: 26pt;
+		font-weight: bold;
+		color: gray;
+		text-shadow: 1px 1px 1px black;
+	}
+	
+	input[type='button']{
+		width: 100px;
+	}
+	
+	#boardtitle,#boardcontent,#boardregdate{
+		width:  500px;
+		margin: 2px;
+		border: 1px solid gray;
+		padding: 5px;
+	}
+	
+	#boardcontent{
+		min-height: 200px;  
+	}
+	
+	th,td{
+		text-align: center;
+	}
+	
+	#empty_message{
+		text-align: center;
+		color: red;
+		font-size: 16pt;
+		font-weight: bold;
+		margin-top: 50px;
+	}
+    

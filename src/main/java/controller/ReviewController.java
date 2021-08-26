@@ -35,23 +35,14 @@ public class ReviewController {
 	@RequestMapping("insert.do")
 	@ResponseBody
 	public Map insert(ReviewVo vo) {
-		
+		//리뷰 등록
 		return reviewService.insertReview(vo);
 	}
 
-	/*
-	 * @RequestMapping("list.do") public String getReviewsforonetalent(int
-	 * t_idx,Model model) { List<ReviewVo> reviewlist =
-	 * reviewService.getReviewsOne(t_idx);
-	 * 
-	 * model.addAttribute("reviewlist", reviewlist);
-	 * 
-	 * return "_jsp/review/review_list"; }
-	 */
 	@RequestMapping("list.do")
 	public String getReviewsforonetalent(int t_idx,@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage,
 										Model model) {
-
+		//리뷰 페이징하고 service에서 받은 map을 model로 넘겨준 후 reviewlist페이지로 다시 이동
 		Map map=reviewService.getPagingReviewList(t_idx,nowPage);
 		model.addAttribute("map", map);
 		

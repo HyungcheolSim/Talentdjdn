@@ -28,33 +28,29 @@ public class InterestServiceImpl implements InterestService {
 
 	@Override
 	public List<InterestVo> selectList(int m_idx) {
-		// TODO Auto-generated method stub
-		
+		// m_idx에 해당하는 관심목록 조회		
 		return interestDao.selectList(m_idx);
 	}
 
 	@Override
 	public Map delete(int t_idx) {
-		// TODO Auto-generated method stub
+		// 삭제 후 성공여부 map에 result로 넣어 반환
 		int res = 0;
 		
 		try {
 			res = interestDao.delete(t_idx);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		   
 		Map map = new HashMap();
-			
 		map.put("result", (res==1) ? "success" : "fail"); // { "result" : "success" }
-			
 		return map;
 	}
 
 	@Override
 	public Map insert(InterestVo vo) {
-		// TODO Auto-generated method stub
+		// interest 등록 결과 result로 map에 넣어 return
 		int res = 0;
 
 		Map map = new HashMap();
@@ -67,22 +63,17 @@ public class InterestServiceImpl implements InterestService {
 		    	map.put("result", "exists");
 		    	return map;
 		    }
-		    
-			
 			res = interestDao.insert(vo);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		map.put("result", (res==1) ? "success":"fail");	
-														
+		map.put("result", (res==1) ? "success":"fail");											
 		return map;
 	}
 
 	@Override
 	public int deleteInterest(int pNum) {
-		// TODO Auto-generated method stub
+		// interest delete
 		return interestDao.delete(pNum);
 	}
 	

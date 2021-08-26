@@ -11,23 +11,14 @@
 <script src="../resource/js/jquery-3.6.0.min.js"></script>
 
 <!-- bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- common -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/common.css">
-
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 <!-- this page (경로 수정필요)-->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/payment_button.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/payment.css">
-
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/payment_button.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/payment.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 	});
@@ -53,7 +44,6 @@
 				
 				 return;
 				 }
-
 		}
 		
 		var pay = f.pay.value;
@@ -64,15 +54,10 @@
 			
 			 return;
 			 }
-
-
 		f.action = "insert.do";
 		f.submit();
-		
-		
 	}
 </script>
-
 </head>
 <body>
 	<div class="back_color">
@@ -108,7 +93,6 @@
 						<th class="sub_text2">금액</th>
 						<th class="sub_text2">판매자</th>
 					</tr>
-
 					<tr>
 						<td class="sub_text"><img class="select_p_img" alt=""
 							src="../seller/displayFile?fileName=${map.tv.t_image}&directory=talent" />${map.tv.t_title}</td>
@@ -117,7 +101,6 @@
 						<td class="sub_text2">${map.tv.seller.s_id}</td>
 					</tr>
 				</table>
-
 				<form>
 					<input type="hidden" name="m_idx" value="${ map.mv.m_idx }">
 					<input type="hidden" name="t_idx" value="${ map.tv.t_idx }">
@@ -153,9 +136,7 @@
 								name="pay">무통장입금
 							</td>
 						</tr>
-
 					</table>
-
 					<div id="pay_button">
 						<input style="width: 150px; height: 50px;" class="btn btn-warning"
 							type="button" value="결제하기" onclick="send(this.form);">
@@ -164,8 +145,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<div class="tp_layers">
 		<div class="tp_bottom_layout">
 			<%@ include file="../bottom.jsp"%>

@@ -4,26 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-
+<title>헤더 메뉴 선택부분</title>
 <!-- this page -->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/top_main.css">
 
 </head>
 <script type="text/javascript">
+	//엔터키를 입력하면 작동하는 함수(find()함수를 실행시킨다.)
 	function enterkey() {
 		if (window.event.keyCode == 13) {
 			find();
 		}
 	}
-	function find() {
-
+	function find() { //검색기능을 하는 함수
 		var search_text = $("#search_text").val().trim();
-
 		if (search_text == '') {
-
 			alert('검색어를 입력하세요');
 			$("#search_text").val("");//값 지우기
 			$("#search_text").focus(); //

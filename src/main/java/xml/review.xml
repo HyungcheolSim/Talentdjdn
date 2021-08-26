@@ -127,19 +127,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r_idx=#{ r_idx }
 	</delete>
 
-	<!-- 수정 -->
-	<update id="review_update" parameterType="review">
-		update review set
-		r_name=#{ r_name },
-		r_idx=#{ r_idx },
-		r_pwd=#{ r_pwd },
-		r_zipcode=#{
-		r_zipcode },
-		,r_addr=#{ r_addr },
-		r_ip=#{ r_ip },
-		r_grade=#{ r_grade }
-		,r_modifydate=sysdate
-		where r_idx=#{ r_idx}
-	</update>
 
 </mapper>

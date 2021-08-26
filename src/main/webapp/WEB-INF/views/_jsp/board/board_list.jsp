@@ -1,55 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>공지사항</title>
 <!-- bootstrap을 사용하기 위한 설정 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<style type="text/css">
-
-	#main_box{
-		width: 1000px;
-		margin: auto;
-		margin-top: 20px;
-	}
-
-	#title{
-		text-align: center;
-		font-size: 26pt;
-		font-weight: bold;
-		color: gray;
-		text-shadow: 1px 1px 1px black;
-	}
-	
-	input[type='button']{
-		width: 100px;
-	}
-	
-	th,td{
-		text-align: center;
-	}
-	
-	#empty_message{
-		text-align: center;
-		color: red;
-		font-size: 16pt;
-		font-weight: bold;
-		margin-top: 50px;
-	}
-
-</style>
-
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/board.css">
 <script type="text/javascript">
-
 	//jQuery 초기화
 	$(document).ready(function(){
 		
@@ -60,10 +21,7 @@
 			if("${param.search eq 'all'}"=="true"){
 				$("#search_text").val("");	
 			}
-		}
-		
-		
-		
+		}	
 	});
 
 	function insert_form() {
@@ -95,29 +53,17 @@
 		//encodeURIComponent(search_text,"utf-8")
 		// : search_text기 한글 또는 특수문자인 경우 인코딩해서 넘겨야 서버가 제대로 인식한다                                     
 		location.href = "list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text,"utf-8") ; 
-		
-		
-	
 	}//end-find
-
-
-	
-
 </script>
-
 </head>
 <body>
-
 	<div class="tp_layers">
 		<div class="tp_button_layout">
 			<%@ include file="../top_button.jsp"%>
 		</div>
 	</div>
-
 	<div class="tp_layer">
 		<div class="tp_main_layout">
-
-
 			<div id="main_box">
 				<div><h2>게시판</h2></div>
 				<table class="table">
@@ -137,9 +83,7 @@
 							</td>
 						</tr>
 					</c:if>
-
 					<!-- Data있는 경우 -->
-					<!-- for(BoardVo vo : list) -->
 					<c:forEach var="vo" items="${ map.list }">
 						<tr>
 							<td>${ vo.b_idx }</td>
@@ -149,9 +93,7 @@
 							<td>${ vo.b_readhit }</td>
 						</tr>
 					</c:forEach>
-
 				</table>
-				
 				<!-- 새글쓰기 -->
 				<div>
 					<c:if test="${ user.m_grade eq '관리자' }">
@@ -159,13 +101,9 @@
 							onclick="insert_form();">
 					</c:if>	
 				</div>
-				
 			</div>
-
-			
 		<!-- 검색메뉴 -->
-		<div style="text-align: center;">
-		
+		<div style="text-align: center;">		
 			<select id="search">
 				<option value="all">전체보기</option>
 				<option value="name">이름</option>
@@ -174,29 +112,18 @@
 				<option value="subject_content">제목+내용</option>
 			</select>
 			<input id="search_text" value="${ param.search_text }">
-			<input class="btn btn-warning" style="width:60px;" type="button" value="검색" onclick="find();"> 
-		
+			<input class="btn btn-warning" style="width:60px;" type="button" value="검색" onclick="find();"> 		
 		</div>
-
 		<!-- Page메뉴 넣기 -->
-		<div style="text-align: center; font-size: 12pt;">
-		
+		<div style="text-align: center; font-size: 12pt;">	
 			${ map.pageMenu }
-
 		</div>
-		
-		
-
-
-
 		</div>
 	</div>
-
 	<div class="tp_layers">
 		<div class="tp_bottom_layout">
 			<%@ include file="../bottom.jsp"%>
 		</div>
 	</div>
-
 </body>
 </html>

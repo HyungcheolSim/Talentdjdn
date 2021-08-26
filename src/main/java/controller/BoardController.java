@@ -1,9 +1,6 @@
 package controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import service.BoardService;
-import mycommon.MyConstant;
-import util.Paging;
 import vo.BoardVo;
 import vo.MemberVo;
 
@@ -39,7 +34,7 @@ public class BoardController {
 	public String board_list(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage,
 			@RequestParam(value = "search", required = false, defaultValue = "all") String search,
 			@RequestParam(value = "search_text", required = false, defaultValue = "") String search_text, Model model) {
-
+		//map에 service에서 받아온 map 객체를 받아 model로 view에 전달 후 board list 페이지로 이동
 		Map map=boardService.getPagingBoardList(nowPage,search,search_text);
 
 		model.addAttribute("map", map);
@@ -49,19 +44,16 @@ public class BoardController {
 
 	@RequestMapping("insert_form.do")
 	public String insert_form() {
-
+		//입력폼으로 이동~
 		return "_jsp/board/board_insert_form";
 	}
 
 	@RequestMapping("insert.do")
 	public String insert(BoardVo vo, Model model) {
-
+		//게시판(공지사항) 로그인 여부 확인 후 등록 후 board list로 이동
 		MemberVo user = (MemberVo) session.getAttribute("user");
-
 		if (user == null) {
-
 			model.addAttribute("reason", "end_session");
-
 			return "redirect:../member/login_form.do";
 		}
 
@@ -70,27 +62,20 @@ public class BoardController {
 
 		// DB Insert
 		try {
-
 			int res = boardService.insertBoard(vo);
-
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return "redirect:list.do";
 	}
 
-	// /board/view.do?b_idx=1
 	@RequestMapping("view.do")
 	public String view(int b_idx, Model model) {
-
+		//TODO 확인 필요 getone board 이후 왜 updateboardreadhit?
 		BoardVo vo = boardService.getOneBoard(b_idx);
-
 		try {
 			int res = boardService.updateBoardReadHit(b_idx);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -99,56 +84,43 @@ public class BoardController {
 		return "_jsp/board/board_view";
 	}
 
-	// 寃뚯떆臾� �궘�젣
 	@RequestMapping("delete.do")
 	public String delete(int b_idx) {
-
+		//board 삭제 후 board list로 이동
 		try {
-
 			int res = boardService.deleteBoard(b_idx);
-
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return "redirect:list.do";
-
 	}
 
-	// �닔�젙�뤌 �쓣�슦湲�
+
 	@RequestMapping("modify_form.do")
 	public String modify_form(int b_idx, Model model) {
-
+		//b_idx에 해당하는 boardvo 가져온 후 해당 vo의 수정 폼으로 이동
 		BoardVo vo = boardService.getOneBoard(b_idx);
 		model.addAttribute("vo", vo);
 
 		return "_jsp/board/board_modify_form";
 	}
 
-	// �닔�젙�븯湲�
 	@RequestMapping("modify.do")
 	public String modify(BoardVo vo, Model model) {
-
+		//세션에서 member 정보 가져온 후 boardupdate 한 후 view로 이동
 		MemberVo user = (MemberVo) session.getAttribute("user");
 
 		if (user == null) {
-
 			model.addAttribute("reason", "end_session");
-
 			return "redirect:../member/login_form.do";
 		}
 
 		vo.setM_id(user.getM_id());
 		vo.setM_grade(user.getM_grade());
 
-		// DB update
 		try {
-
 			int res = boardService.updateBoard(vo);
-
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

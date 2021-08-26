@@ -4,27 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>판매자 등록</title>
 <!-- jquery -->
 <script src="../resource/js/jquery-3.6.0.min.js"></script>
-
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
-
-
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/join_page.css">
-
-
 <script type="text/javascript">
-
-
 function send(f) {
     
     //입력값 체크...
@@ -76,29 +67,20 @@ function send(f) {
         f.s_msg.focus();
         return;
      }
-
-    //
     f.action = "insert.do"; 
     f.submit();//전송
-
  }
-
 </script>
-
 </head>
 <body>
-
    <div class="tp_layers">
       <div class="tp_button_layout">
          <%@ include file="../top_button.jsp" %>
       </div>
    </div>
-   
          <div id="join_box">
-            <form method="post" enctype="multipart/form-data">
-               
-               <input type="hidden" name="m_idx" value="${ user.m_idx }">
-               
+            <form method="post" enctype="multipart/form-data">               
+               <input type="hidden" name="m_idx" value="${ user.m_idx }">               
                <div class="panel panel-warning">
                   <div class="panel-heading">고수등록</div>
                   <div class="panel-body">
@@ -187,13 +169,10 @@ function send(f) {
                </div>
             </form>
          </div>
- 
-   
    <div class="tp_layers">
       <div class="tp_bottom_layout">
          <%@ include file="../bottom.jsp" %>
       </div>
    </div>
-
 </body>
 </html>

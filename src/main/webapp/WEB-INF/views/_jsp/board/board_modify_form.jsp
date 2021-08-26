@@ -4,28 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<style type="text/css">
-
-	#box{
-		width: 600px;
-		margin: auto;
-		margin-top: 50px;
-	}
-	
-	textarea[name='b_content'] {
-		width: 100%;
-		resize: none;
-    }
-
-</style>
-
+<title>게시글 수정</title>
 <!-- bootstrap을 사용하기 위한 설정 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/board.css">
 <script type="text/javascript">
 
 	function send(f) {
@@ -49,23 +33,17 @@
 		//전송대상
 		f.action = "modify.do";
 		f.submit();
-	}
-	
+	}	
 </script>
-
 </head>
 <body>
-
 	<div class="tp_layers">
 		<div class="tp_button_layout">
 			<%@ include file="../top_button.jsp"%>
 		</div>
 	</div>
-
 	<div class="tp_layer">
 		<div class="tp_main_layout">
-	
-
 	<form>
 		<input type="hidden" name="b_idx" value="${ vo.b_idx }">
 		<div id="box">
@@ -95,16 +73,12 @@
 			</div>
 		</div>
 	</form>	
-	
 	</div>
-
 		<div class="tp_layers">
 			<div class="tp_bottom_layout">
 				<%@ include file="../bottom.jsp"%>
 			</div>
 		</div>
-
 	</div>
-
 </body>
 </html>

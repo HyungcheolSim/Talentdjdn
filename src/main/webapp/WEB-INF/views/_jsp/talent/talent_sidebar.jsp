@@ -64,19 +64,5 @@
 	</div>
 </div>
 
-<script>
-//맨위에거만 열렸다 닫힘ㅋㅋ
-function showBtn(){
-	/* var x=document.getElementByClassName("sidebar_hidden_content")[0]; */
-	var x=document.querySelector(".sidebar_hidden_content");
-	if(x.style.display=="none"){
-		x.style.display="flex";
-		
-	} else { 
-		x.style.display="none";
-	}
-}
-
-</script>
 </body>
 </html>

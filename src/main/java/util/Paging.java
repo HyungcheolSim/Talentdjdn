@@ -3,42 +3,38 @@ package util;
 public class Paging {
 	public static String getPaging(String pageURL, int nowPage, int rowTotal, int blockList, int blockPage) {
 
-		int totalPage/* ��ü�������� */, startPage/* ������������ȣ */, endPage;/* ��������������ȣ */
+		int totalPage, startPage, endPage;
 
 		boolean isPrevPage, isNextPage;
-		StringBuffer sb; // ��� ��Ȳ�� �Ǵ��Ͽ� HTML�ڵ带 ������ ��
+		StringBuffer sb; 
 
 		isPrevPage = isNextPage = false;
 
-		// �Էµ� ��ü �ڿ��� ���� ��ü ������ ���� ���Ѵ�..
 		totalPage = rowTotal / blockList;
 		if (rowTotal % blockList != 0)
 			totalPage++;
 
-		// ���� �߸��� ����� ���������� ���Ͽ� ���� ������ ���� ��ü ������ ����
-		// ���� ��� ������ ���������� ���� ��ü ������ ������ ����
+
 		if (nowPage > totalPage)
 			nowPage = totalPage;
 
-		// ���� �������� ������ �������� ����.
+	
 		startPage = (int) (((nowPage - 1) / blockPage) * blockPage + 1);
 		endPage = startPage + blockPage - 1; //
 
-		// ������ ������ ���� ��ü������������ ũ�� ������������ ���� ����
+		
 		if (endPage > totalPage)
 			endPage = totalPage;
 
-		// �������������� ��ü���������� ���� ��� ���� ����¡�� ������ �� �ֵ���
-		// boolean�� ������ ���� ����
 		if (endPage < totalPage)
 			isNextPage = true;
-		// ������������ ���� 1���� ������ ��������¡ ������ �� �ֵ��� ������
+		
 		if (startPage > 1)
 			isPrevPage = true;
 
-		// HTML�ڵ带 ������ StringBuffer����=>�ڵ����
+		
 		sb = new StringBuffer();
-//-----�׷�������ó�� ���� --------------------------------------------------------------------------------------------		
+//-----이전 페이지버튼부분 --------------------------------------------------------------------------------------------		
 		if (isPrevPage) {
 			sb.append("<a href ='" + pageURL + "?page=");
 			sb.append(startPage - 1);
@@ -46,18 +42,18 @@ public class Paging {
 		} else
 			sb.append("◀");
 
-//------������ ��� ��� -------------------------------------------------------------------------------------------------
+		//-----중단 페이징되는 숫자들 --------------------------------------------------------------------------------------------
 		sb.append("|");
 		for (int i = startPage; i <= endPage; i++) {
 
 			if (i > totalPage)
 				break;
 
-			if (i == nowPage) { // ���� �ִ� ������
+			if (i == nowPage) { 
 				sb.append("&nbsp;<b><font color='red'>");
 				sb.append(i);
 				sb.append("</font></b>");
-			} else {// ���� �������� �ƴϸ�
+			} else {
 				sb.append("&nbsp;<a href='" + pageURL + "?page=");
 				sb.append(i);
 				sb.append("'>");
@@ -68,7 +64,7 @@ public class Paging {
 
 		sb.append("&nbsp;|");
 
-//-----�׷�������ó�� ���� ----------------------------------------------------------------------------------------------
+		//-----다음 페이지버튼부분 --------------------------------------------------------------------------------------------
 		if (isNextPage) {
 			sb.append("<a href='" + pageURL + "?page=");
 			sb.append(endPage + 1);
@@ -84,42 +80,35 @@ public class Paging {
 	public static String getPaging(String pageURL, int nowPage, int rowTotal, String searchFilter, int blockList,
 			int blockPage) {
 
-		int totalPage/* ��ü�������� */, startPage/* ������������ȣ */, endPage;/* ��������������ȣ */
+		int totalPage, startPage, endPage;
 
 		boolean isPrevPage, isNextPage;
-		StringBuffer sb; // ��� ��Ȳ�� �Ǵ��Ͽ� HTML�ڵ带 ������ ��
+		StringBuffer sb; 
 
 		isPrevPage = isNextPage = false;
 
-		// �Էµ� ��ü �ڿ��� ���� ��ü ������ ���� ���Ѵ�..
+		
 		totalPage = rowTotal / blockList;
 		if (rowTotal % blockList != 0)
 			totalPage++;
 
-		// ���� �߸��� ����� ���������� ���Ͽ� ���� ������ ���� ��ü ������ ����
-		// ���� ��� ������ ���������� ���� ��ü ������ ������ ����
 		if (nowPage > totalPage)
 			nowPage = totalPage;
 
-		// ���� �������� ������ �������� ����.
+		
 		startPage = (int) (((nowPage - 1) / blockPage) * blockPage + 1);
 		endPage = startPage + blockPage - 1; //
 
-		// ������ ������ ���� ��ü������������ ũ�� ������������ ���� ����
 		if (endPage > totalPage)
 			endPage = totalPage;
 
-		// �������������� ��ü���������� ���� ��� ���� ����¡�� ������ �� �ֵ���
-		// boolean�� ������ ���� ����
 		if (endPage < totalPage)
 			isNextPage = true;
-		// ������������ ���� 1���� ������ ��������¡ ������ �� �ֵ��� ������
+
 		if (startPage > 1)
 			isPrevPage = true;
 
-		// HTML�ڵ带 ������ StringBuffer����=>�ڵ����
 		sb = new StringBuffer();
-		// -----�׷�������ó�� ����
 		// --------------------------------------------------------------------------------------------
 		if (isPrevPage) {
 			sb.append("<a href ='" + pageURL + "?page=");
@@ -130,8 +119,7 @@ public class Paging {
 			sb.append("'>◀</a>");
 		} else
 			sb.append("◀");
-
-		// ------������ ��� ���
+		
 		// -------------------------------------------------------------------------------------------------
 		sb.append("|");
 		for (int i = startPage; i <= endPage; i++) {
@@ -139,11 +127,11 @@ public class Paging {
 			if (i > totalPage)
 				break;
 
-			if (i == nowPage) { // ���� �ִ� ������
+			if (i == nowPage) { // 현재 페이지 숫자인 경우
 				sb.append("&nbsp;<b><font color='red'>");
 				sb.append(i);
 				sb.append("</font></b>");
-			} else {// ���� �������� �ƴϸ�
+			} else {// 현재 페이지 숫자가 아닌 경우
 				sb.append("&nbsp;<a href='" + pageURL + "?page=");
 				sb.append(i);
 
@@ -157,7 +145,6 @@ public class Paging {
 
 		sb.append("&nbsp;|");
 
-		// -----�׷�������ó�� ����
 		// ----------------------------------------------------------------------------------------------
 		if (isNextPage) {
 			sb.append("<a href='" + pageURL + "?page=");
@@ -177,42 +164,35 @@ public class Paging {
 	public static String getReviewPaging(String pageURL, int nowPage, int rowTotal, int blockList,
 			int blockPage) {
 
-		int totalPage/* ��ü�������� */, startPage/* ������������ȣ */, endPage;/* ��������������ȣ */
+		int totalPage, startPage, endPage;
 
 		boolean isPrevPage, isNextPage;
-		StringBuffer sb; // ��� ��Ȳ�� �Ǵ��Ͽ� HTML�ڵ带 ������ ��
+		StringBuffer sb; 
 
 		isPrevPage = isNextPage = false;
 
-		// �Էµ� ��ü �ڿ��� ���� ��ü ������ ���� ���Ѵ�..
+		
 		totalPage = rowTotal / blockList;
 		if (rowTotal % blockList != 0)
 			totalPage++;
-
-		// ���� �߸��� ����� ���������� ���Ͽ� ���� ������ ���� ��ü ������ ����
-		// ���� ��� ������ ���������� ���� ��ü ������ ������ ����
 		if (nowPage > totalPage)
 			nowPage = totalPage;
 
-		// ���� �������� ������ �������� ����.
+		
 		startPage = (int) (((nowPage - 1) / blockPage) * blockPage + 1);
 		endPage = startPage + blockPage - 1; //
 
-		// ������ ������ ���� ��ü������������ ũ�� ������������ ���� ����
+		
 		if (endPage > totalPage)
 			endPage = totalPage;
 
-		// �������������� ��ü���������� ���� ��� ���� ����¡�� ������ �� �ֵ���
-		// boolean�� ������ ���� ����
 		if (endPage < totalPage)
 			isNextPage = true;
-		// ������������ ���� 1���� ������ ��������¡ ������ �� �ֵ��� ������
 		if (startPage > 1)
 			isPrevPage = true;
 
-		// HTML�ڵ带 ������ StringBuffer����=>�ڵ����
+		
 		sb = new StringBuffer();
-		// -----�׷�������ó�� ����
 		// --------------------------------------------------------------------------------------------
 		if (isPrevPage) {
 			sb.append("<a href ='" + pageURL + "&page=");
@@ -222,7 +202,6 @@ public class Paging {
 		} else
 			sb.append("◀");
 
-		// ------������ ��� ���
 		// -------------------------------------------------------------------------------------------------
 		sb.append("|");
 		for (int i = startPage; i <= endPage; i++) {
@@ -230,11 +209,11 @@ public class Paging {
 			if (i > totalPage)
 				break;
 
-			if (i == nowPage) { // ���� �ִ� ������
+			if (i == nowPage) { //현재 페이지의 숫자인 경우
 				sb.append("&nbsp;<b><font color='red'>");
 				sb.append(i);
 				sb.append("</font></b>");
-			} else {// ���� �������� �ƴϸ�
+			} else {// 현재 페이지 숫자가 아닌 경우
 				sb.append("&nbsp;<a href='" + pageURL + "&page=");
 				sb.append(i);
 
@@ -246,7 +225,6 @@ public class Paging {
 
 		sb.append("&nbsp;|");
 
-		// -----�׷�������ó�� ����
 		// ----------------------------------------------------------------------------------------------
 		if (isNextPage) {
 			sb.append("<a href='" + pageURL + "&page=");
@@ -269,58 +247,47 @@ public class Paging {
 
 		isPrevPage = isNextPage = false;
 
-//�Էµ� ��ü �ڿ��� ���� ��ü ������ ���� ���Ѵ�..
 		totalPage = rowTotal / blockList;
 		if (rowTotal % blockList != 0)
 			totalPage++;
 
-//���� �߸��� ����� ���������� ���Ͽ� ���� ������ ���� ��ü ������ ����
-//���� ��� ������ ���������� ���� ��ü ������ ������ ����
 		if (nowPage > totalPage)
 			nowPage = totalPage;
 
-//���� �������� ������ �������� ����.
 		startPage = (int) (((nowPage - 1) / blockPage) * blockPage + 1);
 		endPage = startPage + blockPage - 1; //
 
-//������ ������ ���� ��ü������������ ũ�� ������������ ���� ����
 		if (endPage > totalPage)
 			endPage = totalPage;
 
-//�������������� ��ü���������� ���� ��� ���� ����¡�� ������ �� �ֵ���
-//boolean�� ������ ���� ����
 		if (endPage < totalPage)
 			isNextPage = true;
-//������������ ���� 1���� ������ ��������¡ ������ �� �ֵ��� ������
+
 		if (startPage > 1)
 			isPrevPage = true;
 
-//HTML�ڵ带 ������ StringBuffer����=>�ڵ����
 		sb = new StringBuffer();
-//-----�׷�������ó�� ���� --------------------------------------------------------------------------------------------      
+//------------------------------------------------------------------------------------------      
 		if (isPrevPage) {
-
 			/* <a href="#" onclick="comment_list('1');">1</a> */
-
 			sb.append(String.format("&nbsp;<a href='#' onclick=\"review_list('%d');\">", startPage - 1));
-//sb.append("<a href ='#' onclick=\"comment_list('"+ (startPage-1) +"');\"> ");
+			//sb.append("<a href ='#' onclick=\"comment_list('"+ (startPage-1) +"');\"> ");
 			sb.append("◀</a>");
 		} else
 			sb.append("◀");
 
-//------������ ��� ��� -------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
 		sb.append("|");
 		for (int i = startPage; i <= endPage; i++) {
 
 			if (i > totalPage)
 				break;
 
-			if (i == nowPage) { // ���� �ִ� ������
+			if (i == nowPage) { 
 				sb.append("&nbsp;<b><font color='red'><span class='page_num'>");
 				sb.append(i);
 				sb.append("</span></font></b>");
-			} else {// ���� �������� �ƴϸ�
-//sb.append("&nbsp;<a href='"+pageURL+"?page=");
+			} else {
 				sb.append(String.format("&nbsp;<a href='#' onclick=\"review_list('%d');\"><span class='page_num'>", i));
 				sb.append(i);
 				sb.append("</span></a>");
@@ -329,9 +296,8 @@ public class Paging {
 
 		sb.append("&nbsp;|");
 
-//-----�׷�������ó�� ���� ----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 		if (isNextPage) {
-//sb.append("<a href='"+pageURL+"?page=");
 			sb.append(String.format("&nbsp;<a href='#' onclick=\"review_list('%d');\">", endPage + 1));
 			sb.append("▶</a>");
 		} else

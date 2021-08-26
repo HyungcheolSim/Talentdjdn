@@ -1,46 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>게시물</title>
 <!-- bootstrap을 사용하기 위한 설정 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/board.css">
 <!-- SweetAlert사용설정 : 알림박스 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <style type="text/css">
 
-	#box{
-		width: 700px;
-		margin: auto;
-		margin-top: 50px;
-	}
-	
-	#title,#content,#regdate{
-		width:  500px;
-		margin: 2px;
-		border: 1px solid gray;
-		padding: 5px;
-	}
-	
-	#content{
-		min-height: 200px;  
-	}
-	
-	input[type='button']{
-		width: 100px;
-	}
+
 	
 </style>
 
@@ -64,18 +42,14 @@ $(document).ready(function(){
 		location.href="modify_form.do?b_idx=" + b_idx;
 		
 	}//end-modify_form
-
 </script>
-
 </head>
 <body>
-
 	<div class="tp_layers">
 		<div class="tp_button_layout">
 			<%@ include file="../top_button.jsp"%>
 		</div>
 	</div>
-
 	<div class="tp_layer">
 		<div class="tp_main_layout">
 
@@ -88,17 +62,17 @@ $(document).ready(function(){
 						<table class="table">
 							<tr>
 								<th>제목</th>
-								<td><div id="title">${ vo.b_title }</div></td>
+								<td><div id="boardtitle">${ vo.b_title }</div></td>
 							</tr>
 
 							<tr>
 								<th>내용</th>
-								<td><div id="content">${ vo.b_content }</div></td>
+								<td><div id="boardcontent">${ vo.b_content }</div></td>
 							</tr>
 
 							<tr>
 								<th>작성일자</th>
-								<td><div id="regdate">${ vo.b_regdate }</div></td>
+								<td><div id="boardregdate">${ vo.b_regdate }</div></td>
 							</tr>
 
 							<tr>
@@ -115,16 +89,13 @@ $(document).ready(function(){
 						</table>
 					</div>
 				</div>
-
 			</div>
 		</div>
-
 		<div class="tp_layers">
 			<div class="tp_bottom_layout">
 				<%@ include file="../bottom.jsp"%>
 			</div>
 		</div>
-
 	</div>
 </body>
 </html>

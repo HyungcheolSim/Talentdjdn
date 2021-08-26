@@ -6,43 +6,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>회원 목록(관리자 전용)</title>
 <!-- bootstrap을 사용하기 위한 설정 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/member_list.css">
-
 <script type="text/javascript">
-
 function del(m_idx) {
-	
 	if(confirm('정말 탈퇴 시키시겠습니까?')==false) return; 
-	
 	//삭제정보 전송
 	location.href="delete.do?m_idx=" + m_idx; 
 }
-
 </script>
-
 </head>
 <body>
-
 	<div class="tp_layers">
       <div class="tp_button_layout">
          <%@ include file="../top_button.jsp" %>
       </div>
    </div>
-
-
 	<div id="box">
 		<div class="panel panel-warning">
 			<div class="panel-heading">회원관리</div>
-			<div class="panel-body">
-			
+			<div class="panel-body">			
 				<table class="table">
 				<tr>
 					<th>번호</th>
@@ -55,8 +43,7 @@ function del(m_idx) {
 					<th>지역</th>
 					<th>가입일자</th>
 					<th>등급</th>
-				</tr>
-				
+				</tr>				
 				<!-- data가 비어있으면 -->
 				<c:if test="${ empty map.list }">
 					<tr>
@@ -65,7 +52,6 @@ function del(m_idx) {
 						</td>
 					</tr>
 				</c:if>
-				
 				<c:forEach var="vo" items="${ map.list }">
 					<tr>
 						<td>${ vo.m_idx }</td>
@@ -86,24 +72,18 @@ function del(m_idx) {
 						</td>
 					</tr>
 				</c:forEach>
-				
 			</table>
-			
 			</div>
 		</div>
-		
 			<!-- Page메뉴 넣기 -->
 			<div style="text-align: center; font-size: 12pt;">
 				${ map.pageMenu }
 			</div>
-		
 	</div>
-
 	<div class="tp_layers">
       <div class="tp_bottom_layout">
          <%@ include file="../bottom.jsp" %>
       </div>
    </div>
-
 </body>
 </html>

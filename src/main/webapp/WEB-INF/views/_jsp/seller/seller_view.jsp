@@ -5,23 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-
-
-<!-- bootstrap을 사용하기 위한 설정 -->
+<title>판매자 상세 페이지</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<!-- common -->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/common.css">
-
-<!-- this page (경로 수정필요)-->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/seller_view.css">
 
@@ -38,8 +30,6 @@
 		location.href = "../talent/inserttalent.do?s_idx="+s_idx;
 	}
 </script>
-
-
 </head>
 <body>
 	<div class="back_color">
@@ -58,7 +48,7 @@
 						<td rowspan='4' class="sub_text"><img class="select_p_img"
 							alt=""
 							src="displayFile?fileName=${vo.s_potfolio}&directory=seller"></td>
-						<td class="sub_text1"><b>${ vo.s_id }</b>님 이력</b></td>
+						<td class="sub_text1"><b>${ vo.s_id }</b>님 이력</td>
 						<c:if
 							test="${ vo.member.m_idx eq user.m_idx}">
 							<td class="sub_text2"><input id="select_btn"
@@ -77,7 +67,6 @@
 					<div class="loc_cate_null">${ vo.s_msg }</div>
 					<input type="button" id="seller_menu" class="btn btn-warning"
 						value="목록보기" onclick="location.href='list.do'">
-
 				</div>
 				<div id="select_box"></div>
 
@@ -91,9 +80,8 @@
 							<td class="detail">기 술 : ${ vo.s_skill }</td>
 							<td class="detail">지 역 : ${ vo.s_local }</td>
 							<td class="detail">이 메 일 : ${ vo.member.m_email }</td>
-							<td class="detail">포트폴리오 :</br>
-							</br> <img
-								src="displayFile?fileName=${vo.s_potfolio}&directory=seller"
+							<td class="detail">포트폴리오 :<br>
+							 <img src="displayFile?fileName=${vo.s_potfolio}&directory=seller"
 								width="500">
 							</td>
 						</tr>
@@ -101,7 +89,6 @@
 					<div class="button_box"></div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<div class="tp_layers">

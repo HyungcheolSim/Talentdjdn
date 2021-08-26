@@ -19,13 +19,6 @@
 	href="${ pageContext.request.contextPath }/resources/css/talent/talent_sidebar.css">
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/talent/talent_register.css">
-<style type="text/css">
-textarea[name='t_content'] {
-	width: 60%;
-	resize: none;
-	border: black solid 1px;
-}
-</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 

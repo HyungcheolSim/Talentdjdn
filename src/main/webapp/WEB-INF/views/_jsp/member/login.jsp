@@ -1,47 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>로그인</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/login.css">
-
 <script type="text/javascript">
-
 $(document).ready(function(){
-	
 	setTimeout(show_message, 100); //0.1초후에 show_message함수 호출
-	
 });
 
 function show_message(){
-	
 	if("${ param.reason eq 'fail_id' }"=="true"){
 		alert('아이디가 틀립니다');
 	}
-	
 	if("${ param.reason eq 'fail_pwd' }"=="true"){
 		alert('비밀번호가 틀립니다');
 	}
-	
 	if("${ param.reason eq 'end_session' }"=="true"){
 		alert('시간이 만료되어서\n로그아웃되었습니다');
-	}
-	
-	
-	
+	}	
 }
+
 function send(f) {
     
     var m_id  = f.m_id.value.trim();
@@ -66,16 +52,13 @@ function send(f) {
     
  }
 </script>
-
 </head>
 <body>
-
 	<div class="tp_layers">
       <div class="tp_button_layout">
          <%@ include file="../top_button.jsp" %>
       </div>
    </div>
-
 	<div id="login_box">
 		<form>
 			<input type="hidden" name="url" value="${ param.url }">
@@ -102,12 +85,10 @@ function send(f) {
 			</div>
 		</form>
 	</div>
-	
 	<div class="tp_layers">
       <div class="tp_bottom_layout">
          <%@ include file="../bottom.jsp" %>
       </div>
    </div>
-
 </body>
 </html>

@@ -11,7 +11,6 @@ import dao.ReviewDao;
 import mycommon.MyConstant;
 import util.Paging;
 import vo.ReviewVo;
-import vo.TalentVo;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -25,7 +24,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public Map insertReview(ReviewVo vo) {
-		// TODO Auto-generated method stub
+		// review insert 후 결과 result로 map에 넣어 리턴
 		String c_content = vo.getR_content().replaceAll("\n", "<br>");
 		vo.setR_content(c_content);
 
@@ -34,13 +33,10 @@ public class ReviewServiceImpl implements ReviewService {
 			res = reviewDao.insert(vo);
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		// Map -> JSON�ڵ�� ��ȯ => �������
 		Map map = new HashMap();
-
 		map.put("result", (res == 1) ? "success" : "fail"); // { "result" : "success" }
 
 		return map;
@@ -53,7 +49,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public Map getPagingReviewList(int t_idx,int nowPage) {
-		// TODO Auto-generated method stub
+		// T_idx에 해당하는 페이징된 리뷰목록 출력
 		int start = (nowPage - 1) * MyConstant.Review.BLOCK_LIST + 1;
 		int end = start + MyConstant.Review.BLOCK_LIST - 1;
 
@@ -64,7 +60,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 		List<ReviewVo> reviewlist = reviewDao.selectList(map);
 		
-		 //c_idx�� �޸� ������ ����
 	      int row_total = reviewDao.selectRowTotal(t_idx);
 	      
 	      String pageMenu = Paging.getReviewPaging(nowPage, row_total, 
@@ -77,8 +72,5 @@ public class ReviewServiceImpl implements ReviewService {
 			resultMap.put("pageMenu", pageMenu);
 			}
 		return resultMap;
-
-}
-
-
+	}
 }

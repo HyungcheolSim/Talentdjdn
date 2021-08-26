@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>헤더 최상단 버튼</title>
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/top_button.css">
@@ -32,8 +32,7 @@
 		    <c:if test="${ not empty user }">
 		    	<li><a href="../member/logout.do">로그아웃</a></li>
 		    	<div>
-					<b>[${ user.m_id }]</b>님 로그인 하셨습니다
-					<%-- <input type="button" class="btn btn-warning" value="정보수정" onclick="location.href='${ pageContext.request.contextPath }/member/modify_form.do?m_idx=${ user.m_idx }'"> --%>
+					<b>[${ user.m_id }]</b>님 로그인 하셨습니다					
 					<a href="${ pageContext.request.contextPath }/member/member_info_form.do?m_idx=${ user.m_idx }">[마이정보]</a>
 				</div>
 		    </c:if> 

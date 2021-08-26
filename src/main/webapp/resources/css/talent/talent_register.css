@@ -23,7 +23,11 @@ html,body {
 	height:auto;
 	min-height:1600px;
 }
-
+textarea[name='t_content'] {
+	width: 60%;
+	resize: none;
+	border: black solid 1px;
+}
 input {
 	width:60%;
 }

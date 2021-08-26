@@ -7,37 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <!-- bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- common -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/common.css">
-
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/common.css">
 <!-- this page -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/member_info.css">
-
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/member_info.css">
 <script type="text/javascript">
 	function modify_form() {
-
-		location.href = 'modify_form.do?m_idx=' + $
-		{
-			vo.m_idx
-		}
-		;
+		location.href = 'modify_form.do?m_idx=' + ${vo.m_idx};
 	}
 </script>
-
 </head>
 <body>
-
 	<div class="tp_layers">
 		<div class="tp_button_layout">
 			<%@ include file="../top_button.jsp"%>
@@ -88,17 +72,13 @@
 									<td>${ vo.m_phone }</td>
 								</tr>
 								<tr>
-									<td colspan="2" align="center"><input
-										class="btn btn-warning" type="button" id="btn_register"
-										value="정보수정" onclick="modify_form('${ vo.m_idx }')"> <input
-										class="btn btn-warning" type="button" value="메인화면"
-										onclick="location.href='../main/index.do'"> <input
-										class="btn btn-warning" type="button" value="관심목록"
-										onclick="location.href='../interest/list.do'"> <input
-										class="btn btn-warning" type="button" value="구매목록"
-										onclick="location.href='../purchase/list.do'"> <input
-										class="btn btn-warning" type="button" value="판매목록"
-										onclick="location.href='../purchase/soldlist.do'"></td>
+									<td colspan="2" align="center">
+										<input class="btn btn-warning" type="button" id="btn_register" value="정보수정" onclick="modify_form('${ vo.m_idx }')"> 
+										<input class="btn btn-warning" type="button" value="메인화면"	onclick="location.href='../main/index.do'"> 
+										<input class="btn btn-warning" type="button" value="관심목록"	onclick="location.href='../interest/list.do'">
+										<input class="btn btn-warning" type="button" value="구매목록"	onclick="location.href='../purchase/list.do'"> 
+										<input class="btn btn-warning" type="button" value="판매목록" onclick="location.href='../purchase/soldlist.do'">
+									</td>
 								</tr>
 							</table>
 						</div>
@@ -106,7 +86,6 @@
 				</form>
 			</div>
 			<div id="seller_box">
-
 				<div class="panel panel-warning">
 					<div class="panel-heading">내가 등록한 판매자 정보</div>
 					<div class="panel-body">
@@ -124,12 +103,10 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="tp_layers">
 		<div class="tp_bottom_layout">
 			<%@ include file="../bottom.jsp"%>
 		</div>
 	</div>
-
 </body>
 </html>
