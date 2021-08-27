@@ -104,7 +104,7 @@ th, td {
 							<a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a>
 						</div>
 						<div class ="price_dt">
-							<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${talentvo.t_price}" />원원</span>
+							<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.t_price}" />원</span>
 						</div>
 						<div class ="s_dt">
 							<span>${ vo.t_starscore }점</span>

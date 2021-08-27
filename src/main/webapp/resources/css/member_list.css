@@ -1,8 +1,20 @@
 @charset "UTF-8";
 
 #box{
-	width: 1600px;
+	width: 80%;
 	margin: auto;
 	margin-top: 50px;
 }
 
+.table>tbody>tr>td{
+	font-size: 0.1vw !important;
+}
+
+.table>tbody>tr>th{
+	font-size: 1vw !important;
+}
+
+.btn{
+	font-size: 0.1vw !important;
+	padding:2px 4px !important;
+}

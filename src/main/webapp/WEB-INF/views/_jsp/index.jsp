@@ -124,8 +124,9 @@
 							src="../seller/displayFile?fileName=${seller.s_potfolio}&directory=seller"></a>
 
 							<div class="c_title">
-								<span class="c_name">${ seller.s_id }</span> <span
-									class="c_star">${ seller.s_tcount }</span>
+								<span class="c_name">${ seller.s_id }</span>
+								<span class="c_heart"><img id="td_thumb" src="${pageContext.request.contextPath}/resources/img/thumb.png"></span> 
+								<span class="c_star">${ seller.s_tcount }</span>
 							</div></li>
 
 					</c:forEach>

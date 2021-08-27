@@ -37,7 +37,6 @@
 	margin: auto;
 	margin-top:10px;
 	margin-bottom:10px;
- 	border-bottom:2px solid #6E6E6E;
 }
 
 .select_main{
@@ -137,7 +136,9 @@
 	margin-right:7%
 }
 
-
+.empty_box{
+	border-top:2px solid #a4a4a4;
+}
 
 .select_p_img{
 	width:130px;
@@ -147,9 +148,6 @@
 	float:left;
 }
 
-.empty_box{
-	height:150px;
-}
 
 .detail_t{
    width:100%;		
