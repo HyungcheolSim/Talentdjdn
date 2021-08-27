@@ -26,8 +26,8 @@
 
 	}//end-modify_form
 	function goTalentInsert(s_idx) {
-		
-		location.href = "../talent/inserttalent.do?s_idx="+s_idx;
+		sessionStorage.setItem("s_idx", s_idx);
+		location.href = "../talent/inserttalent.do";
 	}
 </script>
 </head>
@@ -50,7 +50,7 @@
 							src="displayFile?fileName=${vo.s_potfolio}&directory=seller"></td>
 						<td class="sub_text1"><b>${ vo.s_id }</b>님 이력</td>
 						<c:if
-							test="${ vo.member.m_idx eq user.m_idx}">
+							test="${ vo.member.m_idx eq user.m_idx }">
 							<td class="sub_text2"><input id="select_btn"
 								class="btn btn-warning" type="button" value="정보수정"
 								onclick="modify_form('${ vo.s_idx }');">

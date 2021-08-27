@@ -61,24 +61,21 @@
 		</div>
 		<div class="tt_cont">
 			<div class="table_container">
-				<div class="container_bx">
-					<c:forEach var="vo" items="${ map.list }">
-						<div class="container_pr">
-							<div class="p_dt">
-								<a href="talentdetail.do?t_idx=${ vo.t_idx }"><img
-									class="thumbnail"
-									src="../seller/displayFile?fileName=${vo.t_image}&directory=talent"></a>
-							</div>
-							<div class="h_dt">
-								<a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a>
-							</div>
-							<div class="price_dt">
-								<span><fmt:formatNumber type="number"
-										maxFractionDigits="3" value="${vo.t_price}" />원</span>
-							</div>
-							<div class="s_dt">
-								<span>${ vo.t_starscore }점</span>
-							</div>
+
+				<div class = "container_bx">
+				<c:forEach var="vo" items="${ map.list }">
+					<div class ="container_pr">
+						<div class ="p_dt">
+							<a href="talentdetail.do?t_idx=${ vo.t_idx }"><img class="thumbnail" src="../seller/displayFile?fileName=${vo.t_image}&directory=talent"></a>
+						</div>
+						<div class ="h_dt">
+							<a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a>
+						</div>
+						<div class ="price_dt">
+							<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.t_price}" />원</span>
+						</div>
+						<div class ="s_dt">
+							<span>${ vo.t_starscore }점</span>
 						</div>
 					</c:forEach>
 				</div>

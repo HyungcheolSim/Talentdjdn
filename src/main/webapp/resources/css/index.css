@@ -9,11 +9,16 @@
    
    color: black;
    font-weight: bold;
-   font-size: 20px;
+   font-size: 1vw;
    margin-right: 15px;
    margin-left: 10px;
+   float:left;
+   margin-top:2px;
    
-   
+}
+
+.tp_layer{
+	height:450px !important;
 }
 
 .cafe_list{
@@ -26,10 +31,19 @@
    min-height:30px;
    height:auto;
 }
+.c_heart{
+	float:left;
+	width:20px;
+	height:20px;
+	margin-top:2px;
+	margin-right:2px;
+}
+
 .c_star{
    font-weight: bold;
    font-size: 18px;
    color: #fc8a17;
+   float:left;
 }
 .c_layout{
    margin: auto !important;
