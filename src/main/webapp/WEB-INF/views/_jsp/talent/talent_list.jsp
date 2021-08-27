@@ -11,10 +11,6 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/common.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/talent/talent_sidebar.css">
-<link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/talent/talent_list.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -49,62 +45,62 @@
 </script>
 </head>
 <body>
-	<div class="talent_list_body_container"></div>
-	<div class="tp_layers">
-		<div class="tp_button_layout">
-			<%@ include file="../top_button.jsp"%>
+	<div class="talent_list_body_container">
+		<div class="talent_list_header_container">
+			<div class="header">
+					<%@ include file="../top_button.jsp"%>
+			</div>	
 		</div>
-	</div>
-	<div class="talent_list_content_container">
-		<div class="talent_list_content_sidebar_container">
-			<%@ include file="talent_sidebar.jsp"%>
-		</div>
-		<div class="tt_cont">
-			<div class="table_container">
-
-				<div class = "container_bx">
-				<c:forEach var="vo" items="${ map.list }">
-					<div class ="container_pr">
-						<div class ="p_dt">
-							<a href="talentdetail.do?t_idx=${ vo.t_idx }"><img class="thumbnail" src="../seller/displayFile?fileName=${vo.t_image}&directory=talent"></a>
+		<div class="talent_list_content_container">
+			<div class="talent_list_content_sidebar_container">
+				<%@ include file="talent_sidebar.jsp"%>
+			</div>
+			<div class="tt_cont">
+				<div class="table_container">
+					<div class="container_bx">
+						<c:forEach var="vo" items="${ map.list }">
+							<div class="container_pr">
+								<div class="p_dt">
+									<a href="talentdetail.do?t_idx=${ vo.t_idx }"><img
+										class="thumbnail"
+										src="../seller/displayFile?fileName=${vo.t_image}&directory=talent"></a>
+								</div>
+								<div class="h_dt">
+									<a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a>
+								</div>
+								<div class="price_dt">
+									<span><fmt:formatNumber type="number"
+											maxFractionDigits="3" value="${vo.t_price}" />원</span>
+								</div>
+								<div class="s_dt">
+									<span>${ vo.t_starscore }점</span>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<!-- 검색메뉴 -->
+					<div class="select_box" style="text-align: center;">
+						<select id="search">
+							<option value="all">전체보기</option>
+							<option value="name">판매자</option>
+							<option value="subject">제목</option>
+							<option value="content">내용</option>
+							<option value="bfield">카테고리</option>
+							<option value="subject_content">제목+내용</option>
+						</select> <input id="search_text" value="${ param.search_text }"> <input
+							class="btn btn-warning" type="button"
+							value="검색" onclick="find();">
+						<!-- Page메뉴 넣기 -->
+						<div class="pagemenu">
+							${ map.pageMenu }
 						</div>
-						<div class ="h_dt">
-							<a href="talentdetail.do?t_idx=${ vo.t_idx }">${ vo.t_title }</a>
-						</div>
-						<div class ="price_dt">
-							<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.t_price}" />원</span>
-						</div>
-						<div class ="s_dt">
-							<span>${ vo.t_starscore }점</span>
-						</div>
-					</div>	
-					</c:forEach>
-				</div>
-				<!-- 검색메뉴 -->
-				<div class="select_box" style="text-align: center;">
-					<select id="search">
-						<option value="all">전체보기</option>
-						<option value="name">판매자</option>
-						<option value="subject">제목</option>
-						<option value="content">내용</option>
-						<option value="bfield">카테고리</option>
-						<option value="subject_content">제목+내용</option>
-					</select> <input id="search_text" value="${ param.search_text }"> <input
-						class="btn btn-warning" style="width: 60px;" type="button"
-						value="검색" onclick="find();">
-					<!-- Page메뉴 넣기 -->
-					<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="f_section">
 		<div class="talent_detail_footer_container">
-			<div class="tp_layers">
-				<div class="tp_bottom_layout">
-					<%@ include file="../bottom.jsp"%>
-				</div>
+			<div class="footer">
+				<%@ include file="../bottom.jsp"%>
 			</div>
 		</div>
 	</div>

@@ -30,7 +30,7 @@ body {
 
 /* layout ------------------------------------------------------------------------------- */
 .tp_layers {
-	/* position: relative; */
+	position: relative; 
 	width: 95%;
 	margin: auto;
 	/* margin-bottom: 1px; */
@@ -39,14 +39,14 @@ body {
 }
 
 .tp_layer {
-	position: relative;
+	position: relative; 
 	width: 100%;
 	height: 550px;
 	margin: auto;
 	/* margin-bottom: 1px; */
 }
    .newtp_layer {
-	position: relative;
+	 position: relative; 
 	width: 100%;
 	min-height: 700px;
 	height:auto;
@@ -54,7 +54,7 @@ body {
 	/* margin-bottom: 1px; */
 }
 .tp_layer_main {
-	position: relative;
+	 position: relative; 
 	width: 75%;
 	height: 900px;
 	margin: auto;
@@ -62,7 +62,7 @@ body {
 }
 
 .tp_space {
-	position: relative;
+	 position: relative; 
 	width: 100%;
 	height: 10px;
 }
