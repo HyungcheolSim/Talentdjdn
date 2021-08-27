@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,7 +135,7 @@
 					<input type="text" id="monthPicker" name="monthPicker" style=""
 						onchange="find();" />
 					<input id="select_btn"
-							class="selectDelete_btn" type="button" value="선택 삭제" onclick="javascript:deletelist()">
+							class="btn btn-warning" type="button" value="선택 삭제" onclick="javascript:deletelist()">
 				</div>
 				<c:if test="${ empty map.list }">
 					<tr>
@@ -172,7 +173,8 @@
 							<c:if test="${ vo.talent.t_cat eq '재능' }">
 								<td class="sub_text3">${vo.p_email}</td>
 							</c:if>
-							<td class="sub_text4">${vo.talent.t_price}</td>
+							<td class="sub_text4"><fmt:formatNumber type="number" maxFractionDigits="3"
+									value="${vo.talent.t_price}" /></td>
 							<td class="sub_text3">${vo.member.m_idx}</td>
 							<td class="sub_text4">${vo.p_regdate }</td>
 
@@ -180,7 +182,7 @@
 					</c:forEach>
 				</table>
 				<tr>
-					<td class="total_sum" colspan="2">현재 페이지 총 판매금액: ${ map.totalPrice}원</td>
+					<td class="total_sum" colspan="2">현재 페이지 총 판매금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${ map.totalPrice}"/>원</td>
 				</tr>
 			</div>
 			<!-- Page메뉴 넣기 -->

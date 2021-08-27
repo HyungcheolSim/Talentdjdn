@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +98,7 @@
 						<td class="sub_text"><img class="select_p_img" alt=""
 							src="../seller/displayFile?fileName=${map.tv.t_image}&directory=talent" />${map.tv.t_title}</td>
 						<td class="sub_text1">${map.tv.t_content}</td>
-						<td class="sub_text2">${map.tv.t_price}</td>
+						<td class="sub_text2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${map.tv.t_price}"/>원</td>
 						<td class="sub_text2">${map.tv.seller.s_id}</td>
 					</tr>
 				</table>

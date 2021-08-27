@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,7 +109,7 @@ function deletelist() {
 						<td class="sub_text"><img class="select_p_img" alt=""
 							src="../seller/displayFile?fileName=${vo.talent.t_image}&directory=talent" />${vo.talent.t_title}</td>
 						<td class="sub_text1">${vo.talent.t_content}</td>
-						<td class="sub_text2">${vo.talent.t_price}</td>
+						<td class="sub_text2"><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.talent.t_price}"/>원</td>
 						<td class="sub_text2">${vo.talent.seller.s_id}</td>
 					</tr>
 					</c:forEach>			
