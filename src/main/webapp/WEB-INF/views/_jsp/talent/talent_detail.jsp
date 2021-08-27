@@ -206,10 +206,8 @@ $(document).ready(function(){
 <body>
 	<div class="talent_detail_body_container">
 		<div class="talent_detail_header_container">
-			<div class="tp_layers">
-				<div class="tp_button_layout">
+			<div class="header">
 					<%@ include file="../top_button.jsp"%>
-				</div>
 			</div>
 		</div>
 		<div class="tt_cont">
@@ -319,10 +317,8 @@ $(document).ready(function(){
 			</div>
 		</div>
 		<div class="talent_detail_footer_container">
-			<div class="tp_layers">
-				<div class="tp_bottom_layout">
+			<div class="footer">
 					<%@ include file="../bottom.jsp"%>
-				</div>
 			</div>
 		</div>
 	</div>

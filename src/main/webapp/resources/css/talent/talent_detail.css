@@ -11,10 +11,6 @@ html,body {
 	width:100%;
 	height:100%;
 }
-.talent_detail_header_container{
-	width:100%;
-	height:15%;
-}
 .talent_detail_content_container{
 	width:100%;
 	margin:auto;
@@ -152,12 +148,27 @@ td span{
 	color: RED;
 }
 
+/*푸터 */
 .talent_detail_footer_container{
 	width:100%;
-	height:auto;
-	min-height:250px;
+	height:220px;
 }
-
+.footer{
+	width:90%;
+	margin:auto;
+	height:auto;
+}
+/*헤더 */
+.talent_detail_header_container{
+	width:100%;
+	height:auto;
+	min-height:200px;
+}
+.header{
+	width:90%;
+	margin:auto;
+	height:auto;
+}
 	
 
 .star-rating {
@@ -259,7 +270,8 @@ table td input{
 
 .detail3{
 	width:95%;
-	height:25%;
+	min-height:55px;
+	height:auto;
 	margin-top:5%;
 	background-color:#fff;
 	border:solid 1px #a4a4a4;
@@ -291,7 +303,7 @@ table td input{
 
 .dd1{
 	width:100%;
-	height:40%;
+	height:100%;
 }
 
 .dd2{
@@ -303,8 +315,8 @@ table td input{
 }
 
 #cart{
-	width:15%;
-	height:60%;
+	width:30px;
+	height:30px;
 	float:left;
 	margin-right:2%;
 	margin-left:2%;
