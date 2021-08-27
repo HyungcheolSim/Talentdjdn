@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Talent Register</title>
+<title>Talent Modify</title>
 <!-- common -->
 
 <link rel="stylesheet"
@@ -19,13 +19,7 @@
 	href="${ pageContext.request.contextPath }/resources/css/talent/talent_sidebar.css">
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/talent/talent_register.css">
-<style type="text/css">
-textarea[name='t_content'] {
-	width: 60%;
-	resize: none;
-	border: black solid 1px;
-}
-</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -58,11 +52,8 @@ textarea[name='t_content'] {
 			f.t_content.value = '';
 			f.t_content.focus();
 		}
-		//
-		f.action = "modify.do"; //TalentInsertAction
+		f.action = "modify.do"; 
 		f.submit();//전송
-
-
 	}
 </script>
 </head>
@@ -150,7 +141,6 @@ textarea[name='t_content'] {
 												<option value="상품">상품</option>
 										</select></td>
 									</tr>
-
 								</tbody>
 							</table>
 							<div class="btn_right mt15">

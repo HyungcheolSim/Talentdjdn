@@ -1,16 +1,13 @@
 package controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import dao.MainDao;
 import service.MainService;
-import vo.SellerVo;
-import vo.TalentVo;
+
 
 @RequestMapping("/main/")
 @Controller
@@ -24,7 +21,7 @@ public class MainController {
 
 	@RequestMapping("index.do")
 	public String index(Model model) {
-		
+		//service에서 보내준 세 가지 list를 받아와 model에 map으로 전달하고 index로 다시 이동
 		Map map=mainService.getAllLists();
 		model.addAttribute("map",map);
 		

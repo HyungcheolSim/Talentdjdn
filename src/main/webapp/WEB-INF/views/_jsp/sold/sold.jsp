@@ -5,9 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<!-- bootstrap -->
+<title>판매 목록</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
@@ -24,8 +22,6 @@
 <!-- common -->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/common.css">
-
-<!-- this page (경로 수정필요)-->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/payment_button.css">
 <link rel="stylesheet"

@@ -1,6 +1,5 @@
 package service;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +28,7 @@ public class SellerServiceImpl implements SellerService {
 		this.sellerDao = sellerDao;
 	}
 
+	//페이징한 seller list
 	@Override
 	public Map getPagingSellerList(int nowPage, String search_text1, String search_text2) {
 		int start = (nowPage - 1) * MyConstant.Seller.BLOCK_LIST + 1;
@@ -37,7 +37,7 @@ public class SellerServiceImpl implements SellerService {
 		Map map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
-
+		//search_text1과 2가 각각 존재할 경우 해당하는 column 내에서 search_text 검색
 		if (!search_text1.isEmpty()) {
 			map.put("s_local", search_text1);
 		}
@@ -53,6 +53,7 @@ public class SellerServiceImpl implements SellerService {
 
 		String pageMenu = Paging.getPaging("list.do", nowPage, rowTotal, search_filter, MyConstant.Seller.BLOCK_LIST,
 				MyConstant.Seller.BLOCK_PAGE);
+		//리턴해줄 Map 생성해 list, pagemenu s_count(조회된 seller 개수) 넣는다.
 		Map resultMap = new HashMap();
 		resultMap.put("list", list);
 		if (rowTotal > 0) {
@@ -64,37 +65,26 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public List<SellerVo> getSellerList(Map map) {
-		// TODO Auto-generated method stub
-		return sellerDao.selectList(map);
-	}
-
-	@Override
 	public int getSellerRowTotal(Map map) {
-		// TODO Auto-generated method stub
+		// map에 해당하는 row 수 리턴
 		return sellerDao.selectRowTotal(map);
 	}
 
 	@Override
 	public int insertSeller(SellerVo vo, @RequestParam MultipartFile potfolio) {
-		// TODO Auto-generated method stub
-	
+		// seller에 image 관련 설정 upload path 설정, potfolio에 path 넣기
 		String uploadpath = "img/seller";
-
 		ResponseEntity<String> img_path = null;
 		try {
 			img_path = new ResponseEntity<String>(
 					UploadFileUtils.uploadFile(uploadpath, potfolio.getOriginalFilename(), potfolio.getBytes()),
 					HttpStatus.CREATED);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String potfolioPath = (String) img_path.getBody();
-
 		vo.setS_potfolio(potfolioPath);
 		
-
 		String s_msg = vo.getS_msg().replaceAll("\r\n", "<br>");
 		vo.setS_msg(s_msg);
 
@@ -103,17 +93,15 @@ public class SellerServiceImpl implements SellerService {
 
 	@Override
 	public SellerVo getSellerOne(int s_idx) {
-		// TODO Auto-generated method stub
+		// Seller 객체 하나 조회
 		return sellerDao.selectOne(s_idx);
 	}
 
 	@Override
 
 	public int updateSeller(SellerVo vo) {
-		// TODO Auto-generated method stub
-	
+		// seller update
 		String s_msg = vo.getS_msg().replaceAll("\r\n", "<br>");
-
 		vo.setS_msg(s_msg);
 
 		return sellerDao.update(vo);
@@ -121,33 +109,33 @@ public class SellerServiceImpl implements SellerService {
 
 	@Override
 	public int deleteSeller(int s_idx) {
-		// TODO Auto-generated method stub
+		// seller 삭제
 		return sellerDao.delete(s_idx);
 	}
 
 	@Override
 	public ThumbVo getSellerOne(ThumbVo vo) {
-		// TODO Auto-generated method stub
+		// TODO 확인해봐야함
 		return sellerDao.selectOne(vo);
 	}
 
 	@Override
 	public int deleteThumb(ThumbVo vo) {
-		// TODO Auto-generated method stub
+		// thumb 삭제
 		return sellerDao.delete_thumb(vo);
 	}
 
 	@Override
 	public int getSellerCount(int s_idx) {
-		// TODO Auto-generated method stub
+		// TODO 이것도 확인해봐야함. 이름을 한번씩 체크해야할듯
 		return sellerDao.selectCount(s_idx);
 	}
 
 	@Override
 	public Map insertThumb(ThumbVo vo) {
-		// TODO Auto-generated method stub
+		
 		Map map = new HashMap();
-
+		// TODO 여기도 확인해봐야함
 		ThumbVo thumb = sellerDao.selectOne(vo);
 
 		if (thumb != null) {
@@ -173,12 +161,13 @@ public class SellerServiceImpl implements SellerService {
 
 	@Override
 	public int update_Sellertcount(int s_idx) {
-		// TODO Auto-generated method stub
-
+		// seller tcount update
 		return sellerDao.update_tcount(s_idx);
 	}
 
 	@Override
+	
+	//TODO 이것도 이상함. vo받고 vo를 다시설정?
 	public SellerVo getSellerOne(SellerVo vo) {
 		vo = sellerDao.selectOne(vo.getS_idx());
 

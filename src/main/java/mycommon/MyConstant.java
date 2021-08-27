@@ -1,9 +1,5 @@
 package mycommon;
 
-//            pascalǥ���   : MyConstant    <= class��
-//            camelǥ���    : int myMoney   <= ����/�޼ҵ��
-//            snakeǥ���    : int my_money  <= ����/�޼ҵ��
-//            �밡����ǥ��� : boolean b0k int nNumber
 public class MyConstant {
 
 	public static class Board{

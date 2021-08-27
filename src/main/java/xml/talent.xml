@@ -28,7 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </association>
    </resultMap> 
 	
-
 	<!-- 목록조회 안씀 -->
 	<select id="talent_list" resultType="talent">
 		select talent.* ,seller.s_id from talent left join seller on talent.s_idx=seller.s_idx

@@ -5,31 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>다재다능 상품 결제</title>
 <!-- bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- jquery UI -->
-<link rel="stylesheet"
-	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.mtz.monthpicker.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.mtz.monthpicker.js"></script>
 <!-- common -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/common.css">
-
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/common.css">
 <!-- this page (경로 수정필요)-->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/payment_button.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/payment.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/payment_button.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/payment.css">
 <script>
 	$(document).ready(
 			function() {
@@ -159,10 +149,7 @@
 						<th class="sub_text4">금액</th>
 						<th class="sub_text3">판매자</th>
 						<th class="sub_text4">구매일</th>
-					
-
 					</tr>
-
 					<c:forEach var="vo" items="${ map.list }">
 						<tr>
 							<td class="sub_text5"><input type="checkbox" name="chBox"
@@ -179,17 +166,13 @@
 							<td class="sub_text4">${vo.talent.t_price}</td>
 							<td class="sub_text3">${vo.talent.seller.s_id}</td>
 							<td class="sub_text4">${vo.p_regdate }</td>
-
 						</tr>
 					</c:forEach>
 				</table>
-				<tr>
-					<td class="total_sum" colspan="2">총 구매금액: ${ map.totalPrice}원</td>
-				</tr>
+					<p class="total_sum">총 구매금액: ${ map.totalPrice}원</p>
 			</div>
 			<!-- Page메뉴 넣기 -->
 			<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }
-
 			</div>
 		</div>
 	</div>

@@ -3,8 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-
-
 	<resultMap type="member" id="memberResult">
 		<id property="m_idx" column="m_idx"/>
 		<result column="m_name" property="m_name"/>
@@ -25,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</association>
 	</resultMap> 
 	
-	<!-- 전체조회 안씀시발 -->
+	<!-- 전체조회 -->
 	<select id="board_list" resultMap="BoardResult">
 		select 
 			board.*,member.m_name,member.m_id 
@@ -37,11 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="board_list_condition" parameterType="Map" resultMap="BoardResult">
 		 select b.* from 
 		 (
-			select
-				a.*,
-			    rank() over(order by b_idx desc) as no
-		    from 
-		    
+			select a.*,rank() over(order by b_idx desc) as no from
 		    (
 		    	select board.*,member.m_name,member.m_id from board left join member on board.m_idx = member.m_idx
 			    <trim prefix="where" prefixOverrides="or"> 			
@@ -55,7 +49,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						or b_content like CONCAT('%',#{content},'%')
 					</if>
 				</trim>
-
 		    ) a 
 		 ) b
 		 where no between #{ start } and #{ end }
@@ -64,9 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 검색조건별 게시물수 구하기-->
 	<select id="board_condition_row_total" parameterType="Map" resultType="int">
 		select ifnull(count(*),0),member.m_name,member.m_id from board join member on board.m_idx = member.m_idx
-		
 		<trim prefix="where" prefixOverrides="or"> 
-			
 			<if test="name!=null">
 						m_name like CONCAT('%',#{name},'%')
 					</if>
@@ -77,7 +68,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						or b_content like CONCAT('%',#{content},'%')
 			</if>
 		</trim>
-		
 	</select>
 	
 	<!-- 전체게시물수 구하기-->
@@ -87,18 +77,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from board 
 	</select>
 	
-	
 	<!-- 데이터 한건 조회 -->
 	<select id="board_one" parameterType="int" resultMap="BoardResult">
-	select
-	board.*,member.m_name,member.m_id
-	from board left join member on board.m_idx = member.m_idx
-	where b_idx = #{ b_idx }
+		select board.*,member.m_name,member.m_id from board left join member on board.m_idx = member.m_idx where b_idx = #{ b_idx }
 	</select>
 	
 	<!-- 새글쓰기 -->
 	<insert id="board_insert" parameterType="board">
-		  insert into board(b_title,b_content,b_regdate,m_idx,b_readhit) values(#{b_title},#{b_content},curdate(),#{m_idx},#{b_readhit})
+		  insert into board(b_title,b_content,b_regdate,m_idx,b_readhit) 
+		  	values(#{b_title},#{b_content},curdate(),#{m_idx},#{b_readhit})
 	</insert>
 	
 	<!-- 삭제 -->
@@ -117,9 +104,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update board set b_title = #{ b_title },
 						 b_content = #{ b_content },
 						 b_regdate = curdate()
-		where b_idx = #{ b_idx }				 
-						 
+		where b_idx = #{ b_idx }				 						 
 	</update>
-	
-
 </mapper>

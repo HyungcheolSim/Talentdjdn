@@ -5,29 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>관심 재능/상품 목록</title>
 <!-- jquery -->
 <script src="../resource/js/jquery-3.6.0.min.js"></script>
-
 <!-- bootstrap -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- common -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/common.css">
-
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
 <!-- this page (경로 수정필요)-->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/payment_button.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/payment.css">
-
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/payment_button.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/payment.css">
 <script type="text/javascript">
 
 $(document).ready(
@@ -47,7 +36,6 @@ $(document).ready(
 			});
 		}
 );
-
 
 function deletelist() {
 	var confirm_val = confirm("정말 삭제하시겠습니까?");
@@ -75,9 +63,7 @@ function deletelist() {
 		});
 	}
 }
-
 </script>
-
 </head>
 <body>
 	<div class="back_color">
@@ -106,19 +92,15 @@ function deletelist() {
 				</div>
 			</div>
 			<div id="select_box">
-			
-							<input id="select_btn"
-							class="btn btn-warning" type="button" value="선택 삭제" onclick="javascript:deletelist()">
+				<input id="select_btn" class="btn btn-warning" type="button" value="선택 삭제" onclick="javascript:deletelist()">
 				<table id="select_sub_box" class="table">
 					<tr id="select_menu1" class="warning">
-						<th class="sub_text5"><input type="checkbox" name="allCheck"
-							id="allCheck" /></th>
+						<th class="sub_text5"><input type="checkbox" name="allCheck" id="allCheck" /></th>
 						<th class="sub_text">상품정보</th>
 						<th class="sub_text1">내용</th>
 						<th class="sub_text2">금액</th>
 						<th class="sub_text2">판매자</th>
-					</tr>
-					
+					</tr>					
 					<c:forEach var="vo" items="${ list }">
 					<tr>
 						<td class="sub_text5"><input type="checkbox" name="chBox"
@@ -129,15 +111,11 @@ function deletelist() {
 						<td class="sub_text2">${vo.talent.t_price}</td>
 						<td class="sub_text2">${vo.talent.seller.s_id}</td>
 					</tr>
-					</c:forEach>
-					
+					</c:forEach>			
 				</table>
-
 			</div>
 		</div>
 	</div>
-
-
 	<div class="tp_layers">
 		<div class="tp_bottom_layout">
 			<%@ include file="../bottom.jsp"%>

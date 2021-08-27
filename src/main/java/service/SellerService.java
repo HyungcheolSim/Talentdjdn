@@ -1,6 +1,5 @@
 package service;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,14 +14,13 @@ public interface SellerService {
 			@RequestParam(value = "search_text1", required = false, defaultValue = "") String search_text1,
 			@RequestParam(value = "search_text2", required = false, defaultValue = "") String search_text2);
 	
-	List<SellerVo> getSellerList(Map map);
 
 	int getSellerRowTotal(Map map);
 
 	int insertSeller(SellerVo vo,@RequestParam MultipartFile potfolio);
 
 	SellerVo getSellerOne(int s_idx);
-	
+	//TODO 짚고 넘어가야함 sellervo 받는데 thumbvo 받고있음
 	SellerVo getSellerOne(SellerVo vo);
 
 	int updateSeller(SellerVo vo);

@@ -58,20 +58,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="interest_list" parameterType="int" resultMap="InterestResult">
       select b.* from
         (
-      select
-      rank() over(order by i_idx desc) as no,c.*
-      from
-        (select 
-      interest.*,T.t_title,T.t_content,T.t_big_field,T.t_small_field,T.t_price,T.t_local,
+      select rank() over(order by i_idx desc) as no,c.* from
+        (select interest.*,T.t_title,T.t_content,T.t_big_field,T.t_small_field,T.t_price,T.t_local,
       T.t_cat,T.t_starscore,T.t_image,T.t_regdate,T.s_idx, T.s_id
       from interest left join
         (select talent.* ,seller.s_id from talent left join seller on talent.s_idx=seller.s_idx)T 
         on interest.t_idx=T.t_idx) c
-      where c.m_idx= #{m_idx}       
-        )b
+      where c.m_idx= #{m_idx} )b
         where b.m_idx = #{m_idx}
 	</select>
 
+<!-- 관심객체 하나 조회 -->
 	<select id="interest_one"  parameterType="interest"  resultType="interest">  
        select * from interest where m_idx=#{ m_idx} and t_idx=#{ t_idx }
     </select>

@@ -6,16 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>판매자 목록 상단</title>
 <!-- common -->
 <link rel="stylesheet" href="../_css/common.css">
-
-
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/seller_top_button.css"> 
-
-
 </head>
 <body>
 	<div class="logo_menu">
@@ -42,6 +37,5 @@
 		    </c:if> 
 		</ul>
 	</div>
-
 </body>
 </html>

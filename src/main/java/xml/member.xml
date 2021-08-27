@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
-	<!-- 목록조회 -->
+	<!-- 회원 목록조회 -->
 	<select id="member_list" resultType="member">
 		select * from member order by m_idx 
 	</select>
@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
    </select>
    
+   <!-- 로그인한 회원이 등록한 판매자 조회 -->
    <select id="member_seller_list" parameterType="int" resultType="seller">
    		select * from seller where m_idx = #{ m_idx }
    </select>
@@ -29,10 +30,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- m_idx에 해당되는 회원정보 1건 얻어오기 -->
 	<select id="member_one_m_idx" parameterType="int" resultType="member">
 		select * from member where m_idx=#{ m_idx }
-	</select>
-	
-	<select id="member_one_m_id" resultType="member" parameterType="String">
-		select * from member where m_id=#{m_id}
 	</select>
 
 	<!-- 추가 -->

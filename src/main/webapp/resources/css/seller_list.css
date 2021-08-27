@@ -10,6 +10,17 @@
 	margin: auto;
 }
 
+.ghost-button {
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: transparent;
+	border: none;
+	color: #FFFFFF;
+}
+
+#td_thumb {
+	width: 30px;
+}
 #select_menu_box{
 	width: 70%;
 	height: 50px;

@@ -4,26 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>판매자 정보 변경</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
-
-
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/join_page.css">
-
-
 <script type="text/javascript">
-
-
 function send(f) {
-    
     //입력값 체크...
     var s_account      = f.s_account.value.trim();
     var s_education    = f.s_education.value.trim();
@@ -57,24 +48,17 @@ function send(f) {
         f.s_msg.focus();
         return;
      }
-
-    //
     f.action = "modify.do"; 
     f.submit();//전송
-
  }
-
 </script>
-
 </head>
 <body>
-
    <div class="tp_layers">
       <div class="tp_button_layout">
          <%@ include file="../top_button.jsp" %>
       </div>
    </div>
-      
          <div id="join_box">
             <form method="post" enctype="multipart/form-data">
 		        <input type="hidden" name="s_idx" value="${ vo.s_idx }">
@@ -147,13 +131,10 @@ function send(f) {
                </div>
             </form>
          </div>
-      
-   
    <div class="tp_layers">
       <div class="tp_bottom_layout">
          <%@ include file="../bottom.jsp" %>
       </div>
    </div>
-
 </body>
 </html>

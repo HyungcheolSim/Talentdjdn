@@ -1,11 +1,8 @@
 package controller;
 
-import java.io.File;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -25,14 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.util.IOUtils;
-
-import dao.SellerDao;
-
-import mycommon.MyConstant;
 import service.SellerService;
-import util.Paging;
 import util.S3Util;
-import util.UploadFileUtils;
 import vo.MemberVo;
 import vo.SellerVo;
 import vo.ThumbVo;
@@ -59,13 +50,12 @@ public class SellerController {
 	S3Util s3 = new S3Util();
 	String bucketName = "talentdjdnbucket";
 
-
 	@RequestMapping("list.do")
 	public String list(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage,
 			@RequestParam(value = "search_text1", required = false, defaultValue = "") String search_text1,
 			@RequestParam(value = "search_text2", required = false, defaultValue = "") String search_text2, Model model,
 			ThumbVo vo) {
-
+		//판매자 목록 검색,페이징 된 list model에 map으로 전달하고 seller list페이지로 이동
 		Map map= sellerService.getPagingSellerList(nowPage, search_text1, search_text2);
 		model.addAttribute("map",map);
 		return "_jsp/seller/seller_list";
@@ -73,19 +63,17 @@ public class SellerController {
 
 	@RequestMapping("insert_form.do")
 	public String insert_form() {
-
+		//seller 등록 폼으로 이동
 		return "_jsp/seller/seller_insert_form";
 	}
 
 	@RequestMapping(value="insert.do",method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String insert(SellerVo vo, Model model, @RequestParam MultipartFile potfolio) throws Exception {
-
+		//seller 등록,이미지까지 session user로 로그인 확인하고 seller insert 하고 seller list로 페이지 이동
 		MemberVo user = (MemberVo) session.getAttribute("user");
 
 		if (user == null) {
-
 			model.addAttribute("reason", "end_session");
-
 			return "redirect:../member/login_form.do";
 		}
 
@@ -93,18 +81,15 @@ public class SellerController {
 		vo.setS_id(user.getM_id());
 		try {
 			int res = sellerService.insertSeller(vo,potfolio);
-
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return "redirect:list.do";
 	}
 
 	@RequestMapping("view.do")
 	public String view(int s_idx, Model model) {
-
+		//s_idx에 해당하는 sellervo 가져오고 seller 상세 화면으로 이동
 		SellerVo vo = sellerService.getSellerOne(s_idx);
 
 		model.addAttribute("vo", vo);
@@ -114,9 +99,8 @@ public class SellerController {
 
 	@RequestMapping("modify_form.do")
 	public String modify_form(int s_idx, Model model) {
-
+		//s_idx에 해당하는 sellervo 가져오고 수정화면 이동
 		SellerVo vo = sellerService.getSellerOne(s_idx);
-		//vo=sellerService.getSellerOne(vo);
 
 		model.addAttribute("vo", vo);
 
@@ -127,7 +111,7 @@ public class SellerController {
 	public String modify(SellerVo vo, int page,
 			@RequestParam(value = "search", required = false, defaultValue = "all") String search,
 			@RequestParam(value = "search_text", required = false, defaultValue = "") String search_text, Model model) throws Exception {
-
+		// 수정기능. 로그인 여부 확인 후 seller update하고 model로 상세화면에 model로 s_idx,page,search등등 전달하고 seller 상세페이지로 이동
 		MemberVo user = (MemberVo) session.getAttribute("user");
 
 		if (user == null) {
@@ -145,7 +129,6 @@ public class SellerController {
 			int res = sellerService.updateSeller(vo);
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -159,24 +142,19 @@ public class SellerController {
 
 	@RequestMapping("delete.do")
 	public String delete(int s_idx) {
-
+		//seller delete 후 list로 이동
 		try {
-
 			int res = sellerService.deleteSeller(s_idx);
-
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return "redirect:list.do";
-
 	}
 
 	@RequestMapping("thumb_insert.do")
 	@ResponseBody
 	public Map thumb_insert(ThumbVo vo) {
-
+		//thumb insert
 		return sellerService.insertThumb(vo);
 	}
 
@@ -184,7 +162,7 @@ public class SellerController {
 	@ResponseBody
 	@RequestMapping("/displayFile")
 	public ResponseEntity<byte[]> displayFile(String fileName, String directory) throws Exception {
-		
+		//파일 display하기 위한 기능
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
 		HttpURLConnection uCon = null;
@@ -199,8 +177,6 @@ public class SellerController {
 			inputDirectory = "img/product";
 		}
 
-
-
 		try {
 			HttpHeaders headers = new HttpHeaders();
 			URL url;
@@ -213,7 +189,6 @@ public class SellerController {
 				uCon = (HttpURLConnection) url.openConnection();
 				in = uCon.getInputStream();
 			}
-
 			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();

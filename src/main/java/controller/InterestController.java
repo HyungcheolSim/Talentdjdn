@@ -33,12 +33,11 @@ public class InterestController {
 		this.interestService = interestService;
 	}
 
-	// ����ʹ� ��� ��ȸ
+
 	@RequestMapping("list.do")
 	public String list(Model model) {
-		
+		//session에 들어있는 membervo로 들어가는 user 정보를 가져와 m_idx에 해당하는 interstlist 조회하고 list page로 이동
 		MemberVo user =  (MemberVo) session.getAttribute("user");
-
 		List<InterestVo> list = interestService.selectList(user.getM_idx());
 		
 		model.addAttribute("list",list);
@@ -50,6 +49,7 @@ public class InterestController {
 	@ResponseBody
 	@RequestMapping("deletelist.do")
 	public int delete(@RequestParam(value="chbox[]")List<String> chArr) {
+		//체크목록 전체삭제같은 기능을 위한 삭제 기능. chArr이란 string list에 담아 list size만큼 반복하며 해당하는 i_idx를 삭제
 		int result=0;
 		int pNum=0;
 		for(String i:chArr) {
@@ -57,17 +57,14 @@ public class InterestController {
 			interestService.deleteInterest(pNum);
 			result=1;
 		}
-		
 		return result;
 	}
 	
-	// ����ʹ� �߰�
 	@RequestMapping("insert.do")
 	@ResponseBody
-	public Map insert(InterestVo vo) {	
-		
+	public Map insert(InterestVo vo) {
+		//관심목록 등록
 		Map map = interestService.insert(vo);
-		
 		return map;
 	}
 	

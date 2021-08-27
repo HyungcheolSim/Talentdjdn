@@ -2,58 +2,30 @@
 	pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-                              
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-
-<!-- bootstrap을 사용하기 위한 설정 -->
+<title>판매자 목록</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<!-- common -->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/common.css">
-<!-- this page-->
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/seller_list.css">
-
-<!-- SweetAlert사용설정 : 알림박스 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<style type="text/css">
-.ghost-button {
-	background-color: transparent !important;
-	background-image: none !important;
-	border-color: transparent;
-	border: none;
-	color: #FFFFFF;
-}
-
-#td_thumb {
-	width: 30px;
-}
-</style>
-
 <script type="text/javascript">
-
 var search_text1;
 var search_text2;
-
 	//고수등록 폼띄우기
-	function insert_form() {
-		
+	function insert_form() {		
 		//로그인여부 체크
-		if('${ empty user }'=='true'){
-			
-			
+		if('${ empty user }'=='true'){					
 			Swal.fire({
 				  title: '고수등록',
 				  html: "고수등록은 로그인후 이용가능합니다<br>로그인 하시겠습니까?",
@@ -68,18 +40,11 @@ var search_text2;
 					//현재경로 : /photo/list.do
 						location.href='${ pageContext.request.contextPath }/member/login_form.do?url=' + location.href;
 				  }
-				});
-			
+				});			
 		}else{
-			
-			//로그인된 상태면...
-			//글쓰기 폼으로 이동
-			location.href = 'insert_form.do'; //PhotoInsertFormAction
-			
+			location.href = 'insert_form.do'; 		
 		}
-
-	}//end-insert_form
-	
+	}
 	function find() {
 		 search_text1 = $("#search_text1").val();
 		 search_text2 = $("#search_text2").val();
@@ -97,29 +62,18 @@ var search_text2;
 			location.href = "list.do?search_text1=" + encodeURIComponent(search_text1,"utf-8");
 			return;
 		}
-		 
-		//자바스크립트 이용 요청
-		//encodeURIComponent(search_text,"utf-8")
-		// : search_text기 한글 또는 특수문자인 경우 인코딩해서 넘겨야 서버가 제대로 인식한다
 		if(search_text1!=''&&search_text2!='')
 			location.href = "list.do?search_text1=" + encodeURIComponent(search_text1,"utf-8") + "&search_text2=" + encodeURIComponent(search_text2,"utf-8"); 
-		
-	}//end-find
-
-	
-	//jQuery초기화
+	}
 	$(function(){
-
 		if('${ not empty param.search_text1 }'=='true'){		
 		  $("#search_text1").val('${ param.search_text1 }');
 		}
 		if('${ not empty param.search_text2 }'=='true'){		
 			  $("#search_text2").val('${ param.search_text2 }');
-			}
+		}
 	});
-	
 	function del_seller(s_idx) {
-					
 			Swal.fire({
 				  title: '고수삭제',
 				  html: "정말 삭제하시겠습니까?",
@@ -136,84 +90,65 @@ var search_text2;
 				  }
 				});
 	}
-			
-			
-		$(document).ready(function(){
-		   
-		   setTimeout(show_message, 100); //0.1초후에 show_message함수 호출
-		   
-		});
+	$(document).ready(function(){		   
+	   setTimeout(show_message, 100); //0.1초후에 show_message함수 호출
+	});
 		
-		function show_message() {
-			
-	    	  if('${ param.is_insert }'== 'insert'){
-	    		  alert('좋아요를 누르셨습니다!');
-	    	  }if('${ param.is_insert }'== 'delete'){
-	    		  alert('좋아요를 취소하셨습니다!');
-	    	  }
-		}
+	function show_message() {
+    	  if('${ param.is_insert }'== 'insert'){
+    		  alert('좋아요를 누르셨습니다!');
+    	  }if('${ param.is_insert }'== 'delete'){
+    		  alert('좋아요를 취소하셨습니다!');
+    	  }
+	}
 	
-		   function thumb_insert(s_idx) {
-				      
-				      //로그인여부 체크
-				      if('${ empty user }'=='true'){
-				         
-				         Swal.fire({
-				              title: '좋아요',
-				              html: "<h5>좋아요는 로그인후 클릭이가능합니다<br>로그인 하시겠습니까?</h5>",
-				              icon: 'warning',
-				              showCancelButton: true,
-				              confirmButtonColor: '#3085d6',
-				              cancelButtonColor: '#d33',
-				              confirmButtonText: '예',
-				              cancelButtonText : "아니오"
-				            }).then((result) => {
-				              if (result.isConfirmed) {
-				               //현재경로 : /review/list.do
-				                  location.href='${ pageContext.request.contextPath }/member/login_form.do?url=' + location.href ; //돌아올 경로
-				              }
-				            });
+   function thumb_insert(s_idx) { 
+		      //로그인여부 체크
+		      if('${ empty user }'=='true'){
+		         Swal.fire({
+		              title: '좋아요',
+		              html: "<h5>좋아요는 로그인후 클릭이가능합니다<br>로그인 하시겠습니까?</h5>",
+		              icon: 'warning',
+		              showCancelButton: true,
+		              confirmButtonColor: '#3085d6',
+		              cancelButtonColor: '#d33',
+		              confirmButtonText: '예',
+		              cancelButtonText : "아니오"
+		            }).then((result) => {
+		              if (result.isConfirmed) {
+		               //현재경로 : /review/list.do
+		                  location.href='${ pageContext.request.contextPath }/member/login_form.do?url=' + location.href ; //돌아올 경로
+		              }
+		            });
 
-				      }else{
-						
-				          //Ajax로 전송
-				          $.ajax({
-				             url   : 'thumb_insert.do',
-				             data  : {'s_idx' :  s_idx, 
-				                      'm_idx' :  "${ user.m_idx }"
-				                     },
-				             dataType : 'json',
-				             success  : function(result_data){
-				                //result_data = { "result" : "success" }
-				                //result_data = { "result" : "fail" }
-				                
-				                if(result_data.result == "cancle_success"){
-				                   swal.fire("좋아요를 취소하셨습니다");
-				                   $("#thumb_count_" + s_idx).html(result_data.count);
-				                }
-				                else if(result_data.result == "success"){   
-				             	   swal.fire("좋아요를 누르셨습니다");
-				                   //좋아요 증가
-				                   $("#thumb_count_" + s_idx).html(result_data.count);
-				                   
-				                }else{
-				             	   swal.fire("좋아요 실패");
-				                }
-				             },
-				             error    : function(err){
-				                alert(err.responseText);
-				             }
-				          }); //end-ajax
-				    	  
-				    	  
-				      }
-				      
-				      
-				      
-				   }// end thumb_insert
-
+		      }else{
+		          $.ajax({
+		             url   : 'thumb_insert.do',
+		             data  : {'s_idx' :  s_idx, 
+		                      'm_idx' :  "${ user.m_idx }"
+		                     },
+		             dataType : 'json',
+		             success  : function(result_data){
+		                if(result_data.result == "cancle_success"){
+		                   swal.fire("좋아요를 취소하셨습니다");
+		                   $("#thumb_count_" + s_idx).html(result_data.count);
+		                }
+		                else if(result_data.result == "success"){   
+		             	   swal.fire("좋아요를 누르셨습니다");
+		                   //좋아요 증가
+		                   $("#thumb_count_" + s_idx).html(result_data.count);
+		                   
+		                }else{
+		             	   swal.fire("좋아요 실패");
+		                }
+		             },
+		             error    : function(err){
+		                alert(err.responseText);
+		             }
+		          }); //end-ajax  
+		      }
+		   }// end thumb_insert
 </script>
-
 </head>
 <body>
 	<div class="back_color">
@@ -265,30 +200,27 @@ var search_text2;
 					<option value="상품">상품</option>
 				</select>
 			</div>
-
 			<div id="click_box">
 				<div class="loc_cate1">
-				<c:if test="${map.s_count >= 1 }">
-					
-					<b>${ map.s_count }명의 고수</b>
-				</c:if>
-				<c:if test="${empty map.s_count}">
-					<h1>해당하는 고수가 없습니다.</h1>
-				</c:if>
-					
+					<c:if test="${map.s_count >= 1 }">
+
+						<b>${ map.s_count }명의 고수</b>
+					</c:if>
+					<c:if test="${empty map.s_count}">
+						<h1>해당하는 고수가 없습니다.</h1>
+					</c:if>
 				</div>
 				<div class="loc_cate_null"></div>
 			</div>
 			<c:forEach var="vo" items="${ map.list }">
 				<div id="select_box">
-					<a
-						href="view.do?s_idx=${ vo.s_idx }&page=${ (empty param.page) ? 1 :  param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">
+					<a href="view.do?s_idx=${ vo.s_idx }&page=${ (empty param.page) ? 1 :  param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">
 						<table id="select_sub_box">
 							<tr class="select_sub_box_tr">
 								<td rowspan='5' class="sub_text"><img class="select_p_img"
 									alt=""
 									src="displayFile?fileName=${vo.s_potfolio}&directory=seller"></td>
-									
+
 								<td class="sub_text1">${ vo.s_id }</td>
 								<td class="sub_text1">${ vo.s_msg }</td>
 								<td class="sub_text1">${ vo.s_field }</td>
@@ -296,35 +228,26 @@ var search_text2;
 							</tr>
 						</table>
 					</a>
-
 					<button class='ghost-button' type="button">
 						<img id="td_thumb"
 							src="${pageContext.request.contextPath}/resources/img/thumb.png"
 							onclick="thumb_insert('${vo.s_idx}');">
 					</button>
-
 					<span id="thumb_count_${vo.s_idx}">${ vo.s_tcount }</span>
 
-					<c:if
-						test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
+					<c:if test="${ (vo.member.m_idx eq user.m_idx) or (user.m_grade eq '관리자') }">
 						<input type="button" id="delete_btn" class="btn btn-warning"
 							value="삭제" onclick="del_seller('${ vo.s_idx }');">
 					</c:if>
 				</div>
 			</c:forEach>
-
 			<div class="gosu">
 				<input id="gosu_btn" class="btn btn-warning" type="button"
 					value="고수등록" onclick="insert_form();">
 			</div>
-
-
 			<!-- Page메뉴 넣기 -->
-			<div style="text-align: center; font-size: 12pt;">
-				${ map.pageMenu }
+			<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }
 			</div>
-
-
 		</div>
 	</div>
 	<div class="tp_layers">

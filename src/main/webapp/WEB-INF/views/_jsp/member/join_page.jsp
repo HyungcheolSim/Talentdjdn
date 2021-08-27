@@ -4,27 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-
-
+<title>회원가입</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <!-- common -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
-
 <!-- this page -->
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/join_page.css">
-
-
 <!-- daum 주소찾기 라이브러리 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 <script type="text/javascript">
-
 var regular_id = /^[a-zA-Z0-9]{4,10}$/;
 
 $(document).ready(function(){
@@ -36,8 +27,7 @@ $(document).ready(function(){
       
       //회원가입버튼 비활성화
       $("#btn_register").attr('disabled',true);
-      
-      
+           
       if(regular_id.test(m_id)==false){
          $("#id_msg").html('영문자숫자조합 4~10자리로 작성하세요');
          $("#id_msg").css('color','red');
@@ -71,23 +61,17 @@ $(document).ready(function(){
             //alert(err.responseText);
             console.log(err.responseText);
          }
-      });
-      
-      
+      });     
    }); // end keyup
-
-   
 	//전화번호 입력시 번호 사이에 자동 - 붙여주는 코드
 	$(document).on("keyup", "#m_phone", function() { 
 		$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
-
-	
 	});
    
 	$(document).on("keyup", "#m_jumin", function() { 
 		$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(\d{6})(\d{7})/, '$1-*******').replace("--", "-") );
 	});
-   
+  
    //주소찾기 버튼 클릭시 
    $("#btn_find").click(function(){
       
@@ -114,10 +98,7 @@ $(document).ready(function(){
              top: (window.screen.height / 2) - (height / 2)   
           }
        );
-      
    });// end 찾기버튼 클릭
-
-   
 });// end jQuery 초기화
 
 function send(f) {
@@ -217,27 +198,19 @@ function send(f) {
         
         return;
      }
-
-    //
-    f.action = "insert.do"; //MemberInsertAction
+    f.action = "insert.do"; 
     f.submit();//전송
-
  }
-
 </script>
-
 </head>
 <body>
-
    <div class="tp_layers">
       <div class="tp_button_layout">
          <%@ include file="../top_button.jsp" %>
       </div>
    </div>
-   
    <div class="newtp_layer">
       <div class="tp_main_layout">
-      
          <div id="join_box">
             <form>
                <div class="panel panel-warning">
@@ -327,16 +300,12 @@ function send(f) {
                </div>
             </form>
          </div>
-      
-         
       </div>
    </div>
-   
    <div class="tp_layers">
       <div class="tp_bottom_layout">
          <%@ include file="../bottom.jsp" %>
       </div>
    </div>
-
 </body>
 </html>

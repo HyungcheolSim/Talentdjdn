@@ -29,21 +29,21 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<MemberVo> getMemberList() {
-		// TODO Auto-generated method stub
+		// member 목록 조회
 		return memberDao.selectList();
 	}
 
 	public Map checkMemberId(String m_id) {
+		//memberId 확인한 결과 result로 map에 넣어 리턴
 		Map map = new HashMap();
 
-		// DB���� m_id���翩�� �˻�
 		boolean bResult;
 		MemberVo vo = memberDao.selectOne(m_id);
 
-		if (vo == null) {// ��밡���� ID
+		if (vo == null) {
 			bResult = true;
 		} else {
-			// ������� ID
+			
 			bResult = false;
 		}
 
@@ -54,43 +54,43 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertMember(MemberVo vo) {
-		// TODO Auto-generated method stub
+		// member 등록
 		return memberDao.insert(vo);
 	}
 
 	@Override
 	public int deleteMember(int m_idx) {
-		// TODO Auto-generated method stub
+		// member 삭제
 		return memberDao.delete(m_idx);
 	}
 
 	@Override
 	public int updateMember(MemberVo vo) {
-		// TODO Auto-generated method stub
+		// member update
 		return memberDao.update(vo);
 	}
 
 	@Override
-	public MemberVo getMemberOne(int m_id) {
-		// TODO Auto-generated method stub
-		return memberDao.selectOne(m_id);
+	public MemberVo getMemberOne(int m_idx) {
+		// m_idx로 멤버 하나 조회
+		return memberDao.selectOne(m_idx);
 	}
 
 	@Override
 	public MemberVo getMemberOne(String m_id) {
-		// TODO Auto-generated method stub
+		// m_id로 멤버 하나 조회
 		return memberDao.selectOne(m_id);
 	}
 
 	@Override
 	public int delete(int m_idx) {
-		// TODO Auto-generated method stub
+		// 멤버 삭제
 		return memberDao.delete(m_idx);
 	}
 
 	@Override
 	public Map getPagingMemberList(int nowPage) {
-		// TODO Auto-generated method stub
+		//페이징된 member목록 조회
 		int start = (nowPage - 1) * MyConstant.Member.BLOCK_LIST + 1;
 		int end = start + MyConstant.Member.BLOCK_LIST - 1;
 		
@@ -116,7 +116,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List getSellerList(int m_idx) {
-		// TODO Auto-generated method stub
+		// m_idx에 해당하는 seller목록 조회
 		return memberDao.selectSellerList(m_idx);
 	}
 

@@ -22,7 +22,7 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	public Map getAllLists() {
-		// TODO Auto-generated method stub
+		// 메인 화면에 나타나는 세 가지 재능목록, 상품목록, 셀러목록 map에 넣어 리턴
 		Map map=new HashMap();
 		
 		List<TalentVo> t_list=mainDao.selectTList();
