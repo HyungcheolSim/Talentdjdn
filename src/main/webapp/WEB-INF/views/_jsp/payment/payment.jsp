@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,13 +164,14 @@
 							<c:if test="${ vo.talent.t_cat eq '재능' }">
 								<td class="sub_text3">${vo.p_email}</td>
 							</c:if>
-							<td class="sub_text4">${vo.talent.t_price}</td>
+							<td class="sub_text4"><fmt:formatNumber type="number" maxFractionDigits="3"
+									value="${vo.talent.t_price}" />원</td>
 							<td class="sub_text3">${vo.talent.seller.s_id}</td>
 							<td class="sub_text4">${vo.p_regdate }</td>
 						</tr>
 					</c:forEach>
 				</table>
-					<p class="total_sum">총 구매금액: ${ map.totalPrice}원</p>
+					<p class="total_sum">총 구매금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${ map.totalPrice}"/>원</p>
 			</div>
 			<!-- Page메뉴 넣기 -->
 			<div style="text-align: center; font-size: 12pt;">${ map.pageMenu }

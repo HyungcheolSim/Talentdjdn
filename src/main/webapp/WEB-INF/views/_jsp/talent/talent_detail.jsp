@@ -252,9 +252,6 @@ $(document).ready(function(){
 						</div>
 						<div class="detail3">
 							<div class="dd1">
-								재능 관리 서비스 내용 쓰면됨.<br> 작업일:1일 수정횟수: 1회
-							</div>
-							<div class="dd1">
 								<img id="cart"
 									src="${ pageContext.request.contextPath }/resources/img/cart.png"
 									onclick="add_cart()">
@@ -280,7 +277,7 @@ $(document).ready(function(){
 								onclick="modify_form('${ talentvo.t_idx }');"></td>
 						</c:if>
 						<c:if
-							test="${ (talentvo.seller.s_id eq user.m_id) or (user.m_grade eq '관리자') }">
+							test="${ talentvo.seller.s_id eq user.m_id }">
 							<td class="sub_text2"><input type="button" id="delete_btn"
 								class="btn btn-warning" value="삭제"
 								onclick="del_talent('${ param.t_idx }');"></td>

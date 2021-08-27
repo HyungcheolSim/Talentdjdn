@@ -77,6 +77,7 @@
 						<div class ="s_dt">
 							<span>${ vo.t_starscore }점</span>
 						</div>
+					</div>	
 					</c:forEach>
 				</div>
 				<!-- 검색메뉴 -->
