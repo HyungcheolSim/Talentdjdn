@@ -7,14 +7,11 @@
 <title>Talent Sidebar</title>
 
 <!-- common -->
-<link rel="stylesheet" href="../../css/common.css">
-<link rel="stylesheet" href="../../css/talent/talent_sidebar.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/common.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/talent/talent_sidebar.css">
 
 </head>
 <body>
-
-
-
 <div class="sidebar_body_container">
 	<div class="sidebar_header_container">
 		<div class="sidebar_header_title_container">

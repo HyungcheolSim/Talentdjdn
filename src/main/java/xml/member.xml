@@ -31,6 +31,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="member_one_m_idx" parameterType="int" resultType="member">
 		select * from member where m_idx=#{ m_idx }
 	</select>
+	
+	<select id="member_one_m_id" parameterType="String" resultType="member">
+		select * from member where m_id=#{ m_id }
+	</select>
 
 	<!-- 추가 -->
 	<insert id="member_insert" parameterType="member">
